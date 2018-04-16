@@ -104,7 +104,7 @@ class Example extends CI_Controller
 	}
 
 	function table_sup() {
-		$this->template->write('title', 'Lihat Supplier', TRUE);
+		$this->template->write('title', 'Lihat Pemasok', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_sup', '', true);
 

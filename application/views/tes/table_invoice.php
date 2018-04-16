@@ -22,61 +22,42 @@
 			</div>
 
 			<div class="x_content">
-				<button type="button" class="btn btn-primary">Tambah Obat  <span class="fa fa-plus"></span></button>
+				<a href="<?php echo base_url('example/form_invoice') ?>"><button type="button" class="btn btn-primary">Tambah Tagihan <span class="fa fa-plus"></span></button></a>
 				<!--
 				<p class="text-muted font-13 m-b-30">
 					Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.
 				</p>
 			-->
-				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+				 <table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Nama Obat</th>
-							<th>Penyimpanan</th>
-							<th>Kategori</th>
-							<th>Supplier</th>
-							<th>Stok</th>
-							<th>Kedaluwarsa</th>
-							<th>Harga Beli</th>
-							<th>Harga Jual</th>
-							<th>Unit</th>
+							<th>No Tagihan</th>
+							<th>Nama Pembeli</th>
+							<th>Tanggal</th>
+							<th>Total Pembelian</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>Amodis</td>
-							<td>Gudang</td>
-							<td>Analgetik</td>
-							<td>Bina Jaya</td>
-							<td>61</td>
+							<td>0001</td>
+							<td>Ana</td>
 							<td>2011/04/25</td>
 							<td>Rp 10.000,-</td>
-							<td>Rp 12.000,-</td>
-							<td>Kapsul</td>
 						</tr>
 
 						<tr>
-							<td>Clorofil</td>
-							<td>Gudang</td>
-							<td>Anti Radang</td>
-							<td>Bina Jaya</td>
-							<td>61</td>
+							<td>0001</td>
+							<td>Ana</td>
 							<td>2011/04/25</td>
 							<td>Rp 10.000,-</td>
-							<td>Rp 12.000,-</td>
-							<td>Kapsul</td>
 						</tr>
 
 						<tr>
-							<td>Metafenamat</td>
-							<td>Lab</td>
-							<td>Anti Radang</td>
-							<td>Bina Jaya</td>
-							<td>61</td>
+							<td>0001</td>
+							<td>Ana</td>
 							<td>2011/04/25</td>
 							<td>Rp 10.000,-</td>
-							<td>Rp 12.000,-</td>
-							<td>Kapsul</td>
 						</tr>
 					</tbody>
 				</table>

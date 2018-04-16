@@ -84,6 +84,4 @@
     </div>
   </div>
 
-<div style="width: 50%; height: auto;">
-  <img src="<?php echo base_url('assets/images/pet.png') ?>" alt="Pet">
-</div>
+
