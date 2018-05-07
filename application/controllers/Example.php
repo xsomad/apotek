@@ -8,8 +8,13 @@ class Example extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
 		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
 		$this->template->write_view('navs', 'template/default_topnavs.php', true);
+
+		$this->load->library('template');
+		$this->load->model('apotek_data');
+        $this->load->database();
 	}
 
 	function index() {
@@ -80,11 +85,13 @@ class Example extends CI_Controller
 
 
 	function table_med() {
+		$data['table_med'] = $this->apotek_data->medicine()->result();
 		$this->template->write('title', 'Lihat Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/table_med', '', true);
+		$this->template->write_view('content', 'tes/table_med',$data);
 
 		$this->template->render();
+		
 	}
 
 	function table_cat() {

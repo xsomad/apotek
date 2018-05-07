@@ -77,7 +77,7 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <button type="submit" class="btn btn-primary">Batal</button>
+              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-primary">Batal</button></a>
               <button id="send" type="submit" class="btn btn-success">Submit</button>
             </div>
           </div>

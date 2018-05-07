@@ -1,15 +1,7 @@
-<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
-  <div class="tile-stats">
-    <div class="icon"><i class="fa fa-edit"></i>
-      </div>
-      <div class="count">...</div>
-      <h3>Tagihan</h3>
-      <p>Menambahkan tagihan dari pembeli</p>
-    </div>
-  </div>
 
   <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <a href="<?php echo base_url('example/form_med') ?>">
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-medkit"></i>
       </div>
@@ -17,9 +9,11 @@
       <h3>Obat</h3>
       <p>Menambahkan obat baru</p>
     </div>
+    </a>
   </div>
 
   <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <a href="<?php echo base_url('example/form_cat') ?>">
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-hospital-o"></i>
       </div>
@@ -27,10 +21,12 @@
       <h3>Kategori</h3>
       <p>Menambahkan kategori obat baru</p>
     </div>
+  </a>
   </div>
 
 
   <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <a href="<?php echo base_url('example/form_sup') ?>">
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-user"></i>
       </div>
@@ -38,6 +34,19 @@
       <h3>Pemasok</h3>
       <p>Menambahkan pemasok baru</p>
     </div>
+  </a>
+  </div>
+
+<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+  <a href="<?php echo base_url('example/form_invoice') ?>">
+  <div class="tile-stats">
+    <div class="icon"><i class="fa fa-edit"></i>
+      </div>
+      <div class="count">...</div>
+      <h3>Tagihan</h3>
+      <p>Menambahkan tagihan dari pembeli</p>
+    </div>
+  </a>
   </div>
 
 

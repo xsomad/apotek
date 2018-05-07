@@ -34,7 +34,7 @@
 							<th>Nama Obat</th>
 							<th>Penyimpanan</th>
 							<th>Kategori</th>
-							<th>Supplier</th>
+							<th>Pemasok</th>
 							<th>Stok</th>
 							<th>Kedaluwarsa</th>
 							<th>Harga Beli</th>
@@ -43,6 +43,23 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach($obat as $o){ ?>
+						<tr>
+							<td><?php echo $o->nama_obat ?></td>
+							<td><?php echo $o->penyimpanan ?></td>
+							<td><?php echo $o->kategori ?></td>
+							<td><?php echo $o->pemasok ?></td>
+							<td><?php echo $o->stok ?></td>
+							<td><?php echo $o->alamat ?></td>
+							<td><?php echo $o->harga_beli ?></td>
+							<td><?php echo $o->harga_jual ?></td>
+							<td><?php echo $o->unit ?></td>
+						</tr>
+
+						<?php } ?>
+
+						
+						<!--
 						<tr>
 							<td>Amodis</td>
 							<td>Gudang</td>
@@ -78,6 +95,7 @@
 							<td>Rp 12.000,-</td>
 							<td>Kapsul</td>
 						</tr>
+					-->
 					</tbody>
 				</table>
 		</div>

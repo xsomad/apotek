@@ -26,7 +26,7 @@
 
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Pelanggan</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Obat</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="name" required="required" type="text">
             </div>
@@ -53,50 +53,66 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Kategori</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="category" id="category" name="category" required="required" class="form-control col-md-7 col-xs-12">
+              <select class="select2_single form-control" tabindex="-1">
+                <option></option>
+                <option value="AK">Kapsul</option>
+                <option value="HI">Sirup</option>
+                <option value="CA">Tablet</option>
+                <option value="NV">Semprotan</option>
+              </select>
             </div>
           </div>
+
+
+
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Tanggal Kadaluarsa</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class='input-group date' id='myDatepicker2'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                               <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+              <div class='input-group date' id='myDatepicker2'>
+                  <input type='text' class="form-control" required="required">
+                  <span class="input-group-addon">
+                     <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
             </div>
           </div>
+
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Deskripsi</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
+              <textarea id="textarea" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Harga Beli  (Rp)</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+              <input type="number" id="number" name="number" required="required" data-validate-minmax="10,1000000" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sale">Harga Jual (Rp)</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+              <input type="number" id="number" name="number" required="required" data-validate-minmax="10,1000000" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supplier">Supplier</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="storage">Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="storage" id="storage" name="storage" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
 
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <button type="submit" class="btn btn-primary">Batal</button>
+              <a href="<?php echo base_url('example/table_med') ?>"><button type="button" class="btn btn-primary">Batal</button></a>
               <button id="send" type="submit" class="btn btn-success">Simpan</button>
+              <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Regular Success',
+                                  text: 'That thing that you were trying to do worked!',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });">Success</button>
             </div>
           </div>
         </form>

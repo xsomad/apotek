@@ -25,6 +25,14 @@
 		<link href="<?php echo base_url('vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') ?>" rel="stylesheet">
 
 
+		<link href="<?php echo base_url('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') ?>" rel="stylesheet">
+
+		<!-- PNotify -->
+		<link href="<?php echo base_url('vendors/pnotify/dist/pnotify.css') ?>" rel="stylesheet">
+		<link href="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.css') ?>" rel="stylesheet">
+		<link href="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.css') ?>" rel="stylesheet">
+
+
 		<!-- FullCalendar -->
 		<link href="<?php echo base_url('vendors/fullcalendar/dist/fullcalendar.min.css') ?>" rel="stylesheet" >
 		<link href="<?php echo base_url('vendors/fullcalendar/dist/fullcalendar.print.css') ?>" rel="stylesheet" media="print">
@@ -154,6 +162,13 @@
 		<script src="<?php echo base_url('vendors/pdfmake/build/pdfmake.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/pdfmake/build/vfs_fonts.js') ?>"></script>
 			<!-- Custom JS -->
+
+
+		<!-- PNotify -->
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.js') ?>"></script>
+	   
 		
 		<script src="<?php echo base_url('assets/js/custom.min.js') ?>"></script>
 		<!-- /Import Javascript -->
@@ -164,7 +179,7 @@
     $('#myDatepicker').datetimepicker();
     
     $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'DD/MM/YYYY'
     });
     
     $('#myDatepicker3').datetimepicker({

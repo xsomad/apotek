@@ -37,7 +37,6 @@
 						</tr>
 					</thead>
 
-
 					<tbody>
 						<tr>
 							<td>Bina Jaya</td>
@@ -56,3 +55,4 @@
 			</div>
 		</div>
 	</div>
+</div>
