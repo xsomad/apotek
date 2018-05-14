@@ -165,10 +165,7 @@
 
 
 		<!-- PNotify -->
-		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.js') ?>"></script>
-		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.js') ?>"></script>
-		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.js') ?>"></script>
-	   
+		
 		
 		<script src="<?php echo base_url('assets/js/custom.min.js') ?>"></script>
 		<!-- /Import Javascript -->
@@ -179,7 +176,7 @@
     $('#myDatepicker').datetimepicker();
     
     $('#myDatepicker2').datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'YYYY-MM-DD'
     });
     
     $('#myDatepicker3').datetimepicker({

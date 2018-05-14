@@ -22,7 +22,15 @@
 			</div>
 
 			<div class="x_content">
-				<a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-primary">Tambah Obat <span class="fa fa-plus"></span></button></a>
+				<?php if($this->session->flashdata('med_added')): ?>
+    				<div class="alert alert-info alert-dismissible fade in" role="alert">
+		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+		                </button>
+	                    <?php echo $this->session->flashdata('med_added'); ?></p>
+                 	</div>
+				<?php endif; ?>
+
+				<a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
 				<!--
 				<p class="text-muted font-13 m-b-30">
 					Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.
@@ -34,26 +42,31 @@
 							<th>Nama Obat</th>
 							<th>Penyimpanan</th>
 							<th>Kategori</th>
-							<th>Pemasok</th>
+							
 							<th>Stok</th>
 							<th>Kedaluwarsa</th>
-							<th>Harga Beli</th>
+							
 							<th>Harga Jual</th>
 							<th>Unit</th>
+							<th>Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($obat as $o){ ?>
+						<?php foreach($table_med as $m){ ?>
 						<tr>
-							<td><?php echo $o->nama_obat ?></td>
-							<td><?php echo $o->penyimpanan ?></td>
-							<td><?php echo $o->kategori ?></td>
-							<td><?php echo $o->pemasok ?></td>
-							<td><?php echo $o->stok ?></td>
-							<td><?php echo $o->alamat ?></td>
-							<td><?php echo $o->harga_beli ?></td>
-							<td><?php echo $o->harga_jual ?></td>
-							<td><?php echo $o->unit ?></td>
+							<td><?php echo $m->nama_obat ?></td>
+							<td><?php echo $m->penyimpanan ?></td>
+							<td><?php echo $m->nama_kategori ?></td>
+							
+							<td><?php echo $m->stok ?></td>
+							<td><?php echo $m->kedaluwarsa ?></td>
+							
+							<td><?php echo number_format($m->harga_jual) ?></td>
+							<td><?php echo $m->unit ?></td>
+							<td style=" text-align: center;">
+								<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>
+								<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button> 
+					         </td>
 						</tr>
 
 						<?php } ?>

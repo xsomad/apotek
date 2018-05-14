@@ -21,7 +21,15 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<a href="<?php echo base_url('example/form_sup') ?>"><button type="button" class="btn btn-primary">Tambah Pemasok <span class="fa fa-plus"></span></button></a>
+				<?php if($this->session->flashdata('sup_added')): ?>
+    				<div class="alert alert-info alert-dismissible fade in" role="alert">
+		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+		                </button>
+	                    <?php echo $this->session->flashdata('sup_added'); ?></p>
+                 	</div>
+				<?php endif; ?>
+
+				<a href="<?php echo base_url('example/form_sup') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Pemasok </button></a>
 				<!--
 				<p class="text-muted font-13 m-b-30">
 					DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
@@ -33,22 +41,24 @@
 							<th>Nama Supplier</th>
 							<th>Alamat</th>
 							<th>No Telepon</th>
+							<th>Aksi</th>
 							
 						</tr>
 					</thead>
 
 					<tbody>
+						<?php foreach($table_sup as $s){ ?>
 						<tr>
-							<td>Bina Jaya</td>
-							<td>Jalan Kaliurang Km 7</td>
-							<td>021xxxxx</td>
+							<td><?php echo $s->nama_pemasok ?></td>
+							<td><?php echo $s->alamat ?></td>
+							<td><?php echo $s->telepon ?></td>
+							<td style=" text-align: center;">
+								<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>
+								<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button> 
+					         </td>
 						</tr>
-						
-						<tr>
-							<td>Mulia Apotek</td>
-							<td>Jalan Seturan No 49</td>
-							<td>021xxxxx</td>
-						</tr>
+
+						<?php } ?>
 
 					</tbody>
 				</table>

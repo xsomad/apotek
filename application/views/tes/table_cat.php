@@ -19,32 +19,46 @@
 				</ul>
 				<div class="clearfix"></div>
 			</div>
+
 			<div class="x_content">
-				<a href="<?php echo base_url('example/form_cat') ?>"><button type="button" class="btn btn-primary">Tambah Kategori <span class="fa fa-plus"></span></button></a>
+				<?php if($this->session->flashdata('cat_added')): ?>
+    				<div class="alert alert-info alert-dismissible fade in" role="alert">
+		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+		                </button>
+	                    <?php echo $this->session->flashdata('cat_added'); ?></p>
+                 	</div>
+				<?php endif; ?>
+
+				<a href="<?php echo base_url('example/form_cat') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Kategori </button></a>
 				<!--
 				<p class="text-muted font-13 m-b-30">
 					The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 				</p>
 			-->
-				<table id="datatable-buttons" class="table table-striped table-bordered">
+				<table id="datatable-buttons" class="table table-striped table-bordered bulk_action">
 					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Nama Kategori</th>
 							<th>Deskripsi</th>
-							
+							<th>Aksi</th>
 						</tr>
 					</thead>
 
 
 					<tbody>
+						<?php foreach($table_cat as $c){ ?>
 						<tr>
-							<td>1</td>
-							<td>Analgetik</td>
-							<td>Mengurangi rasa sakit</td>
-							
-						
+							<td><?php echo $c->id_kat ?></td>
+							<td><?php echo $c->nama_kategori ?></td>
+							<td><?php echo $c->des_kat ?></td>
+							<td style=" text-align: center;">
+								<?php echo anchor('example/edit_form_cat/'.$c->id_kat, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>'); ?>
+								<?php echo anchor('example/edit_form_cat/'.$c->id_kat, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
+					         </td>
 						</tr>
+
+						<?php } ?>
 					</tbody>
 				</table>
 			</div>
