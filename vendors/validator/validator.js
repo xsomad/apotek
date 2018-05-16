@@ -90,7 +90,7 @@ var validator = (function($){
                     return true;
                 };
 
-                if( words.length < validateWords || !wordsLength(2) ){
+                if( words.length < validateWords || !wordsLength(1) ){
                     alertTxt = message.complete;
                     return false;
                 }

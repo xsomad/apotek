@@ -26,7 +26,7 @@
     				<div class="alert alert-info alert-dismissible fade in" role="alert">
 		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
 		                </button>
-	                    <?php echo $this->session->flashdata('med_added'); ?></p>
+	                    <strong><?php echo $this->session->flashdata('med_added'); ?></strong>
                  	</div>
 				<?php endif; ?>
 
@@ -57,15 +57,15 @@
 							<td><?php echo $m->nama_obat ?></td>
 							<td><?php echo $m->penyimpanan ?></td>
 							<td><?php echo $m->nama_kategori ?></td>
-							
+					
 							<td><?php echo $m->stok ?></td>
 							<td><?php echo $m->kedaluwarsa ?></td>
 							
 							<td><?php echo number_format($m->harga_jual) ?></td>
 							<td><?php echo $m->unit ?></td>
 							<td style=" text-align: center;">
-								<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>
-								<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button> 
+								<?php echo anchor('example/edit_form_med/'.$m->id_obat, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>'); ?>
+								<?php echo anchor('example/remove_med/'.$m->id_obat, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 					         </td>
 						</tr>
 

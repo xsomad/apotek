@@ -25,7 +25,7 @@
     				<div class="alert alert-info alert-dismissible fade in" role="alert">
 		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
 		                </button>
-	                    <?php echo $this->session->flashdata('sup_added'); ?></p>
+	                    <strong><?php echo $this->session->flashdata('sup_added'); ?></strong>
                  	</div>
 				<?php endif; ?>
 
@@ -53,8 +53,8 @@
 							<td><?php echo $s->alamat ?></td>
 							<td><?php echo $s->telepon ?></td>
 							<td style=" text-align: center;">
-								<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>
-								<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button> 
+								<?php echo anchor('example/edit_form_sup/'.$s->id_pem, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>'); ?>
+								<?php echo anchor('example/remove_sup/'.$s->id_pem, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 					         </td>
 						</tr>
 

@@ -276,6 +276,8 @@ class Example extends CI_Controller
 	}
 
 	function edit_form_med($id_obat) {
+		$data['get_cat'] = $this->apotek_data->get_category();
+		$data['get_sup'] = $this->apotek_data->get_supplier();
 		$where = array('id_obat' => $id_obat);
 		$data['table_med'] = $this->apotek_data->edit_data($where,'table_med')->result();
 		$this->template->write('title', 'Edit Obat', TRUE);
@@ -288,25 +290,6 @@ class Example extends CI_Controller
 	function update_medicine(){
 		$id_obat = $this->input->post('id_obat');
 		$nama_obat = $this->input->post('nama_obat');
-		$des_kat = $this->input->post('des_kat');
-
-		$data = array(
-			'nama_kategori' => $nama_kategori,
-			'des_kat' => $des_kat,
-		);
-
-		$where = array(
-			'id_kat' => $id_kat
-		);
-
-		$this->apotek_data->update_data($where,$data,'table_cat');
-		redirect('example/table_cat');
-	}
-
-}
-
-
-$nama_obat = $this->input->post('nama_obat');
 		$penyimpanan = $this->input->post('penyimpanan');
 		$stok = $this->input->post('stok');
 		$unit = $this->input->post('unit');
@@ -316,7 +299,7 @@ $nama_obat = $this->input->post('nama_obat');
 		$harga_beli = $this->input->post('harga_jual');
 		$harga_jual = $this->input->post('harga_jual');
 		$nama_pemasok = $this->input->post('nama_pemasok');
- 
+	
 		$data = array(
 			'nama_obat' => $nama_obat,
 			'penyimpanan' => $penyimpanan,
@@ -328,6 +311,74 @@ $nama_obat = $this->input->post('nama_obat');
 			'harga_beli' => $harga_beli,
 			'harga_jual' => $harga_jual,
 			'nama_pemasok' => $nama_pemasok,
-			
-			);
+		);
+
+		$where = array(
+			'id_obat' => $id_obat
+		);
+
+		$this->apotek_data->update_data($where,$data,'table_med');
+		redirect('example/table_med');
+	}
+
+
+	function edit_form_sup($id_pem) {
+		$where = array('id_pem' => $id_pem);
+		$data['table_sup'] = $this->apotek_data->edit_data($where,'table_sup')->result();
+		$this->template->write('title', 'Edit Pemasok', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/edit_form_sup', $data, true);
+
+		$this->template->render();
+	}
+
+
+	function update_supplier(){
+		$id_pem = $this->input->post('id_pem');
+		$nama_pemasok = $this->input->post('nama_pemasok');
+		$alamat = $this->input->post('alamat');
+		$telepon = $this->input->post('telepon');
+
+		$data = array(
+			'nama_pemasok' => $nama_pemasok,
+			'alamat' => $alamat,
+			'telepon' => $telepon,
+		);
+
+		$where = array(
+			'id_pem' => $id_pem
+		);
+
+		$this->apotek_data->update_data($where,$data,'table_sup');
+		redirect('example/table_sup');
+	}
+
+
+	function remove_med($id_obat){
+		$where = array('id_obat' => $id_obat);
+		$this->apotek_data->delete_data($where,'table_med');
+		redirect('example/table_med');
+	}
+
+	function remove_cat($id_kat){
+		$where = array('id_kat' => $id_kat);
+		$this->apotek_data->delete_data($where,'table_cat');
+		redirect('example/table_cat');
+	}
+
+	function remove_sup($id_pem){
+		$where = array('id_pem' => $id_pem);
+		$this->apotek_data->delete_data($where,'table_sup');
+		redirect('example/table_sup');
+	}
+
+}
+
+
+
+
+
+
+
+
 

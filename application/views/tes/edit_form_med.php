@@ -29,7 +29,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_obat">Nama Obat</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="hidden" name="id_obat" value="<?php echo $c->id_obat ?>">
+              <input type="hidden" name="id_obat" value="<?php echo $m->id_obat ?>">
               <input type="text" id="nama_obat" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="nama_obat" required="required" value="<?php echo $m->nama_obat ?>">
             </div>
           </div>
@@ -53,7 +53,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit">Unit</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="unit" id="unit" class="select2_single form-control" tabindex="-1">
-                <option selected="true" value="<?php echo $m->unit ?>" disabled ></option>
+                <option selected="true" disabled><?php echo $m->unit ?></option>
                 <option>Tablet</option>
                 <option>Sirup</option>
                 <option>Kapsul</option>
@@ -65,7 +65,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_kategori">Kategori</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_kategori" id="nama_kategori" class="select2_single form-control" tabindex="-1">
-                <option selected="true" value="<?php echo $m->nama_kategori ?>" disabled ></option>
+                <option selected="true" value="" disabled ><?php echo $m->nama_kategori ?></option>
                 <?php foreach($get_cat as $gc){ ?>
                   <option value="<?php echo $gc; ?>"><?php echo $gc; ?></option>
                <?php  }?>
@@ -90,7 +90,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="des_obat">Deskripsi</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="des_obat" name="des_obat" class="form-control col-md-7 col-xs-12" value="<?php echo $m->des_obat ?>"></textarea>
+              <input id="des_obat" name="des_obat" class="form-control col-md-7 col-xs-12" value="<?php echo $m->des_obat ?>"></textarea>
             </div>
           </div>
 
@@ -115,7 +115,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1">
-                <option selected="true" value="<?php echo $m->nama_pemasok ?>" disabled ></option>
+                <option selected="true" value="" disabled ><?php echo $m->nama_pemasok ?></option>
                   <?php foreach($get_sup as $gs){ ?>
                     <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
                  <?php  }?>
@@ -126,7 +126,7 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <a href="<?php echo base_url('example/table_med') ?>"><button type="button" class="btn btn-primary">Batal</button></a>
+              <a href="<?php echo base_url('example/table_med') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
               <button id="send" type="submit" class="btn btn-success">Simpan</button>
               
             </div>

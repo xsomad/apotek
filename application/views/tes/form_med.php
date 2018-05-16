@@ -28,7 +28,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_obat">Nama Obat</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="nama_obat" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="nama_obat" required="required" type="text">
+              <input id="nama_obat" class="form-control col-md-7 col-xs-12" data-validate-length-range="1" data-validate-words="1" name="nama_obat" required="required" type="text">
             </div>
           </div>
 

@@ -25,7 +25,7 @@
     				<div class="alert alert-info alert-dismissible fade in" role="alert">
 		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
 		                </button>
-	                    <?php echo $this->session->flashdata('cat_added'); ?></p>
+	                    <strong><?php echo $this->session->flashdata('cat_added'); ?></strong>
                  	</div>
 				<?php endif; ?>
 
@@ -54,7 +54,7 @@
 							<td><?php echo $c->des_kat ?></td>
 							<td style=" text-align: center;">
 								<?php echo anchor('example/edit_form_cat/'.$c->id_kat, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>'); ?>
-								<?php echo anchor('example/edit_form_cat/'.$c->id_kat, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
+								<?php echo anchor('example/remove_cat/'.$c->id_kat, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 					         </td>
 						</tr>
 

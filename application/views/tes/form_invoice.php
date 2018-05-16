@@ -52,7 +52,7 @@
           </div>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sale">Harga Jual Per satuan (Rp)</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sale">Harga Jual per satuan (Rp)</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
             </div>
@@ -77,7 +77,7 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-primary">Batal</button></a>
+              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
               <button id="send" type="submit" class="btn btn-success">Submit</button>
             </div>
           </div>
