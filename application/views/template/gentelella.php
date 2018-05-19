@@ -201,7 +201,57 @@
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+
 </script>
+
+<!-- Add row -->
+<script>
+  
+
+    
+
+</script>
+
+<script type="text/javascript">
+
+	var t = $('#example').DataTable( {
+              "paging":   false,
+                "ordering": false,
+                "info":     false,
+                "searching": false,
+            });
+          
+
+          $('#addRow').on( 'click', function () {
+            t.row.add( [
+              '<select  name="nama_obat" id="nama_obat" class="select2_single form-control" ><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+              '<input type="text"  class="form-control col-md-2 col-xs-12">',
+              '<input type="text"  class="form-control col-md-2 col-xs-12">',
+              '<input type="text"  class="form-control col-md-2 col-xs-12">',
+              '<input type="text"  class="form-control col-md-2 col-xs-12">',
+              '<button class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
+            ] ).draw( false );
+
+           
+
+          } );
+
+          $('#example').on("click", "button", function(){
+            console.log($(this).parent());
+            t.row($(this).parents('tr')).remove().draw(false);
+          });
+       
+	 
+ 
+    
+ 
+   
+
+</script>
+
+
+<!-- Delete row -->
+
 
 		
 	</body>

@@ -58,6 +58,23 @@ class Apotek_data extends CI_Model
         return $data;
     }
 
+
+    function get_medicine()
+    {
+        $data = array();
+        $query = $this->db->get('table_med')->result_array();
+
+        if( is_array($query) && count ($query) > 0 )
+        {
+        foreach ($query as $row ) 
+        {
+          $data[$row['nama_obat']] = $row['nama_obat'];
+        }
+        }
+        asort($data);
+        return $data;
+    }
+
     
     function insert_data($data,$table){
         $this->db->insert($table,$data);

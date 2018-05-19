@@ -131,9 +131,12 @@ class Example extends CI_Controller
 	}
 
 	function form_invoice() {
+		$data['table_med'] = $this->apotek_data->medicine()->result();
+		$data['get_cat'] = $this->apotek_data->get_category();
+		$data['get_med'] = $this->apotek_data->get_medicine();
 		$this->template->write('title', 'Tambah Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/form_invoice', '', true);
+		$this->template->write_view('content', 'tes/form_invoice', $data, true);
 
 		$this->template->render();
 	}

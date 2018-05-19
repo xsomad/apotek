@@ -21,10 +21,11 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
+        
+
+         
 
        <form class="form-horizontal form-label-left" novalidate>
-
-
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Pembeli</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -44,45 +45,84 @@
             </div>
           </div>
 
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Obat </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="name" required="required" type="text">
-            </div>
-          </div>
+          <table id="example" class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="text-align: center">Obat</th>
+              <th style="text-align: center">Tersedia</th>
+              <th style="text-align: center">Unit</th>
+              <th style="text-align: center">Banyak</th>
+              <th style="text-align: center">Harga</th>
+              <th style="text-align: center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody >
 
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sale">Harga Jual per satuan (Rp)</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-         
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Banyak Pembelian </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="number" name="quantity" required="required" data-validate-minmax="1,1000" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
+            <tr>
+              <td >
+                <select  name="nama_obat" id="nama_obat" class="select2_single form-control" tabindex="-1">
+                  <?php foreach($get_med as $gm){ ?>
+                    <option value="<?php echo $gm; ?>"><?php echo $gm; ?></option>
+                  <?php  }?>
+                </select>
+              </td>
+              <td>
+                <input name="stok" type="text"  class="form-control col-md-2 col-xs-12">
+              </td>
+              <td>
+                <input type="text"  class="form-control col-md-2 col-xs-12">
+              </td>
+              <td>
+                <input type="text"  class="form-control col-md-2 col-xs-12">
+              </td>
+              <td>
+                <input type="text"  class="form-control col-md-2 col-xs-12">
+              </td>
+              <td style=" text-align: center;">
+                
+                <button id='removeRow' class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>
+              </td>
+            </tr>
+          </tbody>
+
+        <tfoot>
+          <tr>
+          <td style="text-align:right; vertical-align: middle" colspan="4"><b>Total</b></td>
+          <td>
+            <input type="text"  class="form-control col-md-2 col-xs-12">
+          </td>
+          
+        </tr>
+        
 
 
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Total </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="number" name="quantity" required="required" data-validate-minmax="1,1000" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
+
+        </tfoot>
+        </table>
           
 
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
+              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-dark">Batal</button></a>
               <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <button id='addRow' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Tambah Produk</button>
             </div>
           </div>
         </form>
       </div>
     </div>
+
+    
+
+      
+
+              </div>
+            </div>
+
   </div>
 </div>
+
+
+
+
