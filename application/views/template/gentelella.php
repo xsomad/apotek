@@ -205,12 +205,6 @@
 </script>
 
 <!-- Add row -->
-<script>
-  
-
-    
-
-</script>
 
 <script type="text/javascript">
 
@@ -224,33 +218,50 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<select  name="nama_obat" id="nama_obat" class="select2_single form-control" ><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
-              '<input type="text"  class="form-control col-md-2 col-xs-12">',
-              '<input type="text"  class="form-control col-md-2 col-xs-12">',
-              '<input type="text"  class="form-control col-md-2 col-xs-12">',
-              '<input type="text"  class="form-control col-md-2 col-xs-12">',
-              '<button class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
+              '<div class="col-md-3 col-sm-12 col-xs-12 form-group"><select class="form-control" tabindex="-1" id="nama_obat" name="nama_obat"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok" name="stok" placeholder=".col-md-1" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>>',
+              '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
 
-           
-
+  
           } );
 
-          $('#example').on("click", "button", function(){
+          $('#addRow').click();
+
+          $('#example').on("click", "#removeproduk", function(){
             console.log($(this).parent());
             t.row($(this).parents('tr')).remove().draw(false);
           });
-       
-	 
- 
-    
- 
-   
+
+
+          $(document).on('change', '#nama_obat', function(){
+			  
+			   var stok = $(this).val();
+			    $.ajax({
+			        url: '<?php echo base_url('example/stock') ?>',
+			        type: 'post',
+			        data: {stok: stok},
+			        success : function( data, textStatus ) {
+			           $('#stok').val(data);
+			        }
+			    })
+			});
+
+
+             
+               
+         
 
 </script>
 
 
-<!-- Delete row -->
+<script type="text/javascript">
+        
+      
+      </script>
 
 
 		

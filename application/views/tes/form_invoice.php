@@ -21,7 +21,14 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-        
+        <script type="text/javascript">
+        $(document).ready(function(){
+
+          
+         
+        });
+      </script>
+
 
          
 
@@ -48,55 +55,24 @@
           <table id="example" class="table table-bordered">
           <thead>
             <tr>
-              <th style="text-align: center">Obat</th>
-              <th style="text-align: center">Tersedia</th>
+              <th class="col-md-3 col-sm-6 col-xs-12" style="text-align: center">Obat yang dibeli</th>
+              <th style="text-align: center">Stok</th>
               <th style="text-align: center">Unit</th>
               <th style="text-align: center">Banyak</th>
               <th style="text-align: center">Harga</th>
               <th style="text-align: center">Aksi</th>
             </tr>
           </thead>
-          <tbody >
-
-            <tr>
-              <td >
-                <select  name="nama_obat" id="nama_obat" class="select2_single form-control" tabindex="-1">
-                  <?php foreach($get_med as $gm){ ?>
-                    <option value="<?php echo $gm; ?>"><?php echo $gm; ?></option>
-                  <?php  }?>
-                </select>
-              </td>
-              <td>
-                <input name="stok" type="text"  class="form-control col-md-2 col-xs-12">
-              </td>
-              <td>
-                <input type="text"  class="form-control col-md-2 col-xs-12">
-              </td>
-              <td>
-                <input type="text"  class="form-control col-md-2 col-xs-12">
-              </td>
-              <td>
-                <input type="text"  class="form-control col-md-2 col-xs-12">
-              </td>
-              <td style=" text-align: center;">
-                
-                <button id='removeRow' class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>
-              </td>
-            </tr>
-          </tbody>
-
+          
         <tfoot>
           <tr>
           <td style="text-align:right; vertical-align: middle" colspan="4"><b>Total</b></td>
           <td>
-            <input type="text"  class="form-control col-md-2 col-xs-12">
+            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                    <input type="text" placeholder=".col-md-1" class="form-control">
+            </div>
           </td>
-          
         </tr>
-        
-
-
-
         </tfoot>
         </table>
           

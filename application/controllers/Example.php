@@ -375,6 +375,17 @@ class Example extends CI_Controller
 		redirect('example/table_sup');
 	}
 
+
+
+
+	 function stock()
+	{
+
+		$key = $this->input->post('stok');
+	    $data = $this->apotek_data->get_stock($key);
+	    echo $data['stok'];
+	}
+
 }
 
 

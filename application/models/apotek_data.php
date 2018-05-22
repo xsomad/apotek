@@ -92,7 +92,23 @@ class Apotek_data extends CI_Model
     function delete_data($where,$table){
     $this->db->where($where);
     $this->db->delete($table);
-} 
+    }
+
+
+    function get_stock($key)
+    {
+
+
+ $this->db->select('stok'); // or select by fields
+    $this->db->from('table_med');
+    $where = array('nama_obat' => $key );
+    $this->db->where($where);
+    $query = $this->db->get();
+    return $query->row_array();
+}
+
+  
 
 
 }
+
