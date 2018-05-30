@@ -59,6 +59,23 @@ class Apotek_data extends CI_Model
     }
 
 
+    function get_unit()
+    {
+        $data = array();
+        $query = $this->db->get('table_unit')->result_array();
+
+        if( is_array($query) && count ($query) > 0 )
+        {
+        foreach ($query as $row ) 
+        {
+          $data[$row['unit']] = $row['unit'];
+        }
+        }
+        asort($data);
+        return $data;
+    }
+
+
     function get_medicine()
     {
         $data = array();
@@ -98,16 +115,15 @@ class Apotek_data extends CI_Model
     function get_stock($key)
     {
 
+        $this->db->select('*'); // or select by fields
+        $this->db->from('table_med');
+        $where = array('nama_obat' => $key );
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
 
- $this->db->select('stok'); // or select by fields
-    $this->db->from('table_med');
-    $where = array('nama_obat' => $key );
-    $this->db->where($where);
-    $query = $this->db->get();
-    return $query->row_array();
-}
 
-  
 
 
 }

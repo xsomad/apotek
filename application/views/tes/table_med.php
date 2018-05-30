@@ -28,6 +28,7 @@
 		                </button>
 	                    <strong><?php echo $this->session->flashdata('med_added'); ?></strong>
                  	</div>
+                 	
 				<?php endif; ?>
 
 				<a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>

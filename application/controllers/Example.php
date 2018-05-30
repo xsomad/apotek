@@ -77,6 +77,7 @@ class Example extends CI_Controller
 	function form_med() {
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_sup'] = $this->apotek_data->get_supplier();
+		$data['get_unit'] = $this->apotek_data->get_unit();
 		$this->template->write('title', 'Tambah Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_med', $data, true);
@@ -134,6 +135,7 @@ class Example extends CI_Controller
 		$data['table_med'] = $this->apotek_data->medicine()->result();
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_med'] = $this->apotek_data->get_medicine();
+		$data['get_unit'] = $this->apotek_data->get_unit();
 		$this->template->write('title', 'Tambah Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_invoice', $data, true);
@@ -275,12 +277,15 @@ class Example extends CI_Controller
 		);
 
 		$this->apotek_data->update_data($where,$data,'table_cat');
+
+		$this->session->set_flashdata('cat_added', 'Data kategori berhasil diperbarui');
 		redirect('example/table_cat');
 	}
 
 	function edit_form_med($id_obat) {
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_sup'] = $this->apotek_data->get_supplier();
+		$data['get_unit'] = $this->apotek_data->get_unit();
 		$where = array('id_obat' => $id_obat);
 		$data['table_med'] = $this->apotek_data->edit_data($where,'table_med')->result();
 		$this->template->write('title', 'Edit Obat', TRUE);
@@ -321,6 +326,7 @@ class Example extends CI_Controller
 		);
 
 		$this->apotek_data->update_data($where,$data,'table_med');
+		$this->session->set_flashdata('med_added', 'Data obat berhasil diperbarui');
 		redirect('example/table_med');
 	}
 
@@ -353,6 +359,8 @@ class Example extends CI_Controller
 		);
 
 		$this->apotek_data->update_data($where,$data,'table_sup');
+
+		$this->session->set_flashdata('sup_added', 'Data pemasok berhasil diperbarui');
 		redirect('example/table_sup');
 	}
 
@@ -376,18 +384,16 @@ class Example extends CI_Controller
 	}
 
 
-
-
 	 function stock()
 	{
-
 		$key = $this->input->post('stok');
 	    $data = $this->apotek_data->get_stock($key);
 	    echo $data['stok'];
 	}
 
-}
+	
 
+}
 
 
 

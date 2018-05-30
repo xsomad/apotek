@@ -219,10 +219,10 @@
           $('#addRow').on( 'click', function () {
             t.row.add( [
               '<div class="col-md-3 col-sm-12 col-xs-12 form-group"><select class="form-control" tabindex="-1" id="nama_obat" name="nama_obat"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok" name="stok" placeholder=".col-md-1" class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" placeholder=".col-md-1" class="form-control"></div>>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok" name="stok"  class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="unit" name="unit" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text"  class="form-control"></div>>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
 
@@ -238,15 +238,17 @@
 
 
           $(document).on('change', '#nama_obat', function(){
-			  
 			   var stok = $(this).val();
 			    $.ajax({
 			        url: '<?php echo base_url('example/stock') ?>',
 			        type: 'post',
-			        data: {stok: stok},
-			        success : function( data, textStatus ) {
-			           $('#stok').val(data);
-			        }
+			         dataType : 'json',
+			        data: {stok:stok},
+			    }).done(function(data) { 
+			           
+			           $('#stok').val(data.stok);
+			           $('#unit').val(data);
+			        
 			    })
 			});
 

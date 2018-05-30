@@ -69,7 +69,7 @@
           <td style="text-align:right; vertical-align: middle" colspan="4"><b>Total</b></td>
           <td>
             <div class="col-md-1 col-sm-12 col-xs-12 form-group">
-                    <input type="text" placeholder=".col-md-1" class="form-control">
+                    <input type="text" class="form-control">
             </div>
           </td>
         </tr>

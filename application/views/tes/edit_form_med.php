@@ -53,11 +53,10 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit">Unit</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="unit" id="unit" class="select2_single form-control" tabindex="-1">
-                <option selected="true" disabled><?php echo $m->unit ?></option>
-                <option>Tablet</option>
-                <option>Sirup</option>
-                <option>Kapsul</option>
-                <option>Semprotan</option>
+                 <?php foreach ($get_unit as $gu) { ?>
+                  <option <?php if($gu == $m->unit)
+                  { echo 'selected="selected"'; } ?> value="<?php echo $gu ?>"><?php echo $gu ?> </option>
+                  <?php } ?>
               </select>
             </div>
           </div>
@@ -65,10 +64,13 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_kategori">Kategori</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_kategori" id="nama_kategori" class="select2_single form-control" tabindex="-1">
-                <option selected="true" value="" disabled ><?php echo $m->nama_kategori ?></option>
-                <?php foreach($get_cat as $gc){ ?>
-                  <option value="<?php echo $gc; ?>"><?php echo $gc; ?></option>
-               <?php  }?>
+               
+              <?php foreach ($get_cat as $gc) { ?>
+              <option <?php if($gc == $m->nama_kategori)
+              { echo 'selected="selected"'; } ?> value="<?php echo $gc ?>"><?php echo $gc ?> </option>
+              <?php } ?>
+
+
             </select>
             </div>
           </div>
@@ -115,10 +117,10 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1">
-                <option selected="true" value="" disabled ><?php echo $m->nama_pemasok ?></option>
-                  <?php foreach($get_sup as $gs){ ?>
-                    <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
-                 <?php  }?>
+                <?php foreach ($get_sup as $gs) { ?>
+                <option <?php if($gs == $m->nama_pemasok)
+                { echo 'selected="selected"'; } ?> value="<?php echo $gs ?>"><?php echo $gs ?> </option>
+                <?php } ?>
               </select>
             </div>
           </div>

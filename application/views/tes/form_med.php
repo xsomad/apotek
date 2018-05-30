@@ -49,10 +49,9 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="unit" id="unit" class="select2_single form-control" tabindex="-1">
                 <option selected="true" value="" disabled ></option>
-                <option>Tablet</option>
-                <option>Sirup</option>
-                <option>Kapsul</option>
-                <option>Semprotan</option>
+                <?php foreach($get_unit as $gu){ ?>
+                  <option value="<?php echo $gu; ?>"><?php echo $gu; ?></option>
+               <?php  }?>
               </select>
             </div>
           </div>
