@@ -246,7 +246,7 @@
 			        data: {stok:stok},
 			    }).done(function(data) { 
 			           
-			           $('#stok').val(data.stok);
+			           $('#stok').val(data);
 			           $('#unit').val(data);
 			        
 			    })
