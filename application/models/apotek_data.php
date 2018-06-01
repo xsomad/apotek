@@ -112,19 +112,30 @@ class Apotek_data extends CI_Model
     }
 
 
-    function get_stock($key)
+    function get_product($nama_obat)
     {
 
-        $this->db->select('*'); // or select by fields
-        $this->db->from('table_med');
-        $where = array('nama_obat' => $key );
-        $this->db->where($where);
-        $query = $this->db->get();
-        return $query->row_array();
+       
+        $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'nama_obat' => $data->nama_obat,
+                    'stok' => $data->stok,
+                    'unit' => $data->unit,
+                    );
+            }
+        }
+        return $hasil;
     }
 
+ 
+    
 
 
 
 }
+
+
+
 

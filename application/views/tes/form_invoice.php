@@ -55,11 +55,11 @@
           <table id="example" class="table table-bordered">
           <thead>
             <tr>
-              <th class="col-md-3 col-sm-6 col-xs-12" style="text-align: center">Obat yang dibeli</th>
+              <th class="col-md-3 col-sm-12 col-xs-12" style="text-align: center">Obat yang dibeli</th>
               <th style="text-align: center">Stok</th>
               <th style="text-align: center">Unit</th>
               <th style="text-align: center">Banyak</th>
-              <th style="text-align: center">Harga</th>
+              <th class="col-md-1 col-sm-12 col-xs-12" style="text-align: center">Harga</th>
               <th style="text-align: center">Aksi</th>
             </tr>
           </thead>
