@@ -219,9 +219,9 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><select class="form-control" tabindex="-1" id="nama_obat" name="nama_obat'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok" name="stok'+counter+'"  class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="unit" name="unit'+counter+'" class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><select class="form-control nama_obat" tabindex="-1" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok'+counter+'" name="stok"  class="form-control"></div>',
+              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="unit'+counter+'" name="unit" class="form-control"></div>',
               '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" class="form-control"></div>',
               
               '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text"  class="form-control"></div>>',
@@ -232,7 +232,9 @@
   
           } );
 
+
           $('#addRow').click();
+
 
           $('#example').on("click", "#removeproduk", function(){
             console.log($(this).parent());
@@ -240,31 +242,27 @@
           });
 
 
-          var prod = 1;
-          $(document).on('change', '[name="nama_obat'+prod+'"]', function(){
-			    var nama_obat=$(this).val();
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('example/product')?>",
-                    dataType : "JSON",
-                    data : {nama_obat: nama_obat},
-                    cache:false,
-                    success: function(data){
-                        $.each(data,function(nama_obat, stok, unit){
-                            $('[name="stok'+prod+'"]').val(data.stok);
-                            $('[name="unit'+prod+'"]').val(data.unit);
-                             
-                        });
-                         
-                    }
-                });
-                return false;
+          
+        $(document).on('change', '.nama_obat', function() {
+		  var $select = $(this);
+		  var nama_obat = $select.val();
 
-               
-			});
+		  $.ajax({
+		    type: "POST",
+		    url: "<?php echo base_url('example/product')?>",
+		    dataType: "JSON",
+		    data: { nama_obat: nama_obat },
+		    cache: false,
+		    success: function(data) {
+		      $.each(data, function(nama_obat, stok, unit) {
+		        $($select.data('stok')).val(data.stok);
+		        $($select.data('unit')).val(data.unit);
+		      });
+		    }
+		  });
+		});
+     	 
 
-			   
-	
 
 
 </script>
