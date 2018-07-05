@@ -113,9 +113,7 @@ class Apotek_data extends CI_Model
 
 
     function get_product($nama_obat)
-    {
-
-       
+    { 
         $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
@@ -123,11 +121,17 @@ class Apotek_data extends CI_Model
                     'nama_obat' => $data->nama_obat,
                     'stok' => $data->stok,
                     'unit' => $data->unit,
+                    'harga_jual' => $data->harga_jual,
                     );
             }
         }
         return $hasil;
     }
+
+
+
+    
+ 
 
  
     

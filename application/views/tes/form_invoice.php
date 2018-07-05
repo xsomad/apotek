@@ -55,22 +55,25 @@
           <table id="example" class="table table-bordered">
           <thead>
             <tr>
-              <th class="col-md-3 col-sm-12 col-xs-12" style="text-align: center">Obat yang dibeli</th>
+              <th style="text-align: center">Obat yang dibeli</th>
               <th style="text-align: center">Stok</th>
-              <th style="text-align: center">Unit</th>
+              <th style="text-align: center">Unit obat</th>
+              <th style="text-align: center">Harga satuan</th>
               <th style="text-align: center">Banyak</th>
-              <th class="col-md-1 col-sm-12 col-xs-12" style="text-align: center">Harga</th>
+              
+              <th style="text-align: center">Totals</th>
               <th style="text-align: center">Aksi</th>
+              
             </tr>
           </thead>
           
         <tfoot>
           <tr>
-          <td style="text-align:right; vertical-align: middle" colspan="4"><b>Total</b></td>
+          <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grand Total</b></td>
           <td>
-            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
-                    <input type="text" class="form-control">
-            </div>
+            
+                    <input id="grandtotal" name="grandtotal" type="text" class="form-control grandtotal" readonly>
+            
           </td>
         </tr>
         </tfoot>

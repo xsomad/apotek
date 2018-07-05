@@ -386,11 +386,13 @@ class Example extends CI_Controller
 
 	 function product()
 	{
-		
 	    $nama_obat=$this->input->post('nama_obat');
         $data=$this->apotek_data->get_product($nama_obat);
         echo json_encode($data);
 	}
+
+
+	
 
 }
 

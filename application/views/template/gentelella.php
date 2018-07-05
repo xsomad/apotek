@@ -165,6 +165,10 @@
 
 
 		<!-- PNotify -->
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.buttons.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/pnotify/dist/pnotify.nonblock.js') ?>"></script>
+
 		
 		
 		<script src="<?php echo base_url('assets/js/custom.min.js') ?>"></script>
@@ -219,12 +223,12 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><select class="form-control nama_obat" tabindex="-1" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="stok'+counter+'" name="stok"  class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" id="unit'+counter+'" name="unit" class="form-control"></div>',
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text" class="form-control"></div>',
-              
-              '<div class="col-md-1 col-sm-12 col-xs-12 form-group"><input type="text"  class="form-control"></div>>',
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+              '<input id="stok'+counter+'" name="stok" class="form-control" readonly >',
+              '<input id="unit'+counter+'" name="unit" class="form-control" readonly>',
+              '<input id="harga_jual'+counter+'" name="harga_jual" class="form-control harga_jual" readonly>',
+              '<input type="number" id="banyak'+counter+'" name="banyak" class="form-control banyak">',
+              '<input id="subtotal'+counter+'" name="subtotal" class="form-control subtotal" readonly>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
 
@@ -242,7 +246,6 @@
           });
 
 
-          
         $(document).on('change', '.nama_obat', function() {
 		  var $select = $(this);
 		  var nama_obat = $select.val();
@@ -254,19 +257,41 @@
 		    data: { nama_obat: nama_obat },
 		    cache: false,
 		    success: function(data) {
-		      $.each(data, function(nama_obat, stok, unit) {
+		      $.each(data, function(nama_obat, stok, unit, harga_jual) {
 		        $($select.data('stok')).val(data.stok);
 		        $($select.data('unit')).val(data.unit);
+		        $($select.data('harga_jual')).val(data.harga_jual);
 		      });
 		    }
 		  });
 		});
+
+
+		$(document).on('change', '.banyak', function() { 
+
+		for(i=1; i<=20; i++){
+        var unitCount = document.getElementById('banyak'+i).value;
+        var unitPrice = document.getElementById('harga_jual'+i).value;
+        var subtotal = document.getElementById('subtotal'+i);
+			subtotal.value=(unitCount * unitPrice);
+
+		
+    	}
+    	var grandtotal = document.getElementById('grandtotal'); //define var grandtotal from id row grandtotal
+			grandtotal.value= document.getElementById('subtotal1').value ; //define value for var grandtotal
+
+
+        
+      });
+
      	 
-
-
-
 </script>
 
+
+
+
+
+			 
 
 <script type="text/javascript">
         
