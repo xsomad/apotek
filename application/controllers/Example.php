@@ -88,6 +88,7 @@ class Example extends CI_Controller
 
 	function table_med() {
 		$data['table_med'] = $this->apotek_data->medicine()->result();
+		
 		$this->template->write('title', 'Lihat Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_med', $data, true);
@@ -388,6 +389,14 @@ class Example extends CI_Controller
 	{
 	    $nama_obat=$this->input->post('nama_obat');
         $data=$this->apotek_data->get_product($nama_obat);
+        echo json_encode($data);
+	}
+
+
+	function expired()
+	{
+		$nama_obat=$this->input->post('nama_obat');
+        $data=$this->apotek_data->get_expired($nama_obat);
         echo json_encode($data);
 	}
 

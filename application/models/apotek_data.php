@@ -129,11 +129,6 @@ class Apotek_data extends CI_Model
     }
 
 
-
-    
- 
-
- 
     
 
 

@@ -208,7 +208,14 @@
 
 </script>
 
-<!-- Add row -->
+<!-- remove welcome notif pnotify -->
+<script>
+   $(document).ready(function (){
+           $('.ui-pnotify').remove();
+   });
+</script>
+
+<!-- Add row and calculate -->
 
 <script type="text/javascript">
 
@@ -275,16 +282,19 @@
         var subtotal = document.getElementById('subtotal'+i);
 			subtotal.value=(unitCount * unitPrice);
 
+
 		
-    	}
-    	var grandtotal = document.getElementById('grandtotal'); //define var grandtotal from id row grandtotal
-			grandtotal.value= document.getElementById('subtotal1').value ; //define value for var grandtotal
-
-
-        
+			    var arr = document.getElementsByName('subtotal');
+			    var tot=0;
+			    for(var j=0;j<arr.length;j++){
+			        if(parseInt(arr[j].value))
+			            tot += parseInt(arr[j].value);
+			    }
+			    document.getElementById('grandtotal').value = tot;
+			}
       });
 
-     	 
+
 </script>
 
 
