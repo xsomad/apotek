@@ -50,6 +50,7 @@ class Example extends CI_Controller
 	}
 
 	function table_ex() {
+
 		$this->template->write('title', 'Gentelella Template', TRUE);
 		$this->template->write('header', 'Table Dynamics<small>Some examples</small>');
 		$this->template->write_view('content', 'tes/table', '', true);
@@ -58,12 +59,32 @@ class Example extends CI_Controller
 
 	}
 	function table_dyn_ex() {
+		$data['table_exp'] = $this->apotek_data->expired()->result();
 		$this->template->write('title', 'Gentelella Template', TRUE);
-		$this->template->write('header', 'Table <small>Some examples</small>');
-		$this->template->write_view('content', 'tes/table_dynamic', '', true);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/table_dynamic', $data, true);
 
 		$this->template->render();
 
+	}
+
+	function table_exp() {
+		$data['table_exp'] = $this->apotek_data->expired()->result();
+		$this->template->write('title', 'Gentelella Template', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/table_exp', $data, true);
+
+		$this->template->render();
+
+	}
+
+	function table_stock() {
+		$data['table_exp'] = $this->apotek_data->expired()->result();
+		$this->template->write('title', 'Gentelella Template', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/table_stock', $data, true);
+
+		$this->template->render();
 	}
 
 	function form_cat() {
@@ -393,12 +414,8 @@ class Example extends CI_Controller
 	}
 
 
-	function expired()
-	{
-		$nama_obat=$this->input->post('nama_obat');
-        $data=$this->apotek_data->get_expired($nama_obat);
-        echo json_encode($data);
-	}
+	
+
 
 
 	

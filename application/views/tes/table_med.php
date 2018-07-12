@@ -103,15 +103,9 @@
 			</div>
 			<div class="x_content">
 				<canvas id="pieChart"></canvas>
-				<?php
-$this->db->select('*');
-$this->db->from('table_med');
-$this->db->where('kedaluwarsa', date('Y-m-d'));
-$query = $this->db->get();
-// Produces: 
-// SELECT * FROM service_taxdate
-// WHER end_date =current date ( YYYY-mm-dd)
-?>
+
+				
+				
 			</div>
 		</div>
 	</div>
