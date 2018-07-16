@@ -48,7 +48,7 @@
             </div>
           </div>
 
-          <table id="example" class="table table-bordered">
+          <table id="prod" class="table table-bordered">
           <thead>
             <tr>
               <th style="text-align: center">Obat yang dibeli</th>

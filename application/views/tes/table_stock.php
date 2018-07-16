@@ -2,7 +2,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Obat Hampir Kedaluwarsa</h2>
+        <h2>Obat Hampir Habis</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -38,7 +38,7 @@
           Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.
         </p>
       -->
-        <table id="datatable-buttons" class="table table-striped table-bordered">
+        <table name="outstock" id="outstock" class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>Nama Obat</th>
@@ -55,17 +55,17 @@
           </thead>
           <tbody>
 
-            <?php foreach($table_exp as $ex){ ?>
+            <?php foreach($table_stock as $os){ ?>
             <tr>
-              <td><?php echo $ex->nama_obat ?></td>
-              <td><?php echo $ex->penyimpanan ?></td>
-              <td><?php echo $ex->nama_kategori ?></td>
+              <td><?php echo $os->nama_obat ?></td>
+              <td><?php echo $os->penyimpanan ?></td>
+              <td><?php echo $os->nama_kategori ?></td>
           
-              <td><?php echo $ex->stok ?></td>
-              <td><?php echo $ex->kedaluwarsa ?></td>
+              <td><?php echo $os->stok ?></td>
+              <td><?php echo $os->kedaluwarsa ?></td>
               
-              <td><?php echo number_format($ex->harga_jual) ?></td>
-              <td><?php echo $ex->unit ?></td>
+              <td><?php echo number_format($os->harga_jual) ?></td>
+              <td><?php echo $os->unit ?></td>
               
             </tr>
 

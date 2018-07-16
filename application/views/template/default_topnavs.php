@@ -18,6 +18,49 @@
 					</ul>
 				-->
 				</li>
+
+				<li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="badge bg-red"><?php echo $nullstock ?></span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>Kedaluwarsa</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Obat sudah kedaluwarsa...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>Habis</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Obat sudah habis...
+                        </span>
+                      </a>
+                    </li>
+                    
+                   
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
 			</ul>
 		</nav>
 	</div>

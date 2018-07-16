@@ -219,7 +219,7 @@
 
 <script type="text/javascript">
 
-	var t = $('#example').DataTable( {
+	var t = $('#prod').DataTable( {
               "paging":   false,
                 "ordering": false,
                 "info":     false,
@@ -247,13 +247,13 @@
           $('#addRow').click();
 
 
-          $('#example').on("click", "#removeproduk", function(){
+          $('#prod').on("click", "#removeproduk", function(){
             console.log($(this).parent());
             t.row($(this).parents('tr')).remove().draw(false);
           });
 
 
-        $(document).on('change', '.nama_obat', function() {
+        $('#prod').on('change', '.nama_obat', function() {
 		  var $select = $(this);
 		  var nama_obat = $select.val();
 
@@ -274,7 +274,7 @@
 		});
 
 
-		$(document).on('change', '.banyak', function() { 
+		$('#prod').on('change', '.banyak', function() { 
 
 		for(i=1; i<=20; i++){
         var unitCount = document.getElementById('banyak'+i).value;
@@ -297,15 +297,21 @@
 
 </script>
 
-
-
-
-
-			 
-
 <script type="text/javascript">
-        
-      
+
+    var os=$('#outstock').dataTable();
+    var alarmo = 1;
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url('example/os')?>",
+        data: {alarmo: alarmo}, 
+        success: function (msg) {
+        	console.log(msg);
+        }
+    });
+
+    
       </script>
 
 

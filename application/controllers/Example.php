@@ -4,16 +4,17 @@
 */
 class Example extends CI_Controller
 {
+	private $data;
 	
 	function __construct()
 	{
 		parent::__construct();
-
-		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
-		$this->template->write_view('navs', 'template/default_topnavs.php', true);
-		
 		$this->load->model('apotek_data');
         $this->load->database();
+       
+        $data['nullstock'] = $this->apotek_data->countstock();
+        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+		$this->template->write_view('navs', 'template/default_topnavs.php', $data, true);
 	}
 
 	function index() {
@@ -70,7 +71,8 @@ class Example extends CI_Controller
 
 	function table_exp() {
 		$data['table_exp'] = $this->apotek_data->expired()->result();
-		$this->template->write('title', 'Gentelella Template', TRUE);
+		$data['table_alex'] = $this->apotek_data->almostex()->result();
+		$this->template->write('title', 'Obat kedaluwarsa', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_exp', $data, true);
 
@@ -79,10 +81,10 @@ class Example extends CI_Controller
 	}
 
 	function table_stock() {
-		$data['table_exp'] = $this->apotek_data->expired()->result();
-		$this->template->write('title', 'Gentelella Template', TRUE);
+		$data['table_stock'] = $this->apotek_data->outstock()->result();
+		$this->template->write('title', 'Obat Habis', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/table_stock', $data, true);
+		$this->template->write_view('content', 'tes/table_stock', $data,  true);
 
 		$this->template->render();
 	}
@@ -412,6 +414,9 @@ class Example extends CI_Controller
         $data=$this->apotek_data->get_product($nama_obat);
         echo json_encode($data);
 	}
+
+
+	
 
 
 	

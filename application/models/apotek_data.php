@@ -130,15 +130,27 @@ class Apotek_data extends CI_Model
 
 
     function expired(){
-        return $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 60 DAY) AND NOW()');
-         return $result->result_array();
+        return $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 40 YEAR) AND NOW()'); 
+    }
+
+    function almostex(){
+        
+        return $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 60 DAY)');
+    }
+
+    function outstock(){        
+        return $this->db->query('SELECT * FROM table_med WHERE stok BETWEEN 0 AND 10');
+            
     }
 
 
+     function countstock(){       
 
-
-
-
+      $query =  $this->db->query('SELECT * FROM table_med WHERE stok BETWEEN 0 AND 10'); 
+        $nullstock = $query->num_rows();
+        return $nullstock;
+            
+    }
 
 }
 
