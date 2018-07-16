@@ -6,15 +6,7 @@
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings 1</a>
-              </li>
-              <li><a href="#">Settings 2</a>
-              </li>
-            </ul>
-          </li>
+          
           <li><a class="close-link"><i class="fa fa-close"></i></a>
           </li>
         </ul>
@@ -45,7 +37,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stok">Banyak Stok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="stok" name="stok" required="required" data-validate-minmax="1,1000" class="form-control col-md-7 col-xs-12" value="<?php echo $m->stok ?>">
+              <input type="number" id="stok" name="stok" required="required" data-validate-minmax="0,1000" class="form-control col-md-7 col-xs-12" value="<?php echo $m->stok ?>">
             </div>
           </div>
 

@@ -42,8 +42,8 @@
 						<ul class="nav child_menu">
 							<li><a href="<?php echo base_url('example/form_med') ?>">Tambah Obat</a></li>
 							<li><a href="<?php echo base_url('example/table_med') ?>">Lihat Obat</a></li>
-							<li><a href="<?php echo base_url('example/table_exp') ?>">Hampir Kedaluwarsa</a></li>
-							<li><a href="<?php echo base_url('example/table_stock') ?>">Hampir Habis</a></li>
+							<li><a href="<?php echo base_url('example/table_exp') ?>">Obat Kedaluwarsa</a></li>
+							<li><a href="<?php echo base_url('example/table_stock') ?>">Obat Habis</a></li>
 							
 						</ul>
 					</li>

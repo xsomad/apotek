@@ -13,6 +13,7 @@ class Example extends CI_Controller
         $this->load->database();
        
         $data['nullstock'] = $this->apotek_data->countstock();
+        $data['nullex'] = $this->apotek_data->countex();
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
 		$this->template->write_view('navs', 'template/default_topnavs.php', $data, true);
 	}
@@ -82,6 +83,7 @@ class Example extends CI_Controller
 
 	function table_stock() {
 		$data['table_stock'] = $this->apotek_data->outstock()->result();
+		$data['table_alstock'] = $this->apotek_data->almostout()->result();
 		$this->template->write('title', 'Obat Habis', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_stock', $data,  true);
