@@ -333,6 +333,15 @@
 	}
 
 
+.img-home{
+	width:23%;
+	display: block;
+    padding-top: 12%;
+    float:right;
+
+}
+
+
 .profile_info{
 	padding:25px 10px 10px;
 	width:65%;
@@ -437,7 +446,7 @@ body .container.body .right_col{
 	float:left;
 	background:#2A3F54;
 	border-radius:0;
-	height:250px}
+	height:180px}
 
 @media (max-width:991px){
 	.nav-md .container.body .right_col, .nav-md .container.body .top_nav {

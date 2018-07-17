@@ -60,6 +60,7 @@
 							<div class="title_left">
 								<h3><?php echo $header ?></h3>
 							</div>
+							<!--
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
@@ -68,6 +69,7 @@
 									</div>
 								</div>
 							</div>
+						-->
 						</div>
 						<div class="clearfix"></div>
 						<?php echo $content ?>
@@ -299,17 +301,9 @@
 
 <script type="text/javascript">
 
-    var os=$('#outstock').dataTable();
-    var alarmo = 1;
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url('example/os')?>",
-        data: {alarmo: alarmo}, 
-        success: function (msg) {
-        	console.log(msg);
-        }
-    });
+    $(document).ready(function() {
+   $('.source').trigger("click");
+});
 
     
       </script>

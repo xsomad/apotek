@@ -5,9 +5,13 @@
  			<div class="logo_pic">
  				<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/images/ugm.png') ?>" alt="..." class="img-circle logo_img"></a>
  			</div>
-			<a href="<?php echo base_url(); ?>" class="site_title"><span style="font-size: 20px;"><?php echo 'Rumah Sakit Hewan Prof. Soeparwi' ?></span></a>
+			
+		</div>
+		<div class="profile">
+		<a href="<?php echo base_url(); ?>" class="site_title"><span style="font-size: 20px;"><?php echo 'Rumah Sakit Hewan Prof. Soeparwi' ?></span></a>
 		</div>
 
+		
 		<div class="clearfix"></div>
 
 		<!-- menu profile quick info -->

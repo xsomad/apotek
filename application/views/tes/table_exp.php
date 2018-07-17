@@ -15,10 +15,15 @@
       </div>
 
       <div class="x_content">
+        <?php if ($nullex > 0) : ?>
         
             <div class="alert alert-danger">
               <h4><i class="fa fa-warning"></i> Peringatan!</h4> Obat sudah kedaluwarsa. Harap menambahkan obat yang baru.
             </div>
+        <?php endif; ?>
+
+            <a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
+          
                   
        
 

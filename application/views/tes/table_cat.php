@@ -14,12 +14,17 @@
 
 			<div class="x_content">
 				<?php if($this->session->flashdata('cat_added')): ?>
-    				<div class="alert alert-info alert-dismissible fade in" role="alert">
-		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-		                </button>
-	                    <strong><?php echo $this->session->flashdata('cat_added'); ?></strong>
+                  <button id="melinda" style="display: none;" class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Berhasil',
+                                  text: '<?php echo $this->session->flashdata('cat_added'); ?>',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });">Success</button>
                  	</div>
+                 	
 				<?php endif; ?>
+
+				
 
 				<a href="<?php echo base_url('example/form_cat') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Kategori </button></a>
 				

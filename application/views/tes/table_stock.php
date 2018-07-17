@@ -16,14 +16,13 @@
       </div>
 
       <div class="x_content">
-        <?php if($this->session->flashdata('med_added')): ?>
-            <div class="alert alert-info alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                    </button>
-                      <strong><?php echo $this->session->flashdata('med_added'); ?></strong>
-                  </div>
-                  
-        <?php endif; ?>
+        <?php if ($nullstock > 0) : ?>
+        <div class="alert alert-danger">
+              <h4><i class="fa fa-warning"></i> Peringatan!</h4> Obat sudah habis. Harap menambahkan obat yang baru.
+            </div>
+
+         <?php endif; ?>
+
 
         <a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
         
