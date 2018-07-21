@@ -1,3 +1,4 @@
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
@@ -57,3 +58,29 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                  <div class="row x_title">
+                    <div class="col-md-6">
+                      <h3>Network Activities</h3>
+                    </div>
+                   
+                  </div>
+                  <div class="x_content">
+                  	<?php
+				        foreach($chart_cat as $cc){
+				            $nama_kategori[] = $cc->nama_kategori;
+				            $stok[] = (float) $cc->stok;
+				        }
+				    ?>
+                  
+
+				    <canvas id="canvas" width="1000" height="280"></canvas>
+                    
+                  </div>
+                </div>
+              </div>
+</div>

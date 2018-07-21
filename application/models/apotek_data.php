@@ -151,12 +151,27 @@ class Apotek_data extends CI_Model
         return $nullstock;    
     }
 
-
     function countex(){       
     $ce = $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 40 YEAR) AND NOW()');
         $nullex = $ce->num_rows();
         return $nullex;     
     }
+
+
+
+
+    function get_chart_cat(){
+        $query = $this->db->query("SELECT nama_kategori,SUM(stok) AS stok FROM table_med GROUP BY nama_kategori");
+          
+        if($query->num_rows() > 0){
+            foreach($query->result() as $chart_cat){
+                $hasil[] = $chart_cat;
+            }
+            return $hasil;
+        }
+    }
+
+    
 
 }
 

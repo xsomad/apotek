@@ -123,7 +123,9 @@ class Example extends CI_Controller
 	}
 
 	function table_cat() {
+
 		$data['table_cat'] = $this->apotek_data->category()->result();
+		$data['chart_cat']=$this->apotek_data->get_chart_cat();
 		$this->template->write('title', 'Lihat Kategori', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_cat', $data, true);
@@ -133,6 +135,7 @@ class Example extends CI_Controller
 
 	function table_sup() {
 		$data['table_sup'] = $this->apotek_data->supplier()->result();
+		
 		$this->template->write('title', 'Lihat Pemasok', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_sup', $data, true);

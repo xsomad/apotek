@@ -47,6 +47,10 @@
 			<!-- Custom Theme Style -->
 		<link href="<?php echo base_url('assets/css/custom.min.css') ?>" rel="stylesheet">
 		<!-- /Import CSS -->
+
+
+		
+
 	</head>
 	<body class="nav-md">
 		<div class="container body">
@@ -92,7 +96,13 @@
 		<script src="<?php echo base_url('vendors/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/fastclick/lib/fastclick.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/nprogress/nprogress.js') ?>"></script>
+		
 		<script src="<?php echo base_url('vendors/Chart.js/dist/Chart.min.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/jquery-sparkline/dist/jquery.sparkline.min.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/raphael/raphael.min.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/morris.js/morris.min.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/raphael/raphael.min.js') ?>"></script>
+
 		<script src="<?php echo base_url('vendors/gauge.js/dist/gauge.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/iCheck/icheck.min.js') ?>"></script>
@@ -118,6 +128,8 @@
 		<script src="<?php echo base_url('vendors/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
 			<!-- bootstrap-datetimepicker --> 
 		<script src="<?php echo base_url('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
+
+
 
 		<!-- FullCalendar -->
 		<script src="<?php echo base_url('vendors/fullcalendar/dist/fullcalendar.min.js') ?>"></script>
@@ -210,12 +222,19 @@
 
 </script>
 
-<!-- remove welcome notif pnotify -->
+<!-- remove welcome notif pnotify and add notif -->
 <script>
    $(document).ready(function (){
            $('.ui-pnotify').remove();
+           $('.source').trigger("click");
+
+
    });
+
 </script>
+
+
+
 
 <!-- Add row and calculate -->
 
@@ -298,17 +317,30 @@
 
 
 </script>
+<script>
 
-<script type="text/javascript">
+	 var ctx = document.getElementById("canvas").getContext("2d");
 
-    $(document).ready(function() {
-   $('.source').trigger("click");
-});
-
-    
+    var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                  datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3]
+                             }]
+                  },
+            options: {
+            scales: {
+                  yAxes: [{
+                        ticks: {
+                             beginAtZero:true
+                               }
+                          }]
+                    }
+           }
+       });
       </script>
 
-
-		
 	</body>
 </html>
