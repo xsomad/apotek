@@ -123,9 +123,8 @@ class Example extends CI_Controller
 	}
 
 	function table_cat() {
-
+		
 		$data['table_cat'] = $this->apotek_data->category()->result();
-		$data['chart_cat']=$this->apotek_data->get_chart_cat();
 		$this->template->write('title', 'Lihat Kategori', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_cat', $data, true);
@@ -418,6 +417,13 @@ class Example extends CI_Controller
 	    $nama_obat=$this->input->post('nama_obat');
         $data=$this->apotek_data->get_product($nama_obat);
         echo json_encode($data);
+	}
+
+
+	function chart()
+	{
+       $data = $this->apotek_data->get_chart_cat();
+		echo json_encode($data);
 	}
 
 

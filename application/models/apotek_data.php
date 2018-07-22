@@ -113,7 +113,7 @@ class Apotek_data extends CI_Model
 
 
     function get_product($nama_obat)
-    { 
+    {   $hasil = array();
         $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
@@ -159,21 +159,24 @@ class Apotek_data extends CI_Model
 
 
 
-
     function get_chart_cat(){
-        $query = $this->db->query("SELECT nama_kategori,SUM(stok) AS stok FROM table_med GROUP BY nama_kategori");
-          
-        if($query->num_rows() > 0){
-            foreach($query->result() as $chart_cat){
-                $hasil[] = $chart_cat;
+        $query = $this->db->query('SELECT nama_kategori, SUM(stok) AS stok FROM table_med GROUP BY nama_kategori');
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "nama_kategori" => $data['nama_kategori'],
+                    "stok" => $data['stok'],
+                );
             }
             return $hasil;
-        }
     }
 
-    
 
 }
+
+
+
 
 
 

@@ -64,21 +64,13 @@
 							<div class="title_left">
 								<h3><?php echo $header ?></h3>
 							</div>
-							<!--
-							<div class="title_right">
-								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search for...">
-										<span class="input-group-btn"><button class="btn btn-default" type="button">Go!</button></span>
-									</div>
-								</div>
-							</div>
-						-->
+							
 						</div>
 						<div class="clearfix"></div>
 						<?php echo $content ?>
 					</div>
 				</div>
+
 				<!-- /Page Content -->
 				<!-- Footer Content -->
 				<footer>
@@ -228,7 +220,6 @@
            $('.ui-pnotify').remove();
            $('.source').trigger("click");
 
-
    });
 
 </script>
@@ -317,30 +308,68 @@
 
 
 </script>
+
 <script>
+	 $.ajax({
+		    
+		   url: "<?php echo base_url('example/chart')?>",
+		   method: "GET",
+		    success: function(data) {
+		    	var data = JSON.parse(data); 
+		    	console.log(data);
+		    	
 
-	 var ctx = document.getElementById("canvas").getContext("2d");
+		    	var stok = [];
+			    var nama_kategori = [];
+			    
+			    for (var i in data){
+			    	stok.push(data[i].stok);
+			    	nama_kategori.push(data[i].nama_kategori);
+			    }   
+		      
+		      var ctx = document.getElementById("canvas").getContext("2d");
 
-    var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                  datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3]
-                             }]
-                  },
-            options: {
-            scales: {
-                  yAxes: [{
-                        ticks: {
-                             beginAtZero:true
-                               }
-                          }]
-                    }
-           }
-       });
+			    var myChart = new Chart(ctx, {
+			            type: 'line',
+			            data: {
+			                  labels: nama_kategori,
+			                  datasets: [{
+			                        label: '# of Votes',
+			                        data: stok,
+			                             }]
+			                  },
+			            options: {
+			            scales: {
+			                  yAxes: [{
+			                        ticks: {
+			                             beginAtZero:true
+			                               }
+			                          }]
+			                    }
+			           }
+			       });
+
+
+			}
+
+
+});
+
+
+
+
+
+
+
+
+
+	
+	
       </script>
+
+
+   
+
 
 	</body>
 </html>

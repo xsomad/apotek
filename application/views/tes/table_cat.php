@@ -1,3 +1,4 @@
+
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
@@ -70,12 +71,7 @@
                    
                   </div>
                   <div class="x_content">
-                  	<?php
-				        foreach($chart_cat as $cc){
-				            $nama_kategori[] = $cc->nama_kategori;
-				            $stok[] = (float) $cc->stok;
-				        }
-				    ?>
+                  	
                   
 
 				    <canvas id="canvas" width="1000" height="280"></canvas>
@@ -84,3 +80,5 @@
                 </div>
               </div>
 </div>
+
+
