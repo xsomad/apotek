@@ -30,7 +30,7 @@
 
 				<a href="<?php echo base_url('example/form_cat') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Kategori </button></a>
 				
-				<table id="datatable-buttons" class="table table-striped table-bordered bulk_action">
+				<table id="datatable" class="table table-striped table-bordered bulk_action">
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -62,23 +62,30 @@
 </div>
 
 <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="dashboard_graph x_panel">
-                  <div class="row x_title">
-                    <div class="col-md-6">
-                      <h3>Network Activities</h3>
-                    </div>
-                   
-                  </div>
-                  <div class="x_content">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Grafik Kategori Obat</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					
+					<li><a class="close-link"><i class="fa fa-close"></i></a>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="x_content">
                   	
                   
 
-				    <canvas id="canvas" width="1000" height="280"></canvas>
+				    <canvas id="canvas" width="900" height="280"></canvas>
                     
                   </div>
-                </div>
-              </div>
+
+		</div>
+	</div>
 </div>
 
 

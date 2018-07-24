@@ -327,27 +327,26 @@
 			    	nama_kategori.push(data[i].nama_kategori);
 			    }   
 		      
-		      var ctx = document.getElementById("canvas").getContext("2d");
+		      var chartdata = {
+				labels: nama_kategori,
+				datasets : [
+					{
+						label: 'Stok obat',
+						backgroundColor: 'rgba(26, 187, 156, 0.7)',
+						borderColor: 'rgba(26, 187, 156, 0.7)',
+						hoverBackgroundColor: 'rgba(26, 187, 156, 1)',
+						hoverBorderColor: 'rgba(26, 187, 156, 1)',
+						data: stok
+					}
+				]
+			};
 
-			    var myChart = new Chart(ctx, {
-			            type: 'line',
-			            data: {
-			                  labels: nama_kategori,
-			                  datasets: [{
-			                        label: '# of Votes',
-			                        data: stok,
-			                             }]
-			                  },
-			            options: {
-			            scales: {
-			                  yAxes: [{
-			                        ticks: {
-			                             beginAtZero:true
-			                               }
-			                          }]
-			                    }
-			           }
-			       });
+			var ctx = $("#canvas");
+
+			var barGraph = new Chart(ctx, {
+				type: 'bar',
+				data: chartdata
+			});
 
 
 			}

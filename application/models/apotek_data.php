@@ -157,6 +157,26 @@ class Apotek_data extends CI_Model
         return $nullex;     
     }
 
+    function count_med(){       
+      $cm =  $this->db->query('SELECT * FROM table_med'); 
+        $stockobat = $cm->num_rows();
+        return $stockobat;    
+    }
+
+    function count_cat(){       
+      $ck =  $this->db->query('SELECT * FROM table_cat'); 
+        $stockkat = $ck->num_rows();
+        return $stockkat;    
+    }
+
+    function count_sup(){       
+      $cp =  $this->db->query('SELECT * FROM table_sup'); 
+        $sup = $cp->num_rows();
+        return $sup;    
+    }
+
+
+
 
 
     function get_chart_cat(){

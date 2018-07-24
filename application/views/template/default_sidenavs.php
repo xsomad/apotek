@@ -14,18 +14,7 @@
 		
 		<div class="clearfix"></div>
 
-		<!-- menu profile quick info -->
-		<!--
-		<div class="profile clearfix">
-			<div class="profile_pic">
-				<img src="<?php echo base_url('assets/images/img.jpg') ?>" alt="..." class="img-circle profile_img">
-			</div>
-			<div class="profile_info">
-				<span>Selamat Datang</span>
-				<h2></h2>
-			</div>
-		</div>
-	-->
+		
 		<!-- /menu profile quick info -->
 		<br>
 		<!-- Sidebar Menu -->
@@ -75,10 +64,7 @@
 
                     </ul>
                   </li>
-<!--
 
-					<li><a href="http://rsh.fkh.ugm.ac.id/main/"><i class="fa fa-external-link-square"></i> RSH FKH UGM <span class="label label-info pull-right"> Go!</span></a></li>
--->
 				</ul>
 			</div>
 		</div>

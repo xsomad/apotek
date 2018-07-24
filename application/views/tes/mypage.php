@@ -3,7 +3,7 @@
                                   title: 'Peringatan',
                                   text: 'Obat sudah habis...',
                                   type: 'error',
-                                  hide: false,
+                                  
                                   styling: 'bootstrap3'
                               });">Error</button>
                   
@@ -14,11 +14,39 @@
                                   title: 'Peringatan',
                                   text: 'Obat sudah kedaluwarsa...',
                                   
-                                  hide: false,
+                                  
                                   styling: 'bootstrap3'
                               });">Error</button>
                   
         <?php endif; ?>
+
+<!-- top tiles -->
+          <div class="row tile_count" style="text-align: center;">
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-medkit"></i> Total Obat</span>
+              <div class="count"><?php echo $stockobat ?></div>
+              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-hospital-o"></i> Total Kategori</span>
+              <div class="count"><?php echo $stockkat ?></div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total Pemasok</span>
+              <div class="count"><?php echo $sup ?></div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-edit"></i> Total Pembeli</span>
+              <div class="count">4,567</div>
+              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+            </div>
+            
+          </div>
+          <!-- /top tiles -->
+
+
 
 <div>
   <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">

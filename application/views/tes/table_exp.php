@@ -17,7 +17,7 @@
       <div class="x_content">
         <?php if ($nullex > 0) : ?>
         
-            <div class="alert alert-danger">
+            <div class="alert alert-warning">
               <h4><i class="fa fa-warning"></i> Peringatan!</h4> Obat sudah kedaluwarsa. Harap menambahkan obat yang baru.
             </div>
         <?php endif; ?>

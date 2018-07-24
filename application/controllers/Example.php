@@ -19,18 +19,22 @@ class Example extends CI_Controller
 	}
 
 	function index() {
+		$data['stockobat'] = $this->apotek_data->count_med();
+		$data['stockkat'] = $this->apotek_data->count_cat();
+		$data['sup'] = $this->apotek_data->count_sup();
 		$this->template->write('title', 'Beranda', TRUE);
 		$this->template->write('header', 'Menu');
-		$this->template->write_view('content', 'tes/mypage', '', true);
+		$this->template->write_view('content', 'tes/mypage', $data, true);
 
 		$this->template->render();
 	}
 
 	function simple_template() {
 		$this->template->set_template('default');
+		
 		$this->template->write('header', 'This is Header');
 		$this->template->write('title', 'My Simple Template', TRUE);
-		$this->template->write_view('content', 'tes/mypage', '', true);
+		$this->template->write_view('content', 'tes/mypage', true);
 
 		$this->template->render();
 	}
