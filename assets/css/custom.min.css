@@ -334,12 +334,12 @@
 
 
 .img-home{
-	width:23%;
-	display: block;
-    padding-top: 12%;
+	width:20%;
+    position: fixed;
+    margin-top: 5%;
+    bottom: 0;
+    display: block;
     float:right;
-    z-index:-1;
-
 }
 
 

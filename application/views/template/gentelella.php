@@ -64,11 +64,14 @@
 							<div class="title_left">
 								<h3><?php echo $header ?></h3>
 							</div>
-							
 						</div>
 						<div class="clearfix"></div>
 						<?php echo $content ?>
 					</div>
+					<div style=" margin-top: 10%;">
+					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/images/pet.png') ?>" alt="..." class="img-home"></a>
+						<div class="clearfix"></div>
+				</div>
 				</div>
 
 				<!-- /Page Content -->
@@ -286,25 +289,24 @@
 		});
 
 
-		$('#prod').on('change', '.banyak', function() { 
-
-		for(i=1; i<=20; i++){
-        var unitCount = document.getElementById('banyak'+i).value;
-        var unitPrice = document.getElementById('harga_jual'+i).value;
-        var subtotal = document.getElementById('subtotal'+i);
-			subtotal.value=(unitCount * unitPrice);
-
-
+		$('#prod').on('change', '.banyak', function() {
 		
-			    var arr = document.getElementsByName('subtotal');
-			    var tot=0;
-			    for(var j=0;j<arr.length;j++){
-			        if(parseInt(arr[j].value))
-			            tot += parseInt(arr[j].value);
-			    }
-			    document.getElementById('grandtotal').value = tot;
-			}
-      });
+		var $row = $(this).closest('tr');
+		
+        var unitCount = $row.find('.banyak').val() ;
+        var unitPrice = $row.find('.harga_jual').val() ;
+        $row.find('.subtotal').val(unitCount * unitPrice);
+        updateTotal();
+            });
+
+		function updateTotal() {
+		  var grandtotal = 0;
+		  $('.subtotal').each(function() {
+		    grandtotal += parseInt($(this).val(), 10);
+		  });
+		  $('#grandtotal').val(grandtotal);
+		}
+
 
 
 </script>

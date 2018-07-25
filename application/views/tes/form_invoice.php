@@ -59,9 +59,7 @@
           <tr>
           <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grand Total</b></td>
           <td>
-            
-                    <input id="grandtotal" name="grandtotal" type="text" class="form-control grandtotal" readonly>
-            
+            <input id="grandtotal" name="grandtotal" type="text" class="form-control grandtotal" readonly>
           </td>
         </tr>
         </tfoot>
@@ -84,11 +82,11 @@
 
       
 
-              </div>
-            </div>
-
   </div>
 </div>
+
+ 
+
 
 
 
