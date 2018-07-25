@@ -26,6 +26,11 @@ class Apotek_data extends CI_Model
         return $this->db->get('table_sup');
     }
 
+    function invoice()
+    {
+        return $this->db->get('table_invoice');
+    }
+
     function get_category()
     {
         $data = array();
@@ -176,9 +181,6 @@ class Apotek_data extends CI_Model
     }
 
 
-
-
-
     function get_chart_cat(){
         $query = $this->db->query('SELECT nama_kategori, SUM(stok) AS stok FROM table_med GROUP BY nama_kategori');
         $hasil = array();
@@ -190,6 +192,14 @@ class Apotek_data extends CI_Model
                 );
             }
             return $hasil;
+    }
+
+
+    function search_med($nama_obat){
+        $this->db->like('nama_obat', $obat , 'both');
+        $this->db->order_by('nama_obat', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('table_med')->result();
     }
 
 

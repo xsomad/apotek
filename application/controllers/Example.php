@@ -146,6 +146,8 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
+	
+
 	function form_sup() {
 		$this->template->write('title', 'Tambah Supplier', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
@@ -175,7 +177,7 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
-	function invoice() {
+	function invoice_page() {
 		$this->template->write('title', 'Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/invoice', '', true);
@@ -208,9 +210,10 @@ class Example extends CI_Controller
 	}
 
 	function table_invoice() {
+		$data['table_invoice'] = $this->apotek_data->invoice()->result();
 		$this->template->write('title', 'Lihat Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/table_invoice', '', true);
+		$this->template->write_view('content', 'tes/table_invoice', $data, true);
 
 		$this->template->render();
 	}
@@ -281,6 +284,24 @@ class Example extends CI_Controller
 
 		$this->session->set_flashdata('sup_added', 'Pemasok berhasil ditambahkan');
 		redirect('example/table_sup');
+	}
+
+
+	function add_invoice(){
+		$nama_pembeli = $this->input->post('nama_pembeli');
+		$tgl_beli = $this->input->post('tgl_beli');
+		$grandtotal = $this->input->post('grandtotal');
+ 
+		$data = array(
+			'nama_pembeli' => $nama_pembeli,
+			'tgl_beli' => $tgl_beli,
+			'grandtotal' => $grandtotal,
+			);
+
+		$this->apotek_data->insert_data($data,'table_invoice');
+
+		$this->session->set_flashdata('inv_added', 'Tagihan berhasil ditambahkan');
+		redirect('example/table_invoice');
 	}
 
 
@@ -415,6 +436,12 @@ class Example extends CI_Controller
 		redirect('example/table_sup');
 	}
 
+	function remove_inv($id_tagihan){
+		$where = array('id_tagihan' => $id_tagihan);
+		$this->apotek_data->delete_data($where,'table_invoice');
+		redirect('example/table_invoice');
+	}
+
 
 	 function product()
 	{
@@ -431,11 +458,16 @@ class Example extends CI_Controller
 	}
 
 
-	
-
-
-	
-
+	 function get_autocomplete(){
+        if (isset($_GET['term'])) {
+            $result = $this->apotek_data->search_med($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = $row->nama_obat;
+                echo json_encode($arr_result);
+            }
+        }
+    }
 
 
 	

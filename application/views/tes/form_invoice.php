@@ -17,22 +17,20 @@
       <div class="x_content">
         
 
+       <form action="<?php echo base_url(). 'example/add_invoice'; ?>" method="post" class="form-horizontal form-label-left" novalidate>
 
-         
-
-       <form class="form-horizontal form-label-left" novalidate>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nama Pembeli</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pembeli">Nama Pembeli</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="name" required="required" type="text">
+              <input id="nama_pembeli" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" name="nama_pembeli" required="required" type="text">
             </div>
           </div>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">Tanggal Transaksi</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tgl_beli">Tanggal Transaksi</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class='input-group date' id='myDatepicker2'>
-                  <input type='text' class="form-control" />
+                  <input type="text" name="tgl_beli" id="tgl_beli" class="form-control" required="required">
                   <span class="input-group-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -70,8 +68,9 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-dark">Batal</button></a>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
               <button id='addRow' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Tambah Produk</button>
+              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              
             </div>
           </div>
         </form>

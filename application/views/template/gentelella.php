@@ -88,6 +88,7 @@
 
 		<!-- Import Javascript -->
 		<script src="<?php echo base_url('vendors/jquery/dist/jquery.min.js') ?>"></script>
+		<script src="<?php echo base_url('vendors/jquery-ui/jquery-ui.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/fastclick/lib/fastclick.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/nprogress/nprogress.js') ?>"></script>
@@ -245,7 +246,7 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+              '<input style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'">',
               '<input id="stok'+counter+'" name="stok" class="form-control" readonly >',
               '<input id="unit'+counter+'" name="unit" class="form-control" readonly>',
               '<input id="harga_jual'+counter+'" name="harga_jual" class="form-control harga_jual" readonly>',
@@ -266,6 +267,11 @@
             console.log($(this).parent());
             t.row($(this).parents('tr')).remove().draw(false);
           });
+
+
+          $( ".nama_obat" ).autocomplete({
+              source: "<?php echo site_url('example/get_autocomplete/?');?>"
+            });
 
 
         $('#prod').on('change', '.nama_obat', function() {
@@ -355,18 +361,13 @@
 
 
 });
-
-
-
-
-
-
-
-
-
-	
-	
       </script>
+
+      <script type="text/javascript">
+        $(document).ready(function(){
+            
+        });
+    </script>
 
 
    
