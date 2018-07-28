@@ -157,7 +157,7 @@ class Apotek_data extends CI_Model
     }
 
     function countex(){       
-    $ce = $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 40 YEAR) AND NOW()');
+    $ce = $this->db->query('SELECT * FROM table_med WHERE kedaluwarsa BETWEEN DATE_SUB(NOW(), INTERVAL 100 YEAR) AND NOW()');
         $nullex = $ce->num_rows();
         return $nullex;     
     }
@@ -180,6 +180,12 @@ class Apotek_data extends CI_Model
         return $sup;    
     }
 
+    function count_inv(){       
+      $ci =  $this->db->query('SELECT * FROM table_invoice'); 
+        $inv = $ci->num_rows();
+        return $inv;    
+    }
+
 
     function get_chart_cat(){
         $query = $this->db->query('SELECT nama_kategori, SUM(stok) AS stok FROM table_med GROUP BY nama_kategori');
@@ -195,12 +201,31 @@ class Apotek_data extends CI_Model
     }
 
 
+    function get_chart_trans($tahun_beli){
+        
+        $query = $this->db->query("SELECT MONTHNAME(tgl_beli) AS month, SUM(grandtotal) AS total FROM table_invoice WHERE YEAR(tgl_beli)= '$tahun_beli' GROUP BY MONTH(tgl_beli) ORDER BY MONTH(tgl_beli)");
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "month" => $data['month'],
+                    "total" => $data['total'],
+                );
+            }
+            return $hasil;
+
+    }
+
+
     function search_med($nama_obat){
         $this->db->like('nama_obat', $obat , 'both');
         $this->db->order_by('nama_obat', 'ASC');
         $this->db->limit(10);
         return $this->db->get('table_med')->result();
     }
+
+
+
 
 
 }

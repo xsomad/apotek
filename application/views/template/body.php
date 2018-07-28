@@ -68,7 +68,8 @@
 						<div class="clearfix"></div>
 						<?php echo $content ?>
 					</div>
-					<div style=" margin-top: 10%;">
+
+					<div style=" margin-top: 10%; ">
 					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/images/pet.png') ?>" alt="..." class="img-home"></a>
 						<div class="clearfix"></div>
 				</div>
@@ -187,10 +188,10 @@
 
 <!-- Date Picker -->
 <script>
-    $('#myDatepicker').datetimepicker();
+    
     
     $('#myDatepicker2').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
     
     $('#myDatepicker3').datetimepicker({
@@ -215,6 +216,8 @@
     $("#datetimepicker7").on("dp.change", function(e) {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
+
+     
 
 </script>
 
@@ -297,13 +300,13 @@
 
 		$('#prod').on('change', '.banyak', function() {
 		
-		var $row = $(this).closest('tr');
-		
-        var unitCount = $row.find('.banyak').val() ;
-        var unitPrice = $row.find('.harga_jual').val() ;
-        $row.find('.subtotal').val(unitCount * unitPrice);
-        updateTotal();
-            });
+			var $row = $(this).closest('tr');
+			
+	        var unitCount = $row.find('.banyak').val() ;
+	        var unitPrice = $row.find('.harga_jual').val() ;
+	        $row.find('.subtotal').val(unitCount * unitPrice);
+	        updateTotal();
+        });
 
 		function updateTotal() {
 		  var grandtotal = 0;
@@ -318,10 +321,13 @@
 </script>
 
 <script>
+
+	
 	 $.ajax({
 		    
 		   url: "<?php echo base_url('example/chart')?>",
 		   method: "GET",
+
 		    success: function(data) {
 		    	var data = JSON.parse(data); 
 		    	console.log(data);
@@ -358,16 +364,76 @@
 
 
 			}
+		});
+</script>
 
 
+
+<script>
+
+$(document).ready(function() {
+$('#coba').datetimepicker({
+        format: 'YYYY',
+    })
+ .on('dp.change', function(e) {
+       var tahun_beli = $('#coba').data('date');
+     	
+
+    $.ajax({
+		   type: "POST",
+		   url: "<?php echo base_url('example/chart_trans')?>",
+		   dataType: "JSON",
+		  
+		   data: { "tahun_beli": tahun_beli },
+		    success: function(data) {
+		    	
+		    	console.log(data);
+
+		    	var total = [];
+			    var month = [];
+			    
+			    for (var i in data){
+			    	total.push(data[i].total);
+			    	month.push(data[i].month);
+			    }   
+		      
+		      var chartdata = {
+				labels: month,
+				datasets : [
+					{
+						label: 'Total Transaksi',
+						backgroundColor: 'rgba(26, 187, 156, 0.4)',
+						borderColor: 'rgba(26, 187, 156, 0.7)',
+						hoverBackgroundColor: 'rgba(26, 187, 156, 0.6)',
+						hoverBorderColor: 'rgba(26, 187, 156, 1)',
+						data: total
+					}
+				]
+			};
+
+			var ctx = $("#transaksi");
+
+			var barGraph = new Chart(ctx, {
+				type: 'line',
+				data: chartdata
+			});
+
+
+			}
+		});
+
+    });
 });
-      </script>
 
-      <script type="text/javascript">
-        $(document).ready(function(){
-            
-        });
-    </script>
+
+</script>
+
+
+<script>
+
+</script>
+
+      
 
 
    

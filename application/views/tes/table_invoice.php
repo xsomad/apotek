@@ -1,4 +1,4 @@
-	<div class="row">
+<div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
@@ -41,7 +41,7 @@
 						<?php foreach($table_invoice as $i){ ?>
 						<tr>
 							<td><?php echo $i->nama_pembeli ?></td>
-							<td><?php echo $i->tgl_beli ?></td>
+							<td><?php echo date('j F Y',strtotime($i->tgl_beli)) ?></td>
 							<td><?php echo number_format($i->grandtotal) ?></td>
 							
 							<td style=" text-align: center;">
@@ -57,7 +57,31 @@
 				</table>
 		</div>
 	</div>
+	</div>
+
 </div>
 
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="dashboard_graph x_panel">
+      <div class="row x_title">
+        <div class="col-md-6">
+          <h4>Total Transaksi</h4>
+        </div>
+        <div class="col-md-2 pull-right">
+          <div class='input-group date ' id='coba'>
+            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required">
+              <span class="input-group-addon">
+                 <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class="x_content">
+        	<canvas id="transaksi" width="900" height="280"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
 

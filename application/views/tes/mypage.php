@@ -40,8 +40,8 @@
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-edit"></i> Total Pembeli</span>
-              <div class="count">4,567</div>
+              <span class="count_top"><i class="fa fa-edit"></i> Total Transaksi</span>
+              <div class="count"><?php echo $inv ?></div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
             </div>
           </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="count">...</div>
                     <h3>Kedaluwarsa</h3>
-                    <p>Banyak obat yang hampir kedaluwarsa</p>
+                    <p>Banyak obat yang kedaluwarsa</p>
                   </div>
                 </a>
                 </div>
@@ -118,8 +118,8 @@
                     <div class="icon"><i class="fa fa-file-text-o green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Stok Habis</h3>
-                    <p>Melihat stok obat yang hampir habis</p>
+                    <h3>Habis</h3>
+                    <p>Melihat stok obat yang habis</p>
                   </div>
                   </a>
                 </div>
@@ -130,8 +130,8 @@
                     <div class="icon"><i class="fa fa-check-square-o green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Penjualan</h3>
-                    <p>Laporan penjualan obat</p>
+                    <h3>Transaksi</h3>
+                    <p>Transaksi penjualan obat</p>
                   </div>
                 </div>
 
@@ -141,8 +141,8 @@
                     <div class="icon"><i class="fa fa-shopping-cart green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Pembelian</h3>
-                    <p>Laporan pembelian obat</p>
+                    <h3>Stok</h3>
+                    <p>Stok obat berdasar kategori</p>
                   </div>
                 </div>
             </div>

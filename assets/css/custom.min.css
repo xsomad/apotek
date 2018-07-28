@@ -340,7 +340,12 @@
     bottom: 0;
     display: block;
     float:right;
+    transition: transform .2s;
 }
+
+.img-home:hover{
+	transform: scale(1.1); 
+	}
 
 
 .profile_info{

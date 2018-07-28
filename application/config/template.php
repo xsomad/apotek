@@ -89,7 +89,7 @@ $config['theme_locations'] = array(
 );
 
 
-$template['active_template'] = 'gentelella';
+$template['active_template'] = 'body';
 
 $template['bootstrap']['template'] = 'template/bootstrap.php';
 $template['bootstrap']['regions'] = array(
@@ -104,7 +104,7 @@ $template['bootstrap']['parser'] = 'parser';
 $template['bootstrap']['parser_method'] = 'parse';
 $template['bootstrap']['parse_template'] = FALSE;
 
-$template['default']['template'] = 'template/simple.php';
+$template['default']['template'] = 'tes/mypage.php';
 $template['default']['regions'] = array(
    'title' => array('content' => array('Rumah Sakit Hewan Prof. Soeparwi')),
    'header',
@@ -119,8 +119,8 @@ $template['default']['parser'] = 'parser';
 $template['default']['parser_method'] = 'parse';
 $template['default']['parse_template'] = FALSE;
 
-$template['gentelella']['template'] = 'template/gentelella.php';
-$template['gentelella']['regions'] = array(
+$template['body']['template'] = 'template/body.php';
+$template['body']['regions'] = array(
    'title' => array('content' => array('Rumah Sakit Hewan Prof. Soeparwi')),
    'header',
    'navs',
@@ -131,6 +131,6 @@ $template['gentelella']['regions'] = array(
     ),
 );
 
-$template['gentelella']['parser'] = 'parser';
-$template['gentelella']['parser_method'] = 'parse';
-$template['gentelella']['parse_template'] = FALSE;
+$template['body']['parser'] = 'parser';
+$template['body']['parser_method'] = 'parse';
+$template['body']['parse_template'] = FALSE;

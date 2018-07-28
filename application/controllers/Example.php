@@ -22,6 +22,7 @@ class Example extends CI_Controller
 		$data['stockobat'] = $this->apotek_data->count_med();
 		$data['stockkat'] = $this->apotek_data->count_cat();
 		$data['sup'] = $this->apotek_data->count_sup();
+		$data['inv'] = $this->apotek_data->count_inv();
 		$this->template->write('title', 'Beranda', TRUE);
 		$this->template->write('header', 'Menu');
 		$this->template->write_view('content', 'tes/mypage', $data, true);
@@ -227,7 +228,7 @@ class Example extends CI_Controller
 		$stok = $this->input->post('stok');
 		$unit = $this->input->post('unit');
 		$nama_kategori = $this->input->post('nama_kategori');
-		$kedaluwarsa = $this->input->post('kedaluwarsa');
+		$kedaluwarsa = date("Y-m-d",strtotime($this->input->post('kedaluwarsa')));
 		$des_obat = $this->input->post('des_obat');
 		$harga_beli = $this->input->post('harga_jual');
 		$harga_jual = $this->input->post('harga_jual');
@@ -289,7 +290,7 @@ class Example extends CI_Controller
 
 	function add_invoice(){
 		$nama_pembeli = $this->input->post('nama_pembeli');
-		$tgl_beli = $this->input->post('tgl_beli');
+		$tgl_beli = date("Y-m-d",strtotime($this->input->post('tgl_beli')));
 		$grandtotal = $this->input->post('grandtotal');
  
 		$data = array(
@@ -355,7 +356,7 @@ class Example extends CI_Controller
 		$stok = $this->input->post('stok');
 		$unit = $this->input->post('unit');
 		$nama_kategori = $this->input->post('nama_kategori');
-		$kedaluwarsa = $this->input->post('kedaluwarsa');
+		$kedaluwarsa = date("Y-m-d",strtotime($this->input->post('kedaluwarsa')));
 		$des_obat = $this->input->post('des_obat');
 		$harga_beli = $this->input->post('harga_jual');
 		$harga_jual = $this->input->post('harga_jual');
@@ -454,6 +455,14 @@ class Example extends CI_Controller
 	function chart()
 	{
        $data = $this->apotek_data->get_chart_cat();
+		echo json_encode($data);
+	}
+
+
+	function chart_trans()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->get_chart_trans($tahun_beli);
 		echo json_encode($data);
 	}
 

@@ -28,7 +28,7 @@
 
 				<a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
 				
-				<table id="datatable-buttons" class="table table-striped table-bordered">
+				<table id="datatable" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>Nama Obat</th>
@@ -51,7 +51,7 @@
 							<td><?php echo $m->nama_kategori ?></td>
 					
 							<td><?php echo $m->stok ?></td>
-							<td><?php echo $m->kedaluwarsa ?></td>
+							<td><?php echo date('j F Y',strtotime($m->kedaluwarsa)); ?></td>
 							
 							<td><?php echo number_format($m->harga_jual) ?></td>
 							<td><?php echo $m->unit ?></td>
