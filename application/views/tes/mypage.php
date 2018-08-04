@@ -16,7 +16,7 @@
                                   title: 'Peringatan',
                                   text: 'Obat sudah kedaluwarsa...',
                                   
-                                  
+                                 
                                   styling: 'bootstrap3'
                               });">Error</button>
                   
@@ -27,22 +27,19 @@
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-medkit"></i> Total Obat</span>
               <div class="count"><?php echo $stockobat ?></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-hospital-o"></i> Total Kategori</span>
               <div class="count"><?php echo $stockkat ?></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Pemasok</span>
               <div class="count"><?php echo $sup ?></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-edit"></i> Total Transaksi</span>
               <div class="count"><?php echo $inv ?></div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
             </div>
           </div>
           <!-- /top tiles -->
@@ -126,6 +123,7 @@
 
 
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                   <a href="<?php echo base_url('example/table_invoice') ?>">
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o green"></i>
                     </div>
@@ -133,10 +131,12 @@
                     <h3>Transaksi</h3>
                     <p>Transaksi penjualan obat</p>
                   </div>
+                </a>
                 </div>
 
 
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                   <a href="<?php echo base_url('example/table_cat') ?>">
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-shopping-cart green"></i>
                     </div>
@@ -145,6 +145,7 @@
                     <p>Stok obat berdasar kategori</p>
                   </div>
                 </div>
+              </a>
             </div>
 
   <div>

@@ -33,12 +33,11 @@
               <th>Nama Obat</th>
               <th>Penyimpanan</th>
               <th>Kategori</th>
-              
               <th>Stok</th>
               <th>Kedaluwarsa</th>
-              
               <th>Harga Jual</th>
               <th>Unit</th>
+              <th>Pemasok</th>
               
             </tr>
           </thead>
@@ -51,10 +50,11 @@
               <td><?php echo $ex->nama_kategori ?></td>
           
               <td><?php echo $ex->stok ?></td>
-              <td><?php echo $ex->kedaluwarsa ?></td>
+              <td><?php echo date('j F Y',strtotime($ex->kedaluwarsa)); ?></td>
               
               <td><?php echo number_format($ex->harga_jual) ?></td>
               <td><?php echo $ex->unit ?></td>
+              <td><?php echo $ex->nama_pemasok ?></td>
               
             </tr>
 
@@ -93,12 +93,11 @@
               <th>Nama Obat</th>
               <th>Penyimpanan</th>
               <th>Kategori</th>
-              
               <th>Stok</th>
               <th>Kedaluwarsa</th>
-              
               <th>Harga Jual</th>
               <th>Unit</th>
+              <th>Pemasok</th>
               
             </tr>
           </thead>
@@ -109,12 +108,11 @@
               <td><?php echo $ax->nama_obat ?></td>
               <td><?php echo $ax->penyimpanan ?></td>
               <td><?php echo $ax->nama_kategori ?></td>
-          
               <td><?php echo $ax->stok ?></td>
-              <td><?php echo $ax->kedaluwarsa ?></td>
-              
+              <td><?php echo date('j F Y',strtotime($ax->kedaluwarsa)); ?></td>
               <td><?php echo number_format($ax->harga_jual) ?></td>
               <td><?php echo $ax->unit ?></td>
+              <td><?php echo $ax->nama_pemasok ?></td>
               
             </tr>
 

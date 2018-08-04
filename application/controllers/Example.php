@@ -11,6 +11,7 @@ class Example extends CI_Controller
 		parent::__construct();
 		$this->load->model('apotek_data');
         $this->load->database();
+        $this->load->helper(array('form', 'url'));
        
         $data['nullstock'] = $this->apotek_data->countstock();
         $data['nullex'] = $this->apotek_data->countex();
@@ -24,7 +25,7 @@ class Example extends CI_Controller
 		$data['sup'] = $this->apotek_data->count_sup();
 		$data['inv'] = $this->apotek_data->count_inv();
 		$this->template->write('title', 'Beranda', TRUE);
-		$this->template->write('header', 'Menu');
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/mypage', $data, true);
 
 		$this->template->render();
@@ -230,7 +231,7 @@ class Example extends CI_Controller
 		$nama_kategori = $this->input->post('nama_kategori');
 		$kedaluwarsa = date("Y-m-d",strtotime($this->input->post('kedaluwarsa')));
 		$des_obat = $this->input->post('des_obat');
-		$harga_beli = $this->input->post('harga_jual');
+		$harga_beli = $this->input->post('harga_beli');
 		$harga_jual = $this->input->post('harga_jual');
 		$nama_pemasok = $this->input->post('nama_pemasok');
  
@@ -358,7 +359,7 @@ class Example extends CI_Controller
 		$nama_kategori = $this->input->post('nama_kategori');
 		$kedaluwarsa = date("Y-m-d",strtotime($this->input->post('kedaluwarsa')));
 		$des_obat = $this->input->post('des_obat');
-		$harga_beli = $this->input->post('harga_jual');
+		$harga_beli = $this->input->post('harga_beli');
 		$harga_jual = $this->input->post('harga_jual');
 		$nama_pemasok = $this->input->post('nama_pemasok');
 	
@@ -478,6 +479,7 @@ class Example extends CI_Controller
         }
     }
 
+    
 
 	
 

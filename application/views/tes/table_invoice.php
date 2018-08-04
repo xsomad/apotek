@@ -1,3 +1,6 @@
+
+
+
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
@@ -20,6 +23,7 @@
                                   title: 'Berhasil',
                                   text: '<?php echo $this->session->flashdata('inv_added'); ?>',
                                   type: 'success',
+                                  hide: false,
                                   styling: 'bootstrap3'
                               });">Success</button>
                  	</div>
@@ -71,7 +75,7 @@
         </div>
         <div class="col-md-2 pull-right">
           <div class='input-group date ' id='coba'>
-            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required">
+            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Tahun">
               <span class="input-group-addon">
                  <span class="glyphicon glyphicon-calendar"></span>
               </span>

@@ -32,12 +32,11 @@
               <th>Nama Obat</th>
               <th>Penyimpanan</th>
               <th>Kategori</th>
-              
               <th>Stok</th>
               <th>Kedaluwarsa</th>
-              
               <th>Harga Jual</th>
               <th>Unit</th>
+              <th>Pemasok</th>
               
             </tr>
           </thead>
@@ -48,12 +47,11 @@
               <td><?php echo $os->nama_obat ?></td>
               <td><?php echo $os->penyimpanan ?></td>
               <td><?php echo $os->nama_kategori ?></td>
-          
               <td><?php echo $os->stok ?></td>
-              <td><?php echo $os->kedaluwarsa ?></td>
-              
+              <td><?php echo date('j F Y',strtotime($os->kedaluwarsa));?></td>
               <td><?php echo number_format($os->harga_jual) ?></td>
               <td><?php echo $os->unit ?></td>
+              <td><?php echo $os->nama_pemasok ?></td>
               
             </tr>
 
@@ -91,12 +89,11 @@
               <th>Nama Obat</th>
               <th>Penyimpanan</th>
               <th>Kategori</th>
-              
               <th>Stok</th>
               <th>Kedaluwarsa</th>
-              
               <th>Harga Jual</th>
               <th>Unit</th>
+              <th>Pemasok</th>
               
             </tr>
           </thead>
@@ -107,12 +104,11 @@
               <td><?php echo $as->nama_obat ?></td>
               <td><?php echo $as->penyimpanan ?></td>
               <td><?php echo $as->nama_kategori ?></td>
-          
               <td><?php echo $as->stok ?></td>
-              <td><?php echo $as->kedaluwarsa ?></td>
-              
+              <td><?php echo date('j F Y',strtotime($as->kedaluwarsa)); ?></td>
               <td><?php echo number_format($as->harga_jual) ?></td>
               <td><?php echo $as->unit ?></td>
+              <td><?php echo $as->nama_pemasok ?></td>
               
             </tr>
 

@@ -20,6 +20,7 @@
                                   title: 'Berhasil',
                                   text: '<?php echo $this->session->flashdata('med_added'); ?>',
                                   type: 'success',
+                                  hide: false,
                                   styling: 'bootstrap3'
                               });">Success</button>
                  	</div>
@@ -28,7 +29,7 @@
 
 				<a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
 				
-				<table id="datatable" class="table table-striped table-bordered">
+				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>Nama Obat</th>

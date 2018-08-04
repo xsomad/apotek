@@ -191,7 +191,8 @@
     
     
     $('#myDatepicker2').datetimepicker({
-        format: 'DD-MM-YYYY'
+        format: 'DD-MM-YYYY',
+        allowInputToggle: true
     });
     
     $('#myDatepicker3').datetimepicker({
@@ -249,7 +250,7 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<input style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'">',
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option value="0" ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
               '<input id="stok'+counter+'" name="stok" class="form-control" readonly >',
               '<input id="unit'+counter+'" name="unit" class="form-control" readonly>',
               '<input id="harga_jual'+counter+'" name="harga_jual" class="form-control harga_jual" readonly>',
@@ -257,6 +258,20 @@
               '<input id="subtotal'+counter+'" name="subtotal" class="form-control subtotal" readonly>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
+
+            var myOpt = [];
+		    $("select").each(function () {
+		        myOpt.push($(this).val());
+		    });
+		    $("select").each(function () {
+		        $(this).find("option").prop('hidden', false);
+		        var sel = $(this);
+		        $.each(myOpt, function(key, value) {
+		            if((value != "") && (value != sel.val())) {
+		                sel.find("option").filter('[value="' + value +'"]').prop('hidden', true);
+		            }
+		        });
+		    });
 
             counter++;
   
@@ -269,17 +284,18 @@
           $('#prod').on("click", "#removeproduk", function(){
             console.log($(this).parent());
             t.row($(this).parents('tr')).remove().draw(false);
+            updateTotal();
           });
 
 
-          $( ".nama_obat" ).autocomplete({
-              source: "<?php echo site_url('example/get_autocomplete/?');?>"
-            });
+
 
 
         $('#prod').on('change', '.nama_obat', function() {
+
 		  var $select = $(this);
 		  var nama_obat = $select.val();
+
 
 		  $.ajax({
 		    type: "POST",
@@ -295,7 +311,9 @@
 		      });
 		    }
 		  });
+
 		});
+
 
 
 		$('#prod').on('change', '.banyak', function() {
@@ -374,6 +392,7 @@
 $(document).ready(function() {
 $('#coba').datetimepicker({
         format: 'YYYY',
+        allowInputToggle: true
     })
  .on('dp.change', function(e) {
        var tahun_beli = $('#coba').data('date');
@@ -429,14 +448,6 @@ $('#coba').datetimepicker({
 </script>
 
 
-<script>
-
-</script>
-
-      
-
-
-   
 
 
 	</body>

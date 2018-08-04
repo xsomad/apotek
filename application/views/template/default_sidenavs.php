@@ -22,15 +22,8 @@
 			<div class="menu_section">
 				<h3></h3>
 				<ul class="nav side-menu">
-					<li><a><i class="fa fa-home"></i> Beranda <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Page Example</a></li>
-							<li><a href="<?php echo base_url('dashboard') ?>">Dashboard</a></li>
-							<li><a href="<?php echo base_url('example/calendar') ?>">Kalender</a></li> 
-							<li><a href="<?php echo base_url('example/table_ex') ?>">Contoh</a></li>
-							
-						</ul>
-					</li>
+
+					<li><a><i class="fa fa-home"></i> Beranda 
 					<li><a><i class="fa fa-medkit"></i> Obat <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<?php echo base_url('example/form_med') ?>">Tambah Obat</a></li>
@@ -60,8 +53,7 @@
                     <ul class="nav child_menu">
                     	<li><a href="<?php echo base_url('example/form_invoice') ?>">Tambah Tagihan</a></li>
                     	<li><a href="<?php echo base_url('example/table_invoice') ?>">Lihat Tagihan</a></li>
-                    	<li><a href="<?php echo base_url('example/invoice') ?>">Tagihan</a></li>
-
+                    	
                     </ul>
                   </li>
 
