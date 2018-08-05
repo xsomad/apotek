@@ -4,7 +4,7 @@
 */
 class Example extends CI_Controller
 {
-	private $data;
+	
 	
 	function __construct()
 	{

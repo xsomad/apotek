@@ -251,7 +251,7 @@
           $('#addRow').on( 'click', function () {
             t.row.add( [
               '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option value="0" ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
-              '<input id="stok'+counter+'" name="stok" class="form-control" readonly >',
+              '<input id="stok'+counter+'" name="stok" class="form-control stok" readonly >',
               '<input id="unit'+counter+'" name="unit" class="form-control" readonly>',
               '<input id="harga_jual'+counter+'" name="harga_jual" class="form-control harga_jual" readonly>',
               '<input type="number" id="banyak'+counter+'" name="banyak" class="form-control banyak">',
@@ -317,19 +317,37 @@
 
 
 		$('#prod').on('change', '.banyak', function() {
-		
-			var $row = $(this).closest('tr');
+			updateSubtotal();
 			
-	        var unitCount = $row.find('.banyak').val() ;
-	        var unitPrice = $row.find('.harga_jual').val() ;
-	        $row.find('.subtotal').val(unitCount * unitPrice);
-	        updateTotal();
         });
 
+        function updateSubtotal() {
+        	
+        	$(".banyak").each(function(){
+        	var $row = $(this).closest('tr');
+			var unitStock = parseInt($row.find('.stok').val()) ;
+	        var unitCount = parseInt($row.find('.banyak').val()) ;
+
+	        
+	        if(unitCount > unitStock){
+	            $row.find('.banyak').val(unitStock);
+	          	 updateSubtotal();
+	        } 
+	        else {
+
+	        	var Sub = parseInt(($row.find('.harga_jual').val()) * unitCount);
+		        $row.find('.subtotal').val(Sub);
+		        updateTotal();
+		        
+		        	
+		   	}
+		   	});
+        }
+
 		function updateTotal() {
-		  var grandtotal = 0;
+		 	var grandtotal = 0;
 		  $('.subtotal').each(function() {
-		    grandtotal += parseInt($(this).val(), 10);
+		    grandtotal += parseInt($(this).val());
 		  });
 		  $('#grandtotal').val(grandtotal);
 		}
