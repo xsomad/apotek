@@ -117,6 +117,8 @@ class Apotek_data extends CI_Model
     }
 
 
+
+
     function get_product($nama_obat)
     {   $hasil = array();
         $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
@@ -203,7 +205,7 @@ class Apotek_data extends CI_Model
 
     function get_chart_trans($tahun_beli){
         
-        $query = $this->db->query("SELECT MONTHNAME(tgl_beli) AS month, SUM(grandtotal) AS total FROM table_invoice WHERE YEAR(tgl_beli)= '$tahun_beli' GROUP BY MONTH(tgl_beli) ORDER BY MONTH(tgl_beli)");
+        $query = $this->db->query("SELECT MONTHNAME(tgl_beli) AS month, SUM(subtotal) AS total FROM table_invoice WHERE YEAR(tgl_beli)= '$tahun_beli' GROUP BY MONTH(tgl_beli) ORDER BY MONTH(tgl_beli)");
         $hasil = array();
         
             foreach($query->result_array() as $data){
@@ -215,15 +217,6 @@ class Apotek_data extends CI_Model
             return $hasil;
 
     }
-
-
-    function search_med($nama_obat){
-        $this->db->like('nama_obat', $obat , 'both');
-        $this->db->order_by('nama_obat', 'ASC');
-        $this->db->limit(10);
-        return $this->db->get('table_med')->result();
-    }
-
 
 
 

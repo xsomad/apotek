@@ -250,12 +250,12 @@
 
           $('#addRow').on( 'click', function () {
             t.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option value="0" ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
-              '<input id="stok'+counter+'" name="stok" class="form-control stok" readonly >',
-              '<input id="unit'+counter+'" name="unit" class="form-control" readonly>',
-              '<input id="harga_jual'+counter+'" name="harga_jual" class="form-control harga_jual" readonly>',
-              '<input type="number" id="banyak'+counter+'" name="banyak" class="form-control banyak">',
-              '<input id="subtotal'+counter+'" name="subtotal" class="form-control subtotal" readonly>',
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat[]" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option value="0" ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+              '<input id="stok'+counter+'" name="stok[]" class="form-control stok" readonly >',
+              '<input id="unit'+counter+'" name="unit[]" class="form-control" readonly>',
+              '<input id="harga_jual'+counter+'" name="harga_jual[]" class="form-control harga_jual" readonly>',
+              '<input type="number" id="banyak'+counter+'" name="banyak[]" class="form-control banyak">',
+              '<input id="subtotal'+counter+'" name="subtotal[]" class="form-control subtotal" readonly>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
 

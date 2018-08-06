@@ -31,15 +31,7 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
-	function simple_template() {
-		$this->template->set_template('default');
-		
-		$this->template->write('header', 'This is Header');
-		$this->template->write('title', 'My Simple Template', TRUE);
-		$this->template->write_view('content', 'tes/mypage', true);
-
-		$this->template->render();
-	}
+	
 
 	function dashboard() {
 		$this->template->write('title', 'Dashboard', TRUE);
@@ -49,32 +41,7 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
-	function form_ex() {
-		$this->template->write('title', 'Gentelella Template', TRUE);
-		$this->template->write('header', 'This is Header');
-		$this->template->write_view('content', 'tes/form', '', true);
-
-		$this->template->render();
-	}
-
-	function table_ex() {
-
-		$this->template->write('title', 'Gentelella Template', TRUE);
-		$this->template->write('header', 'Table Dynamics<small>Some examples</small>');
-		$this->template->write_view('content', 'tes/table', '', true);
-
-		$this->template->render();
-
-	}
-	function table_dyn_ex() {
-		$data['table_exp'] = $this->apotek_data->expired()->result();
-		$this->template->write('title', 'Gentelella Template', TRUE);
-		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/table_dynamic', $data, true);
-
-		$this->template->render();
-
-	}
+	
 
 	function table_exp() {
 		$data['table_exp'] = $this->apotek_data->expired()->result();
@@ -288,19 +255,40 @@ class Example extends CI_Controller
 		redirect('example/table_sup');
 	}
 
+	
+
 
 	function add_invoice(){
-		$nama_pembeli = $this->input->post('nama_pembeli');
-		$tgl_beli = date("Y-m-d",strtotime($this->input->post('tgl_beli')));
-		$grandtotal = $this->input->post('grandtotal');
- 
-		$data = array(
-			'nama_pembeli' => $nama_pembeli,
-			'tgl_beli' => $tgl_beli,
-			'grandtotal' => $grandtotal,
-			);
+		 
+			$nama_pembeli = $this->input->post('nama_pembeli');
+			$tgl_beli = date("Y-m-d",strtotime($this->input->post('tgl_beli')));
+			$grandtotal = $this->input->post('grandtotal');
+			$ref = rand(1111111111,9999999999);
+			$nama_obat = $this->input->post('nama_obat');
+			$banyak = $this->input->post('banyak');
+			$subtotal = $this->input->post('subtotal');
 
-		$this->apotek_data->insert_data($data,'table_invoice');
+		foreach($nama_obat as $key=>$val){
+		   
+		$data[] = array(
+				'nama_pembeli' => $nama_pembeli,
+				'tgl_beli' => $tgl_beli,
+				'grandtotal' => $grandtotal,
+				'ref' => $ref,
+				'nama_obat' => $val,
+				'banyak' => $banyak[$key],
+				'subtotal' => $subtotal[$key],
+				
+				);
+
+		$this->db->set('stok', 'stok-'.$banyak[$key], FALSE);
+	    $this->db->where('nama_obat', $val);
+	    $updated = $this->db->update('table_med');
+		
+		
+		}
+		
+		$this->db->insert_batch('table_invoice', $data);
 
 		$this->session->set_flashdata('inv_added', 'Tagihan berhasil ditambahkan');
 		redirect('example/table_invoice');
@@ -468,16 +456,7 @@ class Example extends CI_Controller
 	}
 
 
-	 function get_autocomplete(){
-        if (isset($_GET['term'])) {
-            $result = $this->apotek_data->search_med($_GET['term']);
-            if (count($result) > 0) {
-            foreach ($result as $row)
-                $arr_result[] = $row->nama_obat;
-                echo json_encode($arr_result);
-            }
-        }
-    }
+	
 
     
 
