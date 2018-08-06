@@ -28,7 +28,19 @@ class Apotek_data extends CI_Model
 
     function invoice()
     {
-        return $this->db->get('table_invoice');
+        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal,
+                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
+                ');
+            
+            $this->db->select_sum('table_invoice.banyak');
+        
+            $this->db->group_by('ref');
+            $this->db->order_by ('tgl_beli', 'DESC');
+
+            $run_q = $this->db->get('table_invoice');
+            return $run_q;
+        
+
     }
 
     function get_category()
@@ -183,10 +195,20 @@ class Apotek_data extends CI_Model
     }
 
     function count_inv(){       
-      $ci =  $this->db->query('SELECT * FROM table_invoice'); 
-        $inv = $ci->num_rows();
-        return $inv;    
+       $q = "SELECT count(DISTINCT REF) as 'totalTrans' FROM table_invoice";
+
+        $run_q = $this->db->query($q);
+
+        if ($run_q->num_rows() > 0) {
+            foreach ($run_q->result() as $get) {
+                return $get->totalTrans;
+            }
+        }
+        else {
+            return FALSE;
+        }  
     }
+
 
 
     function get_chart_cat(){

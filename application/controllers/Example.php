@@ -426,8 +426,8 @@ class Example extends CI_Controller
 		redirect('example/table_sup');
 	}
 
-	function remove_inv($id_tagihan){
-		$where = array('id_tagihan' => $id_tagihan);
+	function remove_inv($ref){
+		$where = array('ref' => $ref);
 		$this->apotek_data->delete_data($where,'table_invoice');
 		redirect('example/table_invoice');
 	}
