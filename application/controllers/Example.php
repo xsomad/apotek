@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'functions.php';
 /**
 * This is Example Controller
 */
@@ -18,6 +19,8 @@ class Example extends CI_Controller
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
 		$this->template->write_view('navs', 'template/default_topnavs.php', $data, true);
 	}
+
+	
 
 	function index() {
 		$data['stockobat'] = $this->apotek_data->count_med();
@@ -146,13 +149,7 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
-	function invoice_page() {
-		$this->template->write('title', 'Tagihan', TRUE);
-		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/invoice', '', true);
-
-		$this->template->render();
-	}
+	
 
 	function form_customer() {
 		$this->template->write('title', 'Tambah Pelanggan', TRUE);
@@ -263,8 +260,9 @@ class Example extends CI_Controller
 			$nama_pembeli = $this->input->post('nama_pembeli');
 			$tgl_beli = date("Y-m-d",strtotime($this->input->post('tgl_beli')));
 			$grandtotal = $this->input->post('grandtotal');
-			$ref = rand(1111111111,9999999999);
+			$ref = generateRandomString();
 			$nama_obat = $this->input->post('nama_obat');
+			$harga_jual = $this->input->post('harga_jual');
 			$banyak = $this->input->post('banyak');
 			$subtotal = $this->input->post('subtotal');
 
@@ -276,6 +274,7 @@ class Example extends CI_Controller
 				'grandtotal' => $grandtotal,
 				'ref' => $ref,
 				'nama_obat' => $val,
+				'harga_jual' => $harga_jual[$key],
 				'banyak' => $banyak[$key],
 				'subtotal' => $subtotal[$key],
 				
@@ -285,13 +284,23 @@ class Example extends CI_Controller
 	    $this->db->where('nama_obat', $val);
 	    $updated = $this->db->update('table_med');
 		
-		
 		}
 		
 		$this->db->insert_batch('table_invoice', $data);
 
 		$this->session->set_flashdata('inv_added', 'Tagihan berhasil ditambahkan');
 		redirect('example/table_invoice');
+	}
+
+	function invoice_page($ref) {
+		$where = array('ref' => $ref);
+		$data['table_invoice'] = $this->apotek_data->show_data($where)->result();
+		$data['show_invoice'] = $this->apotek_data->show_invoice($where)->result();
+		$this->template->write('title', 'Tagihan', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/invoice', $data, true);
+
+		$this->template->render();
 	}
 
 

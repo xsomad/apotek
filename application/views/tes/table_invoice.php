@@ -38,6 +38,7 @@
 							<th>Nomor Referensi</th>
 							<th>Nama Pembeli</th>
 							<th>Tanggal Beli</th>
+							<th>Banyak</th>
 							<th>Total Pembelian</th>
 							<th>Aksi</th>
 						</tr>
@@ -47,12 +48,16 @@
 						<tr>
 							<td><?php echo $i->ref ?></td>
 							<td><?php echo $i->nama_pembeli ?></td>
+
 							<td><?php echo date('j F Y',strtotime($i->tgl_beli)) ?></td>
+							<td><?php echo $i->banyak ?></td>
 							<td><?php echo number_format($i->grandtotal) ?></td>
 							
 							<td style=" text-align: center;">
+								<?php echo anchor('example/invoice_page/'.$i->ref, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-newspaper-o"></span></button>');?>
 								
 								<?php echo anchor('example/remove_inv/'.$i->ref, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
+
 
 					         </td>
 						</tr>

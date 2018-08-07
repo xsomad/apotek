@@ -39,8 +39,6 @@ class Apotek_data extends CI_Model
 
             $run_q = $this->db->get('table_invoice');
             return $run_q;
-        
-
     }
 
     function get_category()
@@ -127,6 +125,25 @@ class Apotek_data extends CI_Model
     $this->db->where($where);
     $this->db->delete($table);
     }
+
+    function show_data($where){      
+        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
+                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
+                ');
+            $this->db->select_sum('table_invoice.banyak');
+            $run_q = $this->db->get_where('table_invoice', $where);
+            return $run_q;
+    }
+
+    function show_invoice($where){      
+        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
+                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
+                ');
+            $run_q = $this->db->get_where('table_invoice', $where);
+            return $run_q;
+    }
+
+
 
 
 

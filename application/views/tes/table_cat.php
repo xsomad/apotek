@@ -1,49 +1,4 @@
-<script>
 
-	
-	 $.ajax({
-		    
-		   url: "<?php echo base_url('example/chart')?>",
-		   method: "GET",
-
-		    success: function(data) {
-		    	var data = JSON.parse(data); 
-		    	console.log(data);
-		    	
-
-		    	var stok = [];
-			    var nama_kategori = [];
-			    
-			    for (var i in data){
-			    	stok.push(data[i].stok);
-			    	nama_kategori.push(data[i].nama_kategori);
-			    }   
-		      
-		      var chartdata = {
-				labels: nama_kategori,
-				datasets : [
-					{
-						label: 'Stok obat',
-						backgroundColor: 'rgba(26, 187, 156, 0.7)',
-						borderColor: 'rgba(26, 187, 156, 0.7)',
-						hoverBackgroundColor: 'rgba(26, 187, 156, 1)',
-						hoverBorderColor: 'rgba(26, 187, 156, 1)',
-						data: stok
-					}
-				]
-			};
-
-			var ctx = $("#canvas");
-
-			var barGraph = new Chart(ctx, {
-				type: 'bar',
-				data: chartdata
-			});
-
-
-			}
-		});
-</script>
 
 
 
