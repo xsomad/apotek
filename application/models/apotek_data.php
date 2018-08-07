@@ -28,7 +28,7 @@ class Apotek_data extends CI_Model
 
     function invoice()
     {
-        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal,
+        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
                 table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
                 ');
             
@@ -144,7 +144,70 @@ class Apotek_data extends CI_Model
     }
 
 
+    public function topDemanded(){
+        $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat GROUP BY table_invoice.nama_obat ORDER BY totSold DESC LIMIT 5";
 
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+
+    public function leastDemanded(){
+        $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat GROUP BY table_invoice.nama_obat ORDER BY totSold ASC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+    public function highestEarners(){
+        $q = "SELECT table_med.nama_obat, SUM(table_invoice.subtotal) as 'totEarned' FROM table_med 
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat 
+                GROUP BY table_invoice.nama_obat 
+                ORDER BY totEarned DESC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+    public function lowestEarners(){
+        $q = "SELECT table_med.nama_obat, SUM(table_invoice.subtotal) as 'totEarned' FROM table_med 
+               INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
+               GROUP BY table_invoice.nama_obat 
+               ORDER BY totEarned ASC LIMIT 5";
+       
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
 
 
 

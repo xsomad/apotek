@@ -37,18 +37,18 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th>No</th>
 							<th>Nama Kategori</th>
 							<th>Deskripsi</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>
 
-
+					<?php $sn = 1 ?>
 					<tbody>
 						<?php foreach($table_cat as $c){ ?>
 						<tr>
-							<td><?php echo $c->id_kat ?></td>
+							<th scope="row"><?= $sn ?></th>
 							<td><?php echo $c->nama_kategori ?></td>
 							<td><?php echo $c->des_kat ?></td>
 							<td style=" text-align: center;">
@@ -56,6 +56,7 @@
 								<?php echo anchor('example/remove_cat/'.$c->id_kat, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 					         </td>
 						</tr>
+						<?php $sn++; ?>
 
 						<?php } ?>
 					</tbody>

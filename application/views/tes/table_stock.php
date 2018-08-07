@@ -82,6 +82,7 @@
       </div>
 
       <div class="x_content">
+        <p>Obat dengan stok kurang dari 10</p>
         
         <table name="outstock" id="datatable" class="table table-striped table-bordered">
           <thead>

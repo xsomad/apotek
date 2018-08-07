@@ -409,10 +409,12 @@
 
 $(document).ready(function() {
 $('#coba').datetimepicker({
+		
         format: 'YYYY',
         allowInputToggle: true
     })
  .on('dp.change', function(e) {
+
        var tahun_beli = $('#coba').data('date');
      	
 

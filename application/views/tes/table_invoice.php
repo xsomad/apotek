@@ -35,9 +35,10 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Nomor Referensi</th>
-							<th>Nama Pembeli</th>
 							<th>Tanggal Beli</th>
+							<th>No Invoice</th>
+							<th>Nama Pembeli</th>
+							
 							<th>Banyak</th>
 							<th>Total Pembelian</th>
 							<th>Aksi</th>
@@ -46,12 +47,13 @@
 					<tbody>
 						<?php foreach($table_invoice as $i){ ?>
 						<tr>
+							<td><?php echo date('j F Y',strtotime($i->tgl_beli)) ?></td>
 							<td><?php echo $i->ref ?></td>
 							<td><?php echo $i->nama_pembeli ?></td>
 
-							<td><?php echo date('j F Y',strtotime($i->tgl_beli)) ?></td>
+							
 							<td><?php echo $i->banyak ?></td>
-							<td><?php echo number_format($i->grandtotal) ?></td>
+							<td>Rp <?php echo number_format($i->grandtotal) ?></td>
 							
 							<td style=" text-align: center;">
 								<?php echo anchor('example/invoice_page/'.$i->ref, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-newspaper-o"></span></button>');?>

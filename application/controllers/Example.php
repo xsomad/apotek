@@ -88,8 +88,11 @@ class Example extends CI_Controller
 
 
 	function table_med() {
+		$data['top_demand'] = $this->apotek_data->topDemanded();
+		$data['least_demand'] = $this->apotek_data->leastDemanded();
+		$data['high_earn'] = $this->apotek_data->highestEarners();
+		$data['low_earn'] = $this->apotek_data->lowestEarners();
 		$data['table_med'] = $this->apotek_data->medicine()->result();
-		
 		$this->template->write('title', 'Lihat Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_med', $data, true);
@@ -142,6 +145,20 @@ class Example extends CI_Controller
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_med'] = $this->apotek_data->get_medicine();
 		$data['get_unit'] = $this->apotek_data->get_unit();
+		$this->template->write('title', 'Tambah Tagihan', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/form_invoice', $data, true);
+
+		$this->template->render();
+	}
+
+
+	function form_purchase() {
+		$data['table_med'] = $this->apotek_data->medicine()->result();
+		$data['get_sup'] = $this->apotek_data->get_supplier();
+		
+		$data['get_med'] = $this->apotek_data->get_medicine();
+		
 		$this->template->write('title', 'Tambah Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_invoice', $data, true);

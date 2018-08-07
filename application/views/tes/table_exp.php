@@ -85,7 +85,7 @@
       </div>
 
       <div class="x_content">
-        
+        <p>Obat dengan tanggal kedaluwarsa kurang dari 60 hari</p>
        
         <table id="datatable" class="table table-striped table-bordered">
           <thead>

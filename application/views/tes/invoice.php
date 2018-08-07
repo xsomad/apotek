@@ -79,7 +79,6 @@
                 <tbody>
                   <?php foreach($show_invoice as $si){ ?>
                   <tr>
-                    
                     <td><?php echo $si->nama_obat ?></td>
                     <td><?php echo $si->harga_jual ?></td>
                     <td><?php echo $si->banyak ?></td>

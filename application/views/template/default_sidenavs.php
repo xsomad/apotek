@@ -53,7 +53,7 @@
                     <ul class="nav child_menu">
                     	<li><a href="<?php echo base_url('example/form_invoice') ?>">Tambah Tagihan</a></li>
                     	<li><a href="<?php echo base_url('example/table_invoice') ?>">Lihat Tagihan</a></li>
-                    	<li><a href="<?php echo base_url('example/invoice_page') ?>">Tagihan</a></li>
+                    	
                     	
                     </ul>
                   </li>
