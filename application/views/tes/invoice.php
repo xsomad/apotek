@@ -80,10 +80,10 @@
                   <?php foreach($show_invoice as $si){ ?>
                   <tr>
                     <td><?php echo $si->nama_obat ?></td>
-                    <td><?php echo $si->harga_jual ?></td>
+                    <td>Rp <?php echo number_format($si->harga_jual) ?></td>
                     <td><?php echo $si->banyak ?></td>
                     
-                    <td><?php echo $si->subtotal ?></td>
+                    <td>Rp <?php echo number_format($si->subtotal) ?></td>
                   </tr>
                   
                   <?php } ?>
@@ -93,7 +93,7 @@
                     <tr>
           <td style="text-align:center; vertical-align: middle" colspan="3"><b>Grand Total</b></td>
           <td>
-            <b><?php echo number_format($i->grandtotal) ?></b>
+            <b>Rp <?php echo number_format($i->grandtotal) ?></b>
           </td>
         </tr>
         <?php } ?>
@@ -124,8 +124,7 @@
           <div class="row no-print">
             <div class="col-xs-12">
               <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Cetak</button>
-              <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Bayar</button>
-              <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Simpan PDF</button>
+              
             </div>
           </div>
          

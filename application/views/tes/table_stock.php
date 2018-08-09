@@ -24,7 +24,7 @@
          <?php endif; ?>
 
 
-        <a href="<?php echo base_url('example/form_med') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Obat </button></a>
+        
         
         <table name="outstock" id="datatable" class="table table-striped table-bordered">
           <thead>

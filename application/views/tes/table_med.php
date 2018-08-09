@@ -93,7 +93,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Total Penjualan</th>
+							<th>Banyak Penjualan</th>
 						</tr>
 					</thead>
 					<?php $sn = 1 ?>

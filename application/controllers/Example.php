@@ -159,12 +159,19 @@ class Example extends CI_Controller
 		
 		$data['get_med'] = $this->apotek_data->get_medicine();
 		
-		$this->template->write('title', 'Tambah Tagihan', TRUE);
+		$this->template->write('title', 'Tambah Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/form_invoice', $data, true);
+		$this->template->write_view('content', 'tes/form_purchase', $data, true);
 
 		$this->template->render();
 	}
+
+	function getmedbysupplier(){
+        $nama_pemasok=$this->input->post('nama_pemasok');
+        $data=$this->apotek_data->getmedbysupplier($nama_pemasok);
+        echo json_encode($data);
+    }
+
 
 	
 
@@ -308,6 +315,45 @@ class Example extends CI_Controller
 		$this->session->set_flashdata('inv_added', 'Tagihan berhasil ditambahkan');
 		redirect('example/table_invoice');
 	}
+
+	function add_purchase(){
+		 
+			$nama_pemasok = $this->input->post('nama_pemasok');
+			$tgl_beli = date("Y-m-d",strtotime($this->input->post('tgl_beli')));
+			$grandtotal = $this->input->post('grandtotal');
+			$ref = generateRandomString();
+			$nama_obat = $this->input->post('nama_obat');
+			$harga_beli = $this->input->post('harga_beli');
+			$banyak = $this->input->post('banyak');
+			$subtotal = $this->input->post('subtotal');
+
+		foreach($nama_obat as $key=>$val){
+		   
+		$data[] = array(
+				'nama_pemasok' => $nama_pemasok,
+				'tgl_beli' => $tgl_beli,
+				'grandtotal' => $grandtotal,
+				'ref' => $ref,
+				'nama_obat' => $val,
+				'harga_beli' => $harga_beli[$key],
+				'banyak' => $banyak[$key],
+				'subtotal' => $subtotal[$key],
+				
+				);
+
+		$this->db->set('stok', 'stok+'.$banyak[$key], FALSE);
+	    $this->db->where('nama_obat', $val);
+	    $updated = $this->db->update('table_med');
+		
+		}
+		
+		$this->db->insert_batch('table_purchase', $data);
+		$this->session->set_flashdata('pur_added', 'Pembelian berhasil ditambahkan');
+		redirect('example/table_invoice');
+		
+	}
+
+
 
 	function invoice_page($ref) {
 		$where = array('ref' => $ref);
@@ -465,6 +511,8 @@ class Example extends CI_Controller
         $data=$this->apotek_data->get_product($nama_obat);
         echo json_encode($data);
 	}
+
+	 
 
 
 	function chart()

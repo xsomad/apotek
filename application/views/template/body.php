@@ -234,12 +234,11 @@
 
 
 
-
 <!-- Add row and calculate -->
 
 <script type="text/javascript">
 
-	var t = $('#prod').DataTable( {
+	var transaksi = $('#prod').DataTable( {
               "paging":   false,
                 "ordering": false,
                 "info":     false,
@@ -249,8 +248,8 @@
     var counter = 1;
 
           $('#addRow').on( 'click', function () {
-            t.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat" name="nama_obat[]" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option value="0" ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+            transaksi.row.add( [
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+counter+'" name="nama_obat[]" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
               '<input id="stok'+counter+'" name="stok[]" class="form-control stok" readonly >',
               '<input id="unit'+counter+'" name="unit[]" class="form-control" readonly>',
               '<input id="harga_jual'+counter+'" name="harga_jual[]" class="form-control harga_jual" readonly>',
@@ -286,8 +285,6 @@
             t.row($(this).parents('tr')).remove().draw(false);
             updateTotal();
           });
-
-
 
 
 
@@ -352,8 +349,6 @@
 		  $('#grandtotal').val(grandtotal);
 		}
 
-
-
 </script>
 
 <script>
@@ -403,11 +398,7 @@
 		});
 </script>
 
-
-
 <script>
-
-$(document).ready(function() {
 $('#coba').datetimepicker({
 		
         format: 'YYYY',
@@ -462,10 +453,156 @@ $('#coba').datetimepicker({
 		});
 
     });
-});
+
+ $('#coba').click();
+
 
 
 </script>
+
+
+<script type="text/javascript">
+	 $(document).on('change', '.nama_pemasok', function() {
+             var _this=$(this);
+             var nama_pemasok =_this.val();
+             var nama_obat=_this.closest("tr").find("select[name='nama_obat']");
+
+            $.ajax({
+                url : "<?php echo base_url('example/getmedbysupplier')?>",
+                method : "POST",
+                data : {nama_pemasok: nama_pemasok},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    html += '<option selected="true" value="" disabled >Pilih obat</option>';
+                    for(i=1; i<data.length; i++){
+                        html += '<option>'+data[i].nama_obat+'</option>';
+                    }
+                    $('.nama_obat').html(html);
+                     
+                }
+            });
+        });
+
+	 
+
+
+	var purchase = $('#purchase').DataTable( {
+              "paging":   false,
+                "ordering": false,
+                "info":     false,
+                "searching": false,
+            });
+         
+    var count = 1;
+
+          $('#addpurchase').on( 'click', function () {
+
+            purchase.row.add( [
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Pilih pemasok</option>',
+              '<input id="stok'+count+'" name="stok[]" class="form-control stok" readonly >',
+              '<input id="unit'+count+'" name="unit[]" class="form-control" readonly>',
+              '<input id="harga_beli'+count+'" name="harga_beli[]" class="form-control harga_beli" readonly>',
+              '<input type="number" id="banyak'+count+'" name="banyak[]" class="form-control banyak">',
+              '<input id="subtotal'+count+'" name="subtotal[]" class="form-control subtotal" readonly>',
+              '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
+            ] ).draw( false );
+
+            var myOpt = [];
+		    $("select").each(function () {
+		        myOpt.push($(this).val());
+		    });
+		    $("select").each(function () {
+		        $(this).find("option").prop('hidden', false);
+		        var sel = $(this);
+		        $.each(myOpt, function(key, value) {
+		            if((value != "") && (value != sel.val())) {
+		                sel.find("option").filter('[value="' + value +'"]').prop('hidden', true);
+		            }
+		        });
+		    });
+
+            count++;
+  
+          } );
+
+
+          $('#addpurchase').click();
+
+
+          $('#purchase').on("click", "#removeproduk", function(){
+            console.log($(this).parent());
+            purchase.row($(this).parents('tr')).remove().draw(false);
+            updatePurchase();
+          });
+
+
+        $('#purchase').on('change', '.nama_obat', function() {
+		  var $select = $(this);
+		  var nama_obat = $select.val();
+
+		  $.ajax({
+		    type: "POST",
+		    url: "<?php echo base_url('example/product')?>",
+		    dataType: "JSON",
+		    data: { nama_obat: nama_obat },
+		    cache: false,
+		    success: function(data) {
+		      $.each(data, function(nama_obat, stok, unit, harga_beli) {
+		        $($select.data('stok')).val(data.stok);
+		        $($select.data('unit')).val(data.unit);
+		        $($select.data('harga_beli')).val(data.harga_beli);
+		      });
+		    }
+		  });
+
+		});
+
+
+
+		$('#purchase').on('change', '.banyak', function() {
+			updateSubtotalp();
+			
+        });
+
+        function updateSubtotalp() {
+        	
+        	$(".banyak").each(function(){
+        	var $row = $(this).closest('tr');
+			var unitStock = parseInt($row.find('.stok').val()) ;
+	        var unitCount = parseInt($row.find('.banyak').val()) ;
+
+	        
+	        if(unitCount > unitStock){
+	            $row.find('.banyak').val(unitStock);
+	          	 updateSubtotal();
+	        } 
+	        else {
+
+	        	var Sub = parseInt(($row.find('.harga_beli').val()) * unitCount);
+		        $row.find('.subtotal').val(Sub);
+		        updateTotal();
+		        
+		        	
+		   	}
+		   	});
+        }
+
+		function updatePurchase() {
+		 	var grandtotal = 0;
+		  $('.subtotal').each(function() {
+		    grandtotal += parseInt($(this).val());
+		  });
+		  $('#grandtotal').val(grandtotal);
+		}
+
+</script>
+
+
+
+
 
 
 

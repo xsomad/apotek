@@ -73,6 +73,7 @@ class Apotek_data extends CI_Model
         return $data;
     }
 
+     
 
     function get_unit()
     {
@@ -105,6 +106,29 @@ class Apotek_data extends CI_Model
         }
         asort($data);
         return $data;
+    }
+
+      function get_product($nama_obat)
+    {   $hasil = array();
+        $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
+        if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'nama_obat' => $data->nama_obat,
+                    'stok' => $data->stok,
+                    'unit' => $data->unit,
+                    'harga_jual' => $data->harga_jual,
+                    'harga_beli' => $data->harga_beli,
+                    
+                    );
+            }
+        }
+        return $hasil;
+    }
+
+    function getmedbysupplier($nama_pemasok){
+        $hasil=$this->db->query("SELECT * FROM table_med WHERE nama_pemasok='$nama_pemasok'");
+        return $hasil->result();
     }
 
     
@@ -211,21 +235,9 @@ class Apotek_data extends CI_Model
 
 
 
-    function get_product($nama_obat)
-    {   $hasil = array();
-        $hsl=$this->db->query("SELECT * FROM table_med WHERE nama_obat='$nama_obat'");
-        if($hsl->num_rows()>0){
-            foreach ($hsl->result() as $data) {
-                $hasil=array(
-                    'nama_obat' => $data->nama_obat,
-                    'stok' => $data->stok,
-                    'unit' => $data->unit,
-                    'harga_jual' => $data->harga_jual,
-                    );
-            }
-        }
-        return $hasil;
-    }
+  
+
+    
 
 
     function expired(){
