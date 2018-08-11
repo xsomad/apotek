@@ -28,9 +28,7 @@ class Apotek_data extends CI_Model
 
     function invoice()
     {
-        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
-                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
-                ');
+        $this->db->select('*');
             
             $this->db->select_sum('table_invoice.banyak');
         
@@ -38,6 +36,20 @@ class Apotek_data extends CI_Model
             $this->db->order_by ('tgl_beli', 'DESC');
 
             $run_q = $this->db->get('table_invoice');
+            return $run_q;
+    }
+
+
+    function purchase()
+    {
+        $this->db->select('*');
+            
+            $this->db->select_sum('table_purchase.banyak');
+        
+            $this->db->group_by('ref');
+            $this->db->order_by ('tgl_beli', 'DESC');
+
+            $run_q = $this->db->get('table_purchase');
             return $run_q;
     }
 
@@ -150,20 +162,16 @@ class Apotek_data extends CI_Model
     $this->db->delete($table);
     }
 
-    function show_data($where){      
-        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
-                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
-                ');
-            $this->db->select_sum('table_invoice.banyak');
-            $run_q = $this->db->get_where('table_invoice', $where);
+    function show_data($where, $table){      
+        $this->db->select('*');
+            $this->db->select_sum('banyak');
+            $run_q = $this->db->get_where($table,$where);
             return $run_q;
     }
 
-    function show_invoice($where){      
-        $this->db->select('table_invoice.ref, table_invoice.nama_obat, table_invoice.banyak, table_invoice.subtotal, table_invoice.harga_jual,
-                table_invoice.nama_pembeli, table_invoice.tgl_beli, table_invoice.grandtotal
-                ');
-            $run_q = $this->db->get_where('table_invoice', $where);
+    function show_invoice($where, $table){      
+        $this->db->select('*');
+            $run_q = $this->db->get_where($table,$where);
             return $run_q;
     }
 
@@ -220,6 +228,73 @@ class Apotek_data extends CI_Model
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.subtotal) as 'totEarned' FROM table_med 
                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
                GROUP BY table_invoice.nama_obat 
+               ORDER BY totEarned ASC LIMIT 5";
+       
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+
+
+    public function topPurchase(){
+        $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+
+    public function leastPurchase(){
+        $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat GROUP BY table_purchase.nama_obat ORDER BY totSold ASC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+    public function highestPurchase(){
+        $q = "SELECT table_med.nama_obat, SUM(table_purchase.subtotal) as 'totEarned' FROM table_med 
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat 
+                GROUP BY table_purchase.nama_obat 
+                ORDER BY totEarned DESC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+    public function lowestPurchase(){
+        $q = "SELECT table_med.nama_obat, SUM(table_purchase.subtotal) as 'totEarned' FROM table_med 
+               INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
+               GROUP BY table_purchase.nama_obat 
                ORDER BY totEarned ASC LIMIT 5";
        
         $run_q = $this->db->query($q);
@@ -319,7 +394,28 @@ class Apotek_data extends CI_Model
 
     function get_chart_trans($tahun_beli){
         
-        $query = $this->db->query("SELECT MONTHNAME(tgl_beli) AS month, SUM(subtotal) AS total FROM table_invoice WHERE YEAR(tgl_beli)= '$tahun_beli' GROUP BY MONTH(tgl_beli) ORDER BY MONTH(tgl_beli)");
+        $query = $this->db->query("SELECT month.month_name as month, SUM(table_invoice.subtotal) AS total 
+            FROM month LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli) 
+     GROUP BY month.month_name ORDER BY month.month_num ");
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "month" => $data['month'],
+                    "total" => $data['total'],
+                );
+            }
+            return $hasil;
+
+    }
+
+
+    function get_chart_purchase($tahun_beli){
+        
+        $query = $this->db->query("SELECT month.month_name as month, SUM(table_purchase.subtotal) AS total 
+            FROM month LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  WHERE YEAR(table_purchase.tgl_beli)= '$tahun_beli'
+    GROUP BY month.month_name ORDER BY month.month_num");
+        
         $hasil = array();
         
             foreach($query->result_array() as $data){

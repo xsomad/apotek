@@ -431,7 +431,7 @@ $('#coba').datetimepicker({
 				labels: month,
 				datasets : [
 					{
-						label: 'Total Transaksi',
+						label: 'Total Penjualan',
 						backgroundColor: 'rgba(26, 187, 156, 0.4)',
 						borderColor: 'rgba(26, 187, 156, 0.7)',
 						hoverBackgroundColor: 'rgba(26, 187, 156, 0.6)',
@@ -454,9 +454,70 @@ $('#coba').datetimepicker({
 
     });
 
- $('#coba').click();
+ 
 
 
+
+
+
+</script>
+
+<script>
+	$('#dada').datetimepicker({
+		
+        format: 'YYYY',
+        allowInputToggle: true
+    })
+ .on('dp.change', function(e) {
+
+       var tahun_beli = $('#dada').data('date');
+     	
+
+    $.ajax({
+		   type: "POST",
+		   url: "<?php echo base_url('example/chart_purchase')?>",
+		   dataType: "JSON",
+		  
+		   data: { "tahun_beli": tahun_beli },
+		    success: function(data) {
+		    	
+		    	console.log(data);
+
+		    	var total = [];
+			    var month = [];
+			    
+			    for (var i in data){
+			    	total.push(data[i].total);
+			    	month.push(data[i].month);
+			    }   
+		      
+		      var chartdata = {
+				labels: month,
+				datasets : [
+					{
+						label: 'Total Pembelian',
+						backgroundColor: 'rgba(57, 80, 103, 0.4)',
+						borderColor: 'rgba(57, 80, 103, 0.7)',
+						hoverBackgroundColor: 'rgba(57, 80, 103, 0.6)',
+						hoverBorderColor: 'rgba(57, 80, 103, 1)',
+						data: total
+					}
+				]
+
+			};
+
+			var ctx = $("#purdate");
+
+			var barGraph = new Chart(ctx, {
+				type: 'line',
+				data: chartdata
+			});
+
+
+			}
+		});
+
+    });
 
 </script>
 

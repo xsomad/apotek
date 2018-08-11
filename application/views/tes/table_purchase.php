@@ -18,10 +18,10 @@
 			</div>
 
 			<div class="x_content">
-				<?php if($this->session->flashdata('inv_added')): ?>
+				<?php if($this->session->flashdata('pur_added')): ?>
                   <button id="melinda" style="display: none;" class="btn btn-default source" onclick="new PNotify({
                                   title: 'Berhasil',
-                                  text: '<?php echo $this->session->flashdata('inv_added'); ?>',
+                                  text: '<?php echo $this->session->flashdata('pur_added'); ?>',
                                   type: 'success',
                                   hide: false,
                                   styling: 'bootstrap3'
@@ -36,8 +36,8 @@
 					<thead>
 						<tr>
 							<th>Tanggal Beli</th>
-							<th>No Invoice</th>
-							<th>Nama Pembeli</th>
+							<th>No Referensi</th>
+							<th>Nama Pemasok</th>
 							
 							<th>Banyak</th>
 							<th>Total Pembelian</th>
@@ -45,20 +45,20 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($table_invoice as $i){ ?>
+						<?php foreach($table_purchase as $p){ ?>
 						<tr>
-							<td><?php echo date('j F Y',strtotime($i->tgl_beli)) ?></td>
-							<td><?php echo $i->ref ?></td>
-							<td><?php echo $i->nama_pembeli ?></td>
+							<td><?php echo date('j F Y',strtotime($p->tgl_beli)) ?></td>
+							<td><?php echo $p->ref ?></td>
+							<td><?php echo $p->nama_pemasok ?></td>
 
 							
-							<td><?php echo $i->banyak ?></td>
-							<td>Rp <?php echo number_format($i->grandtotal) ?></td>
+							<td><?php echo $p->banyak ?></td>
+							<td>Rp <?php echo number_format($p->grandtotal) ?></td>
 							
 							<td style=" text-align: center;">
-								<?php echo anchor('example/invoice_page/'.$i->ref, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-newspaper-o"></span></button>');?>
+								<?php echo anchor('example/purchase_page/'.$p->ref, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-newspaper-o"></span></button>');?>
 								
-								<?php echo anchor('example/remove_inv/'.$i->ref, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
+								<?php echo anchor('example/remove_purchase/'.$p->ref, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 
 
 					         </td>
@@ -74,27 +74,4 @@
 
 </div>
 
-
-<div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="dashboard_graph x_panel">
-      <div class="row x_title">
-        <div class="col-md-6">
-          <h4>Total Transaksi</h4>
-        </div>
-        <div class="col-md-2 pull-right">
-          <div class='input-group date ' id='coba'>
-            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Tahun">
-              <span class="input-group-addon">
-                 <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-          </div>
-        </div>
-      </div>
-      <div class="x_content">
-        	<canvas id="transaksi" width="900" height="280"></canvas>
-      </div>
-    </div>
-  </div>
-</div>
 

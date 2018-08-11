@@ -89,8 +89,8 @@
                   <div class="icon"><i class="fa fa-edit green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Tagihan</h3>
-                    <p>Menambahkan tagihan dari pembeli</p>
+                    <h3>Penjualan</h3>
+                    <p>Menambahkan penjualan baru</p>
                   </div>
                 </a>
                 </div>
@@ -136,13 +136,13 @@
 
 
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                   <a href="<?php echo base_url('example/table_cat') ?>">
+                   <a href="<?php echo base_url('example/form_purchase') ?>">
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-shopping-cart green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Stok</h3>
-                    <p>Stok obat berdasar kategori</p>
+                    <h3>Pembelian</h3>
+                    <p>Menambahkan pembelian baru</p>
                   </div>
                 </div>
               </a>

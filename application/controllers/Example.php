@@ -88,14 +88,41 @@ class Example extends CI_Controller
 
 
 	function table_med() {
-		$data['top_demand'] = $this->apotek_data->topDemanded();
-		$data['least_demand'] = $this->apotek_data->leastDemanded();
-		$data['high_earn'] = $this->apotek_data->highestEarners();
-		$data['low_earn'] = $this->apotek_data->lowestEarners();
+		
 		$data['table_med'] = $this->apotek_data->medicine()->result();
 		$this->template->write('title', 'Lihat Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_med', $data, true);
+
+		$this->template->render();
+		
+	}
+
+
+	function invoice_report() {
+		$data['top_demand'] = $this->apotek_data->topDemanded();
+		$data['least_demand'] = $this->apotek_data->leastDemanded();
+		$data['high_earn'] = $this->apotek_data->highestEarners();
+		$data['low_earn'] = $this->apotek_data->lowestEarners();
+		
+		$this->template->write('title', 'Lihat Obat', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/invoice_report', $data, true);
+
+		$this->template->render();
+		
+	}
+
+	function purchase_report() {
+		$data['top_demand'] = $this->apotek_data->topPurchase();
+		$data['least_demand'] = $this->apotek_data->leastPurchase();
+		$data['high_earn'] = $this->apotek_data->highestPurchase();
+		$data['low_earn'] = $this->apotek_data->lowestPurchase();
+		
+		
+		$this->template->write('title', 'Lihat Obat', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/purchase_report', $data, true);
 
 		$this->template->render();
 		
@@ -162,6 +189,16 @@ class Example extends CI_Controller
 		$this->template->write('title', 'Tambah Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_purchase', $data, true);
+
+		$this->template->render();
+	}
+
+	function table_purchase() {
+		$data['table_purchase'] = $this->apotek_data->purchase()->result();
+		
+		$this->template->write('title', 'Lihat Pembelian', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/table_purchase', $data, true);
 
 		$this->template->render();
 	}
@@ -349,7 +386,7 @@ class Example extends CI_Controller
 		
 		$this->db->insert_batch('table_purchase', $data);
 		$this->session->set_flashdata('pur_added', 'Pembelian berhasil ditambahkan');
-		redirect('example/table_invoice');
+		redirect('example/table_purchase');
 		
 	}
 
@@ -357,11 +394,23 @@ class Example extends CI_Controller
 
 	function invoice_page($ref) {
 		$where = array('ref' => $ref);
-		$data['table_invoice'] = $this->apotek_data->show_data($where)->result();
-		$data['show_invoice'] = $this->apotek_data->show_invoice($where)->result();
+		$data['table_invoice'] = $this->apotek_data->show_data($where, 'table_invoice')->result();
+		$data['show_invoice'] = $this->apotek_data->show_invoice($where, 'table_invoice')->result();
 		$this->template->write('title', 'Tagihan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/invoice', $data, true);
+
+		$this->template->render();
+	}
+
+
+	function purchase_page($ref) {
+		$where = array('ref' => $ref);
+		$data['table_purchase'] = $this->apotek_data->show_data($where, 'table_purchase')->result();
+		$data['show_invoice'] = $this->apotek_data->show_invoice($where, 'table_purchase')->result();
+		$this->template->write('title', 'Tagihan', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/purchase', $data, true);
 
 		$this->template->render();
 	}
@@ -504,6 +553,12 @@ class Example extends CI_Controller
 		redirect('example/table_invoice');
 	}
 
+	function remove_purchase($ref){
+		$where = array('ref' => $ref);
+		$this->apotek_data->delete_data($where,'table_purchase');
+		redirect('example/table_purchase');
+	}
+
 
 	 function product()
 	{
@@ -526,6 +581,13 @@ class Example extends CI_Controller
 	{
 		$tahun_beli=$this->input->post('tahun_beli');
        	$data = $this->apotek_data->get_chart_trans($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function chart_purchase()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->get_chart_purchase($tahun_beli);
 		echo json_encode($data);
 	}
 

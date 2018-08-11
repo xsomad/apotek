@@ -4,7 +4,7 @@
     <div class="x_panel">
 
       <div class="x_title">
-        <h2>Tambah Tagihan Baru</h2>
+        <h2>Tambah Penjualan Baru</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>

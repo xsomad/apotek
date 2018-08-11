@@ -5,7 +5,7 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Transaksi Tagihan</h2>
+				<h2>Transaksi Penjualan</h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -74,27 +74,4 @@
 
 </div>
 
-
-<div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="dashboard_graph x_panel">
-      <div class="row x_title">
-        <div class="col-md-6">
-          <h4>Total Transaksi</h4>
-        </div>
-        <div class="col-md-2 pull-right">
-          <div class='input-group date ' id='coba'>
-            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Tahun">
-              <span class="input-group-addon">
-                 <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-          </div>
-        </div>
-      </div>
-      <div class="x_content">
-        	<canvas id="transaksi" width="900" height="280"></canvas>
-      </div>
-    </div>
-  </div>
-</div>
 
