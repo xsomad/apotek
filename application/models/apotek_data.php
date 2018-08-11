@@ -395,8 +395,8 @@ class Apotek_data extends CI_Model
     function get_chart_trans($tahun_beli){
         
         $query = $this->db->query("SELECT month.month_name as month, SUM(table_invoice.subtotal) AS total 
-            FROM month LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli) 
-     GROUP BY month.month_name ORDER BY month.month_num ");
+            FROM month LEFT JOIN table_invoice ON (month.month_num = MONTH(table_invoice.tgl_beli) AND YEAR(table_invoice.tgl_beli)= '$tahun_beli')
+     GROUP BY month.month_name  ORDER BY month.month_num  ");
         $hasil = array();
         
             foreach($query->result_array() as $data){
@@ -413,7 +413,7 @@ class Apotek_data extends CI_Model
     function get_chart_purchase($tahun_beli){
         
         $query = $this->db->query("SELECT month.month_name as month, SUM(table_purchase.subtotal) AS total 
-            FROM month LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  WHERE YEAR(table_purchase.tgl_beli)= '$tahun_beli'
+            FROM month LEFT JOIN table_purchase ON (month.month_num = MONTH(table_purchase.tgl_beli)  AND YEAR(table_purchase.tgl_beli)= '$tahun_beli')
     GROUP BY month.month_name ORDER BY month.month_num");
         
         $hasil = array();
