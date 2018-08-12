@@ -238,13 +238,7 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
-	function form() {
-		$this->template->write('title', 'Form', TRUE);
-		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/form', '', true);
-
-		$this->template->render();
-	}
+	
 
 	function table_customer() {
 		$this->template->write('title', 'Lihat Pelanggan', TRUE);
