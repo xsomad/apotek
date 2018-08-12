@@ -33,10 +33,12 @@
 							
 						</ul>
 					</li>
-					<li><a><i class="fa fa-hospital-o"></i> Kategori Obat <span class="fa fa-chevron-down"></span></a>
+					<li><a><i class="fa fa-hospital-o"></i> Kategori & Unit <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<?php echo base_url('example/form_cat') ?>">Tambah Kategori</a></li>
 							<li><a href="<?php echo base_url('example/table_cat') ?>">Lihat Kategori</a></li>
+							<li><a href="<?php echo base_url('example/form_unit') ?>">Tambah Unit</a></li>
+							<li><a href="<?php echo base_url('example/table_unit') ?>">Lihat Unit</a></li>
 							
 						</ul>
 					</li>

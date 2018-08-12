@@ -26,6 +26,11 @@ class Apotek_data extends CI_Model
         return $this->db->get('table_sup');
     }
 
+    function unit()
+    {
+        return $this->db->get('table_unit');
+    }
+
     function invoice()
     {
         $this->db->select('*');

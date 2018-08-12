@@ -20,7 +20,7 @@
        <form action="<?php echo base_url(). 'example/add_purchase'; ?>" method="post" class="form-horizontal form-label-left" novalidate>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Pemasok</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Supplier</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control nama_pemasok" tabindex="-1">
                 <option selected="true" value="" disabled ></option>
@@ -32,7 +32,7 @@
           </div>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tgl_beli">Tanggal Pembelian</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tgl_beli">Date</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class='input-group date' id='myDatepicker2'>
                   <input type="text" name="tgl_beli" id="tgl_beli" class="form-control" required="required">
@@ -48,14 +48,14 @@
           <table id="purchase" class="table table-bordered">
           <thead>
             <tr>
-              <th style="text-align: center">Produk yang dibeli</th>
-              <th style="text-align: center">Stok</th>
-              <th style="text-align: center">Unit obat</th>
-              <th style="text-align: center">Harga pemasok</th>
-              <th style="text-align: center">Banyak</th>
+              <th style="text-align: center">Medicine name</th>
+              <th style="text-align: center">Stock</th>
+              <th style="text-align: center">Unit</th>
+              <th style="text-align: center">Price</th>
+              <th style="text-align: center">Qty</th>
               
               <th style="text-align: center">Totals</th>
-              <th style="text-align: center">Aksi</th>
+              <th style="text-align: center">Action</th>
               
             </tr>
           </thead>
@@ -74,8 +74,8 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
-              <button id='addpurchase' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Tambah Produk</button>
+              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+              <button id='addpurchase' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Add Product</button>
               <button id="send" type="submit" class="btn btn-success">Submit</button>
               
             </div>

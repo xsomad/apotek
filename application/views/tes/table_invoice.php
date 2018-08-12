@@ -40,7 +40,7 @@
 							<th>Nama Pembeli</th>
 							
 							<th>Banyak</th>
-							<th>Total Pembelian</th>
+							<th>Total Penjualan</th>
 							<th>Aksi</th>
 						</tr>
 					</thead>

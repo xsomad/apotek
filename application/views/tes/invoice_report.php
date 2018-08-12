@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-2 pull-right">
           <div class='input-group date ' id='coba'>
-            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Tahun">
+            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Pilih tahun">
               <span class="input-group-addon">
                  <span class="glyphicon glyphicon-calendar"></span>
               </span>

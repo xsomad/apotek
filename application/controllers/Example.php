@@ -75,6 +75,14 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
+	function form_unit() {
+		$this->template->write('title', 'Tambah Unit', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/form_unit', '', true);
+
+		$this->template->render();
+	}
+
 	function form_med() {
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_sup'] = $this->apotek_data->get_supplier();
@@ -93,6 +101,16 @@ class Example extends CI_Controller
 		$this->template->write('title', 'Lihat Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_med', $data, true);
+
+		$this->template->render();
+	}
+
+	function table_unit() {
+		
+		$data['table_unit'] = $this->apotek_data->unit()->result();
+		$this->template->write('title', 'Lihat Unit', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/table_unit', $data, true);
 
 		$this->template->render();
 		
@@ -294,6 +312,19 @@ class Example extends CI_Controller
 
 		$this->session->set_flashdata('cat_added', 'Kategori berhasil ditambahkan');
 		redirect('example/table_cat');
+	}
+
+	function add_unit(){
+		$nama_unit = $this->input->post('nama_unit');
+		$data = array(
+			'nama_unit' => $nama_unit,
+			
+			
+			);
+		$this->apotek_data->insert_data($data,'table_unit');
+
+		$this->session->set_flashdata('unit_added', 'Unit berhasil ditambahkan');
+		redirect('example/table_unit');
 	}
 
 
@@ -505,6 +536,16 @@ class Example extends CI_Controller
 		$this->template->render();
 	}
 
+	function edit_form_unit($id_unit) {
+		$where = array('id_unit' => $id_unit);
+		$data['table_unit'] = $this->apotek_data->edit_data($where,'table_unit')->result();
+		$this->template->write('title', 'Edit Unit', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/edit_form_unit', $data, true);
+
+		$this->template->render();
+	}
+
 
 	function update_supplier(){
 		$id_pem = $this->input->post('id_pem');
@@ -528,6 +569,25 @@ class Example extends CI_Controller
 		redirect('example/table_sup');
 	}
 
+	function update_unit(){
+		$id_unit = $this->input->post('id_unit');
+		$nama_unit = $this->input->post('nama_unit');
+		
+		$data = array(
+			'nama_unit' => $nama_unit,
+		
+		);
+
+		$where = array(
+			'id_unit' => $id_unit
+		);
+
+		$this->apotek_data->update_data($where,$data,'table_unit');
+
+		$this->session->set_flashdata('unit_added', 'Data unit berhasil diperbarui');
+		redirect('example/table_unit');
+	}
+
 
 	function remove_med($id_obat){
 		$where = array('id_obat' => $id_obat);
@@ -546,6 +606,13 @@ class Example extends CI_Controller
 		$this->apotek_data->delete_data($where,'table_sup');
 		redirect('example/table_sup');
 	}
+
+	function remove_unit($id_unit){
+		$where = array('id_unit' => $id_unit);
+		$this->apotek_data->delete_data($where,'table_unit');
+		redirect('example/table_unit');
+	}
+
 
 	function remove_inv($ref){
 		$where = array('ref' => $ref);

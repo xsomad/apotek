@@ -329,6 +329,11 @@
 	        if(unitCount > unitStock){
 	            $row.find('.banyak').val(unitStock);
 	          	 updateSubtotal();
+	        }
+	        else if (unitCount < 0){
+	        	$row.find('.banyak').val(0);
+	          	 updateSubtotal();
+
 	        } 
 	        else {
 
@@ -402,14 +407,18 @@
 $('#coba').datetimepicker({
 		
         format: 'YYYY',
-        allowInputToggle: true
+        allowInputToggle: true,
+
     })
- .on('dp.change', function(e) {
+ .on('dp.show', function(e) {
 
-       var tahun_beli = $('#coba').data('date');
-     	
+   transChart();
 
-    $.ajax({
+    });
+
+ function transChart(){
+ 	var tahun_beli = $('#coba').data('date');
+ 	 $.ajax({
 		   type: "POST",
 		   url: "<?php echo base_url('example/chart_trans')?>",
 		   dataType: "JSON",
@@ -451,8 +460,7 @@ $('#coba').datetimepicker({
 
 			}
 		});
-
-    });
+ }
 
  
 
@@ -523,29 +531,7 @@ $('#coba').datetimepicker({
 
 
 <script type="text/javascript">
-	 $(document).on('change', '.nama_pemasok', function() {
-             var _this=$(this);
-             var nama_pemasok =_this.val();
-             var nama_obat=_this.closest("tr").find("select[name='nama_obat']");
-
-            $.ajax({
-                url : "<?php echo base_url('example/getmedbysupplier')?>",
-                method : "POST",
-                data : {nama_pemasok: nama_pemasok},
-                async : false,
-                dataType : 'json',
-                success: function(data){
-                    var html = '';
-                    var i;
-                    html += '<option selected="true" value="" disabled >Pilih obat</option>';
-                    for(i=1; i<data.length; i++){
-                        html += '<option>'+data[i].nama_obat+'</option>';
-                    }
-                    $('.nama_obat').html(html);
-                     
-                }
-            });
-        });
+	
 
 	 
 
@@ -556,13 +542,38 @@ $('#coba').datetimepicker({
                 "info":     false,
                 "searching": false,
             });
+
+	 $(document).on('change', '.nama_pemasok', function() {
+             
+             var nama_pemasok = $('.nama_pemasok').val();
+             
+
+            $.ajax({
+                url : "<?php echo base_url('example/getmedbysupplier')?>",
+                method : "POST",
+                data : {nama_pemasok: nama_pemasok},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    html += '<option selected="true" value="" disabled >Choose medicine</option>';
+                    for(i=1; i<data.length; i++){
+                        html += '<option>'+data[i].nama_obat+'</option>';
+                    }
+                    $('.nama_obat').html(html);
+                     
+                }
+            });
+            });
+        
          
     var count = 1;
 
           $('#addpurchase').on( 'click', function () {
 
             purchase.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Pilih pemasok</option>',
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Choose supplier</option></select>',
               '<input id="stok'+count+'" name="stok[]" class="form-control stok" readonly >',
               '<input id="unit'+count+'" name="unit[]" class="form-control" readonly>',
               '<input id="harga_beli'+count+'" name="harga_beli[]" class="form-control harga_beli" readonly>',
@@ -590,7 +601,9 @@ $('#coba').datetimepicker({
           } );
 
 
+
           $('#addpurchase').click();
+
 
 
           $('#purchase').on("click", "#removeproduk", function(){
@@ -636,9 +649,10 @@ $('#coba').datetimepicker({
 	        var unitCount = parseInt($row.find('.banyak').val()) ;
 
 	        
-	        if(unitCount > unitStock){
-	            $row.find('.banyak').val(unitStock);
+	        if (unitCount < 0){
+	        	$row.find('.banyak').val(0);
 	          	 updateSubtotal();
+
 	        } 
 	        else {
 

@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-2 pull-right">
           <div class='input-group date ' id='dada'>
-            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Tahun">
+            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Pilih tahun">
               <span class="input-group-addon">
                  <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -44,7 +44,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Banyak Penjualan</th>
+							<th>Banyak</th>
 						</tr>
 					</thead>
 					<?php $sn = 1 ?>
@@ -88,7 +88,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Banyak Penjualan</th>
+							<th>Banyak</th>
 							
 						</tr>
 					</thead>
@@ -132,7 +132,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Total Penjualan</th>
+							<th>Total</th>
 							
 						</tr>
 					</thead>
@@ -175,7 +175,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Total Penjualan</th>
+							<th>Total</th>
 							
 						</tr>
 					</thead>
