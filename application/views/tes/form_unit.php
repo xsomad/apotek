@@ -18,9 +18,9 @@
 
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_unit">Nama Unit</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit">Nama Unit</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="nama_unit" name="nama_unit" class="form-control col-md-7 col-xs-12" data-validate-length-range="1" data-validate-words="1" required="required">
+              <input type="text" id="unit" name="unit" class="form-control col-md-7 col-xs-12" data-validate-length-range="1" data-validate-words="1" required="required">
             </div>
           </div>
 

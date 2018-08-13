@@ -123,7 +123,7 @@ class Example extends CI_Controller
 		$data['high_earn'] = $this->apotek_data->highestEarners();
 		$data['low_earn'] = $this->apotek_data->lowestEarners();
 		
-		$this->template->write('title', 'Lihat Obat', TRUE);
+		$this->template->write('title', 'Grafik Penjualan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/invoice_report', $data, true);
 
@@ -138,7 +138,7 @@ class Example extends CI_Controller
 		$data['low_earn'] = $this->apotek_data->lowestPurchase();
 		
 		
-		$this->template->write('title', 'Lihat Obat', TRUE);
+		$this->template->write('title', 'Grafik Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/purchase_report', $data, true);
 
@@ -177,20 +177,14 @@ class Example extends CI_Controller
 	}
 
 
-	function calendar() {
-		$this->template->write('title', 'Kalender', TRUE);
-		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/calendar', '', true);
-
-		$this->template->render();
-	}
+	
 
 	function form_invoice() {
 		$data['table_med'] = $this->apotek_data->medicine()->result();
 		$data['get_cat'] = $this->apotek_data->get_category();
 		$data['get_med'] = $this->apotek_data->get_medicine();
 		$data['get_unit'] = $this->apotek_data->get_unit();
-		$this->template->write('title', 'Tambah Tagihan', TRUE);
+		$this->template->write('title', 'Tambah Penjualan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_invoice', $data, true);
 
@@ -250,7 +244,7 @@ class Example extends CI_Controller
 
 	function table_invoice() {
 		$data['table_invoice'] = $this->apotek_data->invoice()->result();
-		$this->template->write('title', 'Lihat Tagihan', TRUE);
+		$this->template->write('title', 'Lihat Penjualan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/table_invoice', $data, true);
 
@@ -309,9 +303,9 @@ class Example extends CI_Controller
 	}
 
 	function add_unit(){
-		$nama_unit = $this->input->post('nama_unit');
+		$unit = $this->input->post('unit');
 		$data = array(
-			'nama_unit' => $nama_unit,
+			'unit' => $unit,
 			
 			
 			);
@@ -374,7 +368,7 @@ class Example extends CI_Controller
 		
 		$this->db->insert_batch('table_invoice', $data);
 
-		$this->session->set_flashdata('inv_added', 'Tagihan berhasil ditambahkan');
+		$this->session->set_flashdata('inv_added', 'Penjualan berhasil ditambahkan');
 		redirect('example/table_invoice');
 	}
 
@@ -421,7 +415,7 @@ class Example extends CI_Controller
 		$where = array('ref' => $ref);
 		$data['table_invoice'] = $this->apotek_data->show_data($where, 'table_invoice')->result();
 		$data['show_invoice'] = $this->apotek_data->show_invoice($where, 'table_invoice')->result();
-		$this->template->write('title', 'Tagihan', TRUE);
+		$this->template->write('title', 'Invoice Penjualan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/invoice', $data, true);
 
@@ -433,7 +427,7 @@ class Example extends CI_Controller
 		$where = array('ref' => $ref);
 		$data['table_purchase'] = $this->apotek_data->show_data($where, 'table_purchase')->result();
 		$data['show_invoice'] = $this->apotek_data->show_invoice($where, 'table_purchase')->result();
-		$this->template->write('title', 'Tagihan', TRUE);
+		$this->template->write('title', 'Invoice Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/purchase', $data, true);
 
@@ -565,10 +559,10 @@ class Example extends CI_Controller
 
 	function update_unit(){
 		$id_unit = $this->input->post('id_unit');
-		$nama_unit = $this->input->post('nama_unit');
+		$unit = $this->input->post('unit');
 		
 		$data = array(
-			'nama_unit' => $nama_unit,
+			'unit' => $unit,
 		
 		);
 

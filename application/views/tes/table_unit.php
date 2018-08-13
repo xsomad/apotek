@@ -45,7 +45,7 @@
 						<?php foreach($table_unit as $u){ ?>
 						<tr>
 							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $u->nama_unit ?></td>
+							<td><?php echo $u->unit ?></td>
 							
 							<td style=" text-align: center;">
 								<?php echo anchor('example/edit_form_unit/'.$u->id_unit, '<button class="btn btn-info btn-xs" type="button"><span class="fa fa-pencil"></span></button>'); ?>

@@ -557,8 +557,8 @@ $('#coba').datetimepicker({
                 success: function(data){
                     var html = '';
                     var i;
-                    html += '<option selected="true" value="" disabled >Choose medicine</option>';
-                    for(i=1; i<data.length; i++){
+                    html += '<option selected="true" value="" disabled >Pilih obat</option>';
+                    for(i=0; i<data.length; i++){
                         html += '<option>'+data[i].nama_obat+'</option>';
                     }
                     $('.nama_obat').html(html);
@@ -573,9 +573,9 @@ $('#coba').datetimepicker({
           $('#addpurchase').on( 'click', function () {
 
             purchase.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Choose supplier</option></select>',
+              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Pilih pemasok</option></select>',
               '<input id="stok'+count+'" name="stok[]" class="form-control stok" readonly >',
-              '<input id="unit'+count+'" name="unit[]" class="form-control" readonly>',
+              '<input id="unit'+count+'" name="unit[]" class="form-control unit" readonly>',
               '<input id="harga_beli'+count+'" name="harga_beli[]" class="form-control harga_beli" readonly>',
               '<input type="number" id="banyak'+count+'" name="banyak[]" class="form-control banyak">',
               '<input id="subtotal'+count+'" name="subtotal[]" class="form-control subtotal" readonly>',

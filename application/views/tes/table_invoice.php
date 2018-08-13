@@ -5,7 +5,7 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Transaksi Penjualan</h2>
+				<h2>Lihat Penjualan</h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -30,7 +30,7 @@
                  	
 				<?php endif; ?>
 
-				<a href="<?php echo base_url('example/form_invoice') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Tagihan </button></a>
+				<a href="<?php echo base_url('example/form_invoice') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Penjualan </button></a>
 				
 				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
