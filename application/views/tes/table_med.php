@@ -46,7 +46,7 @@
 						<?php foreach($table_med as $m){ ?>
 						<tr>
 							<td><?php echo $m->nama_obat ?></td>
-							<td><?php echo $m->nama_pemasok ?></td>
+							<td><?php echo $m->penyimpanan ?></td>
 							<td><?php echo $m->nama_kategori ?></td>
 					
 							<td><?php echo $m->stok ?></td>

@@ -410,7 +410,7 @@ $('#coba').datetimepicker({
         allowInputToggle: true,
 
     })
- .on('dp.show', function(e) {
+ .on('dp.change', function(e) {
 
    transChart();
 
@@ -445,6 +445,7 @@ $('#coba').datetimepicker({
 						borderColor: 'rgba(26, 187, 156, 0.7)',
 						hoverBackgroundColor: 'rgba(26, 187, 156, 0.6)',
 						hoverBorderColor: 'rgba(26, 187, 156, 1)',
+						lineTension: 0,
 						data: total
 					}
 				]
@@ -454,7 +455,8 @@ $('#coba').datetimepicker({
 
 			var barGraph = new Chart(ctx, {
 				type: 'line',
-				data: chartdata
+				data: chartdata,
+
 			});
 
 
@@ -673,6 +675,76 @@ $('#coba').datetimepicker({
 		  $('#grandtotal').val(grandtotal);
 		}
 
+</script>
+
+
+<script>
+
+	
+	 $.ajax({
+		    
+		   url: "<?php echo base_url('example/gabung')?>",
+		   method: "GET",
+
+		    success: function(data) {
+		    	var data = JSON.parse(data); 
+		    	console.log(data);
+		    	
+
+		    	var month = [];
+			    var total1 = [];
+			     var total2 = [];
+			    
+			    for (var i in data){
+			    	month.push(data[i].month);
+			    	total1.push(data[i].total1);
+			    	total2.push(data[i].total2);
+			    }   
+		      
+		      var chartdata = {
+				labels: month,
+				datasets : [
+					{
+						label: 'Total Pembelian',
+						backgroundColor: 'rgba(57, 80, 103, 0.3)',
+						borderColor: 'rgba(57, 80, 103, 0.7)',
+						hoverBackgroundColor: 'rgba(57, 80, 103, 0.6)',
+						hoverBorderColor: 'rgba(57, 80, 103, 1)',
+						data: total1
+						
+					},
+
+					{
+						label: 'Total Penjualan',
+						backgroundColor: 'rgba(26, 187, 156, 0.3)',
+						borderColor: 'rgba(26, 187, 156, 0.7)',
+						hoverBackgroundColor: 'rgba(26, 187, 156, 0.6)',
+						hoverBorderColor: 'rgba(26, 187, 156, 1)',
+						data: total2
+						
+						
+					}
+				]
+			};
+
+			var ctx = $("#report");
+
+			var barGraph = new Chart(ctx, {
+				type: 'line',
+				data: chartdata,
+				options: {
+					
+			        legend: {
+			        	
+         				
+			            
+			        }
+			    }
+			});
+
+
+			}
+		});
 </script>
 
 

@@ -24,24 +24,34 @@
 
 <!-- top tiles -->
           <div class="row tile_count" style="text-align: center;">
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-medkit"></i> Total Obat</span>
               <div class="count"><?php echo $stockobat ?></div>
               
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-hospital-o"></i> Total Kategori</span>
               <div class="count"><?php echo $stockkat ?></div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Pemasok</span>
               <div class="count"><?php echo $sup ?></div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-edit"></i> Total Transaksi</span>
-              <div class="count"><?php echo $inv ?></div>
+              <div class="count"><?php echo $inv + $pur?></div>
             </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-edit"></i> Total Penjualan</span>
+              <div class="count"><?php echo ($totinv/1000) ?>k</div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-edit"></i> Total Pembelian</span>
+              <div class="count"><?php echo ($totpur/1000) ?>k</div>
+            </div>
+
           </div>
+
           <!-- /top tiles -->
 
 
@@ -123,12 +133,12 @@
 
 
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                   <a href="<?php echo base_url('example/table_invoice') ?>">
+                   <a href="<?php echo base_url('example/report') ?>">
                   <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-check-square-o green"></i>
+                    <div class="icon"><i class="fa fa-bar-chart green"></i>
                     </div>
                     <div class="count">...</div>
-                    <h3>Transaksi</h3>
+                    <h3>Laporan</h3>
                     <p>Transaksi penjualan obat</p>
                   </div>
                 </a>

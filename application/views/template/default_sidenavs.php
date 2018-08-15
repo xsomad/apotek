@@ -70,6 +70,9 @@
 						</ul>
 					</li>
 
+
+					<li><a href="<?php echo base_url('example/report') ?>"><i class="fa fa-bar-chart"></i> Laporan </a></li>
+
 				</ul>
 			</div>
 		</div>

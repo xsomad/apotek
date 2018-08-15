@@ -349,10 +349,18 @@ class Apotek_data extends CI_Model
     }
 
     function count_med(){       
-      $cm =  $this->db->query('SELECT * FROM table_med'); 
-        $stockobat = $cm->num_rows();
-        return $stockobat;    
+      $cm =  $this->db->query('SELECT *, SUM(table_med.stok) as totStock FROM table_med'); 
+        if ($cm->num_rows() > 0) {
+            foreach ($cm->result() as $get) {
+                return $get->totStock;
+            }
+        }
+        else {
+            return FALSE;
+        }   
     }
+
+    
 
     function count_cat(){       
       $ck =  $this->db->query('SELECT * FROM table_cat'); 
@@ -368,6 +376,51 @@ class Apotek_data extends CI_Model
 
     function count_inv(){       
        $q = "SELECT count(DISTINCT REF) as 'totalTrans' FROM table_invoice";
+
+        $run_q = $this->db->query($q);
+
+        if ($run_q->num_rows() > 0) {
+            foreach ($run_q->result() as $get) {
+                return $get->totalTrans;
+            }
+        }
+        else {
+            return FALSE;
+        }  
+    }
+
+    function count_pur(){       
+       $q = "SELECT count(DISTINCT REF) as 'totalTrans' FROM table_purchase";
+
+        $run_q = $this->db->query($q);
+
+        if ($run_q->num_rows() > 0) {
+            foreach ($run_q->result() as $get) {
+                return $get->totalTrans;
+            }
+        }
+        else {
+            return FALSE;
+        }  
+    }
+
+    function count_totpur(){       
+       $q = "SELECT *, SUM(table_purchase.subtotal) as 'totalTrans' FROM table_purchase WHERE YEAR(table_purchase.tgl_beli)= '2018' ";
+
+        $run_q = $this->db->query($q);
+
+        if ($run_q->num_rows() > 0) {
+            foreach ($run_q->result() as $get) {
+                return $get->totalTrans;
+            }
+        }
+        else {
+            return FALSE;
+        }  
+    }
+
+    function count_totinv(){       
+       $q = "SELECT *, SUM(table_invoice.subtotal) as 'totalTrans' FROM table_invoice WHERE YEAR(table_invoice.tgl_beli)= '2018' ";
 
         $run_q = $this->db->query($q);
 
@@ -433,6 +486,58 @@ class Apotek_data extends CI_Model
 
     }
 
+    function get_gabung(){
+        
+        $query = $this->db->query("SELECT month.month_name as month, 
+            SUM(table_purchase.subtotal) AS total1,
+            SUM(table_invoice.subtotal) AS total2  
+            FROM month 
+            LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  
+            LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli)
+            AND YEAR(table_invoice.tgl_beli)= '2018'
+            GROUP BY month.month_name ORDER BY month.month_num");
+        
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "month" => $data['month'],
+                    "total1" => $data['total1'],
+                    "total2" => $data['total2'],
+                );
+            }
+            return $hasil;
+
+    }
+
+   
+
+
+    public function get_report(){
+        $q = "SELECT month.month_name as month, 
+            SUM(table_purchase.subtotal) AS total1,
+            SUM(table_invoice.subtotal) AS total2  
+            FROM month 
+            LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  
+            LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli)
+            AND YEAR(table_invoice.tgl_beli)= '2018'
+            GROUP BY month.month_name ORDER BY month.month_num";
+       
+        $run_q = $this->db->query($q);
+
+        if($run_q->num_rows() > 0){
+            return $run_q->result();
+        }
+
+        else{
+            return FALSE;
+        }
+    }
+
+
+
+
+    
 
 
 

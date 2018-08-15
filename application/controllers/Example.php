@@ -27,6 +27,10 @@ class Example extends CI_Controller
 		$data['stockkat'] = $this->apotek_data->count_cat();
 		$data['sup'] = $this->apotek_data->count_sup();
 		$data['inv'] = $this->apotek_data->count_inv();
+		$data['pur'] = $this->apotek_data->count_pur();
+		$data['totpur'] = $this->apotek_data->count_totpur();
+		$data['totinv'] = $this->apotek_data->count_totinv();
+
 		$this->template->write('title', 'Beranda', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/mypage', $data, true);
@@ -141,6 +145,18 @@ class Example extends CI_Controller
 		$this->template->write('title', 'Grafik Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/purchase_report', $data, true);
+
+		$this->template->render();
+		
+	}
+
+	function report() {
+		$data['totpur'] = $this->apotek_data->count_totpur();
+		$data['totinv'] = $this->apotek_data->count_totinv();
+		$data['report'] = $this->apotek_data->get_report();
+		$this->template->write('title', 'Grafik Total', TRUE);
+		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
+		$this->template->write_view('content', 'tes/report', $data, true);
 
 		$this->template->render();
 		
@@ -643,6 +659,12 @@ class Example extends CI_Controller
 	{
 		$tahun_beli=$this->input->post('tahun_beli');
        	$data = $this->apotek_data->get_chart_purchase($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function gabung()
+	{
+       $data = $this->apotek_data->get_gabung();
 		echo json_encode($data);
 	}
 
