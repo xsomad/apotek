@@ -47,7 +47,7 @@
               <th style="text-align: center">Harga satuan</th>
               <th style="text-align: center">Banyak</th>
               
-              <th style="text-align: center">Totals</th>
+              <th style="text-align: center">Subtotal</th>
               <th style="text-align: center">Aksi</th>
               
             </tr>

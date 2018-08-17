@@ -20,7 +20,7 @@
        <form action="<?php echo base_url(). 'example/add_purchase'; ?>" method="post" class="form-horizontal form-label-left" novalidate>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Supplier</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Nama Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control nama_pemasok" tabindex="-1">
                 <option selected="true" value="" disabled ></option>
@@ -32,7 +32,7 @@
           </div>
 
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tgl_beli">Date</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tgl_beli">Tanggal Transaksi</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class='input-group date' id='myDatepicker2'>
                   <input type="text" name="tgl_beli" id="tgl_beli" class="form-control" required="required">
@@ -48,14 +48,14 @@
           <table id="purchase" class="table table-bordered">
           <thead>
             <tr>
-              <th style="text-align: center">Medicine name</th>
-              <th style="text-align: center">Stock</th>
+              <th style="text-align: center">Obat yang dibeli</th>
+              <th style="text-align: center">Stok</th>
               <th style="text-align: center">Unit</th>
-              <th style="text-align: center">Price</th>
-              <th style="text-align: center">Qty</th>
+              <th style="text-align: center">Harga</th>
+              <th style="text-align: center">Banyak</th>
               
-              <th style="text-align: center">Totals</th>
-              <th style="text-align: center">Action</th>
+              <th style="text-align: center">Subtotal</th>
+              <th style="text-align: center">Aksi</th>
               
             </tr>
           </thead>
