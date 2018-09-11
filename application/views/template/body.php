@@ -357,8 +357,6 @@
 </script>
 
 <script>
-
-	
 	 $.ajax({
 		    
 		   url: "<?php echo base_url('example/chart')?>",
@@ -416,7 +414,7 @@ $('#coba').datetimepicker({
 
     });
 
- function transChart(){
+function transChart(){
  	var tahun_beli = $('#coba').data('date');
  	 $.ajax({
 		   type: "POST",
@@ -462,14 +460,100 @@ $('#coba').datetimepicker({
 
 			}
 		});
- }
+
+
+ 	 $.ajax({
+      url: "<?php echo base_url('example/topdemand')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totSold+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#topdemand").html(html); //pass the data to your tbody
+      }
+    })
+
+
+ 	 $.ajax({
+      url: "<?php echo base_url('example/leastdemand')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totSold+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#leastdemand").html(html); //pass the data to your tbody
+      }
+    })
+
+
+ 	$.ajax({
+      url: "<?php echo base_url('example/highearn')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totEarned+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#highearn").html(html); //pass the data to your tbody
+      }
+    })
+
+    $.ajax({
+      url: "<?php echo base_url('example/lowearn')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totEarned+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#lowearn").html(html); //pass the data to your tbody
+      }
+    })
+}
 
  
-
-
-
-
-
 </script>
 
 <script>
@@ -479,6 +563,11 @@ $('#coba').datetimepicker({
         allowInputToggle: true
     })
  .on('dp.change', function(e) {
+
+ 	purChart();
+ 	});
+
+function purChart(){
 
        var tahun_beli = $('#dada').data('date');
      	
@@ -510,6 +599,7 @@ $('#coba').datetimepicker({
 						borderColor: 'rgba(57, 80, 103, 0.7)',
 						hoverBackgroundColor: 'rgba(57, 80, 103, 0.6)',
 						hoverBorderColor: 'rgba(57, 80, 103, 1)',
+						lineTension: 0,
 						data: total
 					}
 				]
@@ -527,17 +617,15 @@ $('#coba').datetimepicker({
 			}
 		});
 
-    });
+    
+
+}
 
 </script>
 
 
 <script type="text/javascript">
 	
-
-	 
-
-
 	var purchase = $('#purchase').DataTable( {
               "paging":   false,
                 "ordering": false,
@@ -679,26 +767,39 @@ $('#coba').datetimepicker({
 
 
 <script>
+$('#gabung').datetimepicker({
+		
+        format: 'YYYY',
+        allowInputToggle: true
+    })
+ .on('dp.change', function(e) {
 
-	
-	 $.ajax({
-		    
+ 	gabungChart();
+ 	});
+
+function gabungChart(){
+
+       var tahun_beli = $('#gabung').data('date');
+     	
+
+    $.ajax({
+		   type: "POST",
 		   url: "<?php echo base_url('example/gabung')?>",
-		   method: "GET",
-
+		   dataType: "JSON",
+		  
+		   data: { "tahun_beli": tahun_beli },
 		    success: function(data) {
-		    	var data = JSON.parse(data); 
-		    	console.log(data);
 		    	
+		    	console.log(data);
 
-		    	var month = [];
-			    var total1 = [];
-			     var total2 = [];
+		    	var total_inv = [];
+		    	var total_pur = [];
+			    var month = [];
 			    
 			    for (var i in data){
+			    	total_inv.push(data[i].total_inv);
+			    	total_pur.push(data[i].total_pur);
 			    	month.push(data[i].month);
-			    	total1.push(data[i].total1);
-			    	total2.push(data[i].total2);
 			    }   
 		      
 		      var chartdata = {
@@ -706,45 +807,118 @@ $('#coba').datetimepicker({
 				datasets : [
 					{
 						label: 'Total Pembelian',
-						backgroundColor: 'rgba(57, 80, 103, 0.3)',
+						backgroundColor: 'rgba(57, 80, 103, 0.4)',
 						borderColor: 'rgba(57, 80, 103, 0.7)',
 						hoverBackgroundColor: 'rgba(57, 80, 103, 0.6)',
 						hoverBorderColor: 'rgba(57, 80, 103, 1)',
-						data: total1
 						
+						data: total_pur
 					},
-
 					{
 						label: 'Total Penjualan',
 						backgroundColor: 'rgba(26, 187, 156, 0.3)',
 						borderColor: 'rgba(26, 187, 156, 0.7)',
 						hoverBackgroundColor: 'rgba(26, 187, 156, 0.6)',
 						hoverBorderColor: 'rgba(26, 187, 156, 1)',
-						data: total2
+						data: total_inv
 						
 						
 					}
 				]
+
 			};
 
 			var ctx = $("#report");
 
 			var barGraph = new Chart(ctx, {
 				type: 'line',
-				data: chartdata,
-				options: {
-					
-			        legend: {
-			        	
-         				
-			            
-			        }
-			    }
+				data: chartdata
 			});
 
 
 			}
 		});
+
+
+
+ $.ajax({
+      url: "<?php echo base_url('example/gabung')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+      	var mytotal= '';
+
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].month+'</td>'+
+                            '<td>'+data[i].total_inv+'</td>'+
+                            '<td>'+data[i].total_pur+'</td>'+
+                            '<td>'+(data[i].total_inv-data[i].total_pur)+'</td>'+
+                        '</tr>';
+            }
+            $("#laba").html(html); //pass the data to your tbody
+      }
+    })
+
+    
+
+}
+
+</script>
+
+<script>
+	 $.ajax({
+		    
+		   url: "<?php echo base_url('example/chart_unit')?>",
+		   method: "GET",
+
+		    success: function(data) {
+		    	var data = JSON.parse(data); 
+		    	console.log(data);
+		    	
+
+		    	var stok = [];
+			    var unit = [];
+			    
+			    for (var i in data){
+			    	stok.push(data[i].stok);
+			    	unit.push(data[i].unit);
+			    }   
+		      
+		      var chartdata = {
+				labels: unit,
+				datasets : [
+					{
+						label: 'Stok obat',
+						backgroundColor: 'rgba(26, 187, 156, 0.7)',
+						borderColor: 'rgba(26, 187, 156, 0.7)',
+						hoverBackgroundColor: 'rgba(26, 187, 156, 1)',
+						hoverBorderColor: 'rgba(26, 187, 156, 1)',
+						data: stok
+					}
+				]
+			};
+
+			var ctx = $("#unit_chart");
+
+			var barGraph = new Chart(ctx, {
+				type: 'bar',
+				data: chartdata
+			});
+
+
+			}
+		});
+
+
+
+
 </script>
 
 

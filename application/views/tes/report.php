@@ -3,9 +3,16 @@
     <div class="dashboard_graph x_panel">
       <div class="row x_title">
         <div class="col-md-6">
-          <h4>Grafik Penjualan dan Pembelian Tahun 2018</h4>
+          <h4>Grafik Penjualan</h4>
         </div>
-        
+        <div class="col-md-2 pull-right">
+          <div class='input-group date ' id='gabung'>
+            <input type="text" name="tahun_beli" id="tahun_beli" class="form-control tahun_beli" required="required" placeholder="Pilih tahun">
+              <span class="input-group-addon">
+                 <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+        </div>
       </div>
       <div class="x_content">
         	<canvas id="report" width="900" height="280"></canvas>
@@ -43,27 +50,11 @@
 
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
+					<tbody id="laba">
 						
-						<?php foreach($report as $r){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $r->month ?></td>
-							<td><?php echo $r->total2 ?></td>
-							<td><?php echo $r->total1 ?></td>
-							<td><?php echo $r->total2 - $r->total1 ?></td>
-
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
 					</tbody>
-					<tfoot>
-						<td style="text-align:center;" colspan="2"><b>Total</b></td>
-				          <td><?php echo $totinv ?></td>
-				          <td><?php echo $totpur ?></td>
-				          <td><?php echo $totinv - $totpur ?></td>
+					<tfoot id="labatotal">
+						
 					</tfoot>
 				</table>
 

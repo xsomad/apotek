@@ -121,15 +121,10 @@ class Example extends CI_Controller
 	}
 
 
-	function invoice_report() {
-		$data['top_demand'] = $this->apotek_data->topDemanded();
-		$data['least_demand'] = $this->apotek_data->leastDemanded();
-		$data['high_earn'] = $this->apotek_data->highestEarners();
-		$data['low_earn'] = $this->apotek_data->lowestEarners();
-		
+	function invoice_report() {		
 		$this->template->write('title', 'Grafik Penjualan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/invoice_report', $data, true);
+		$this->template->write_view('content', 'tes/invoice_report', true);
 
 		$this->template->render();
 		
@@ -454,7 +449,7 @@ class Example extends CI_Controller
 	function edit_form_cat($id_kat) {
 		$where = array('id_kat' => $id_kat);
 		$data['table_cat'] = $this->apotek_data->edit_data($where,'table_cat')->result();
-		$this->template->write('title', 'Edit Kategori', TRUE);
+		$this->template->write('title', 'Ubah Kategori', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/edit_form_cat', $data, true);
 
@@ -487,7 +482,7 @@ class Example extends CI_Controller
 		$data['get_unit'] = $this->apotek_data->get_unit();
 		$where = array('id_obat' => $id_obat);
 		$data['table_med'] = $this->apotek_data->edit_data($where,'table_med')->result();
-		$this->template->write('title', 'Edit Obat', TRUE);
+		$this->template->write('title', 'Ubah Obat', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/edit_form_med', $data, true);
 
@@ -533,7 +528,7 @@ class Example extends CI_Controller
 	function edit_form_sup($id_pem) {
 		$where = array('id_pem' => $id_pem);
 		$data['table_sup'] = $this->apotek_data->edit_data($where,'table_sup')->result();
-		$this->template->write('title', 'Edit Pemasok', TRUE);
+		$this->template->write('title', 'Ubah Pemasok', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/edit_form_sup', $data, true);
 
@@ -543,7 +538,7 @@ class Example extends CI_Controller
 	function edit_form_unit($id_unit) {
 		$where = array('id_unit' => $id_unit);
 		$data['table_unit'] = $this->apotek_data->edit_data($where,'table_unit')->result();
-		$this->template->write('title', 'Edit Unit', TRUE);
+		$this->template->write('title', 'Ubah Unit', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/edit_form_unit', $data, true);
 
@@ -647,6 +642,12 @@ class Example extends CI_Controller
 		echo json_encode($data);
 	}
 
+	function chart_unit()
+	{
+       $data = $this->apotek_data->get_chart_unit();
+		echo json_encode($data);
+	}
+
 
 	function chart_trans()
 	{
@@ -664,10 +665,45 @@ class Example extends CI_Controller
 
 	function gabung()
 	{
-       $data = $this->apotek_data->get_gabung();
+       $tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->get_gabung($tahun_beli);
 		echo json_encode($data);
 	}
 
+	function topdemand()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->topDemanded($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function leastdemand()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->leastDemanded($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function highearn()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->highestEarners($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function lowearn()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->lowestEarners($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function totale()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->get_tot($tahun_beli);
+		echo json_encode($data);
+	}
 
 	
 

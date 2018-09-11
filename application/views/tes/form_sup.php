@@ -40,7 +40,7 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <a href="<?php echo base_url('example/table_sup') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <button id="send" type="submit" class="btn btn-success">Simpan</button>
             </div>
           </div>
         </form>

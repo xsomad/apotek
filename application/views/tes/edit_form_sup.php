@@ -2,7 +2,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Edit Pemasok</h2>
+        <h2>Ubah Pemasok</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -44,7 +44,7 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <a href="<?php echo base_url('example/table_sup') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <button id="send" type="submit" class="btn btn-success">Simpan</button>
             </div>
           </div>
         </form>

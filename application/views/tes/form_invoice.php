@@ -41,7 +41,7 @@
           <table id="prod" class="table table-bordered">
           <thead>
             <tr>
-              <th style="text-align: center">Obat yang dibeli</th>
+              <th style="text-align: center">Obat yang dijual</th>
               <th style="text-align: center">Stok</th>
               <th style="text-align: center">Unit obat</th>
               <th style="text-align: center">Harga satuan</th>
@@ -55,7 +55,7 @@
           
         <tfoot>
           <tr>
-          <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grand Total</b></td>
+          <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grandtotal</b></td>
           <td>
             <input id="grandtotal" name="grandtotal" type="text" class="form-control grandtotal" readonly>
           </td>
@@ -69,7 +69,7 @@
             <div class="col-md-6 col-md-offset-3">
               <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
               <button id='addRow' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Tambah Produk</button>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <button id="send" type="submit" class="btn btn-success">Simpan</button>
               
             </div>
           </div>

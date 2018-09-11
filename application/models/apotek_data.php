@@ -181,76 +181,92 @@ class Apotek_data extends CI_Model
     }
 
 
-    public function topDemanded(){
+    function topDemanded($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat GROUP BY table_invoice.nama_obat ORDER BY totSold DESC LIMIT 5";
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold DESC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totSold" => $data['totSold'],
+                    
+                );
+            }
+            return $hasil;
     }
 
 
-    public function leastDemanded(){
+    public function leastDemanded($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat GROUP BY table_invoice.nama_obat ORDER BY totSold ASC LIMIT 5";
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold ASC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+        
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totSold" => $data['totSold'],
+                    
+                );
+            }
+            return $hasil;
     }
 
-    public function highestEarners(){
+    public function highestEarners($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.subtotal) as 'totEarned' FROM table_med 
-                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat 
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
+                AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' 
                 GROUP BY table_invoice.nama_obat 
                 ORDER BY totEarned DESC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+         $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totEarned" => $data['totEarned'],
+                    
+                );
+            }
+            return $hasil;
     }
 
-    public function lowestEarners(){
+    public function lowestEarners($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.subtotal) as 'totEarned' FROM table_med 
                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
+               AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' 
                GROUP BY table_invoice.nama_obat 
                ORDER BY totEarned ASC LIMIT 5";
        
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
 
-        else{
-            return FALSE;
-        }
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totEarned" => $data['totEarned'],
+                    
+                );
+            }
+            return $hasil;
     }
 
 
 
     public function topPurchase(){
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat  GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
@@ -405,7 +421,7 @@ class Apotek_data extends CI_Model
     }
 
     function count_totpur(){       
-       $q = "SELECT *, SUM(table_purchase.subtotal) as 'totalTrans' FROM table_purchase WHERE YEAR(table_purchase.tgl_beli)= '2018' ";
+       $q = "SELECT *, SUM(table_purchase.subtotal) as 'totalTrans' FROM table_purchase ";
 
         $run_q = $this->db->query($q);
 
@@ -420,7 +436,7 @@ class Apotek_data extends CI_Model
     }
 
     function count_totinv(){       
-       $q = "SELECT *, SUM(table_invoice.subtotal) as 'totalTrans' FROM table_invoice WHERE YEAR(table_invoice.tgl_beli)= '2018' ";
+       $q = "SELECT *, SUM(table_invoice.subtotal) as 'totalTrans' FROM table_invoice";
 
         $run_q = $this->db->query($q);
 
@@ -450,6 +466,21 @@ class Apotek_data extends CI_Model
     }
 
 
+    function get_chart_unit(){
+        $query = $this->db->query('SELECT unit, SUM(stok) AS stok FROM table_med GROUP BY unit');
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "unit" => $data['unit'],
+                    "stok" => $data['stok'],
+                );
+            }
+            return $hasil;
+    }
+
+
+
     function get_chart_trans($tahun_beli){
         
         $query = $this->db->query("SELECT month.month_name as month, SUM(table_invoice.subtotal) AS total 
@@ -471,8 +502,10 @@ class Apotek_data extends CI_Model
     function get_chart_purchase($tahun_beli){
         
         $query = $this->db->query("SELECT month.month_name as month, SUM(table_purchase.subtotal) AS total 
-            FROM month LEFT JOIN table_purchase ON (month.month_num = MONTH(table_purchase.tgl_beli)  AND YEAR(table_purchase.tgl_beli)= '$tahun_beli')
-    GROUP BY month.month_name ORDER BY month.month_num");
+            FROM month 
+            LEFT JOIN table_purchase ON (month.month_num = MONTH(table_purchase.tgl_beli)  
+            AND YEAR(table_purchase.tgl_beli)= '$tahun_beli')
+        GROUP BY month.month_name ORDER BY month.month_num");
         
         $hasil = array();
         
@@ -486,29 +519,41 @@ class Apotek_data extends CI_Model
 
     }
 
-    function get_gabung(){
+   
+    function get_gabung($tahun_beli){
         
-        $query = $this->db->query("SELECT month.month_name as month, 
-            SUM(table_purchase.subtotal) AS total1,
-            SUM(table_invoice.subtotal) AS total2  
-            FROM month 
-            LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  
-            LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli)
-            AND YEAR(table_invoice.tgl_beli)= '2018'
-            GROUP BY month.month_name ORDER BY month.month_num");
+       $query = $this->db->query("SELECT m.month_name as month, 
+                   i.total_inv, 
+                   p.total_pur
+                FROM month m
+                LEFT JOIN (SELECT MONTH(tgl_beli) as month, 
+                            SUM(subtotal) as total_inv  
+                            FROM table_invoice
+                            WHERE YEAR(tgl_beli)= '$tahun_beli'
+                            GROUP BY month) i  ON (m.month_num = i.month)    
+                LEFT JOIN (SELECT MONTH(tgl_beli) as month, 
+                            SUM(subtotal) as total_pur
+                            FROM  table_purchase 
+                            WHERE YEAR(tgl_beli)= '$tahun_beli'
+                            GROUP BY month) p ON (m.month_num = p.month )
+                ORDER BY m.month_num");
         
         $hasil = array();
         
             foreach($query->result_array() as $data){
                 $hasil[] = array(
                     "month" => $data['month'],
-                    "total1" => $data['total1'],
-                    "total2" => $data['total2'],
+                    "total_inv" => $data['total_inv'],
+                    "total_pur" => $data['total_pur'],
+                    
+                    
                 );
             }
             return $hasil;
 
     }
+
+
 
    
 
@@ -518,9 +563,10 @@ class Apotek_data extends CI_Model
             SUM(table_purchase.subtotal) AS total1,
             SUM(table_invoice.subtotal) AS total2  
             FROM month 
-            LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)  
+            LEFT JOIN table_purchase ON month.month_num = MONTH(table_purchase.tgl_beli)
+            AND YEAR(table_purchase.tgl_beli)= '2018'  
             LEFT JOIN table_invoice ON month.month_num = MONTH(table_invoice.tgl_beli)
-            AND YEAR(table_invoice.tgl_beli)= '2018'
+            AND YEAR(table_invoice.tgl_beli)= '2018' 
             GROUP BY month.month_name ORDER BY month.month_num";
        
         $run_q = $this->db->query($q);
@@ -533,6 +579,40 @@ class Apotek_data extends CI_Model
             return FALSE;
         }
     }
+
+
+     
+
+
+     function get_tot($tahun_beli){       
+         $query = $this->db->query("SELECT *, (SELECT *, 
+                            SUM(subtotal) as total_inv  
+                            FROM table_invoice
+                            WHERE YEAR(tgl_beli)= '2018'
+                            )  
+                LEFT JOIN (SELECT *, 
+                            SUM(subtotal) as total_pur
+                            FROM  table_purchase 
+                            WHERE YEAR(tgl_beli)= '2018'
+                            )  
+                ");
+        
+        $hasil = array();
+        
+            foreach($query->result_array() as $data){
+                $hasil[] = array(
+                    "month" => $data['month'],
+                    "total_inv" => $data['total_inv'],
+                    "total_pur" => $data['total_pur'],
+                    
+                    
+                );
+            }
+            return $hasil;
+    }
+
+
+
 
 
 

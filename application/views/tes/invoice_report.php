@@ -27,7 +27,7 @@
 	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Penjualan terbanyak</small></h2>
+				<h2>Penjualan Terbanyak</small></h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -39,28 +39,19 @@
 			</div>
 			<div class="x_content">
 
-				<table class="table table-striped">
+				<table  class="table table-striped">
 					<thead>
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Banyak Penjualan</th>
+							<th>Banyak</th>
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
+					<tbody id="topdemand">
 						
-						<?php foreach($top_demand as $tp){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $tp->nama_obat ?></td>
-							<td><?php echo $tp->totSold ?></td>
-
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
 					</tbody>
+					
+					
 				</table>
 
 			</div>
@@ -88,22 +79,12 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Banyak Penjualan</th>
+							<th>Banyak</th>
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($least_demand as $ld){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $ld->nama_obat ?></td>
-							<td><?php echo $ld->totSold ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					<tbody id="leastdemand">
+						
 					</tbody>
 				</table>
 
@@ -136,18 +117,8 @@
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($high_earn as $he){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $he->nama_obat ?></td>
-							<td>Rp <?php echo number_format($he->totEarned) ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					<tbody id="highearn">
+						
 					</tbody>
 				</table>
 
@@ -179,18 +150,8 @@
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($low_earn as $le){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $le->nama_obat ?></td>
-							<td>Rp <?php echo number_format ($le->totEarned) ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					<tbody id="lowearn">
+						
 					</tbody>
 				</table>
 

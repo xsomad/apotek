@@ -62,7 +62,7 @@
           
         <tfoot>
           <tr>
-          <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grand Total</b></td>
+          <td style="text-align:right; vertical-align: middle" colspan="5"><b>Grandtotal</b></td>
           <td>
             <input id="grandtotal" name="grandtotal" type="text" class="form-control grandtotal" readonly>
           </td>
@@ -74,9 +74,9 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
-              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
-              <button id='addpurchase' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Add Product</button>
-              <button id="send" type="submit" class="btn btn-success">Submit</button>
+              <a href="<?php echo base_url('example/table_invoice') ?>"><button type="button" class="btn btn-danger">Batal</button></a>
+              <button id='addpurchase' class="btn btn-info" type="button"><span class="fa fa-plus"></span> Tambah Produk</button>
+              <button id="send" type="submit" class="btn btn-success">Simpan</button>
               
             </div>
           </div>

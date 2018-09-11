@@ -132,7 +132,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Total</th>
+							<th>Total Pembelian</th>
 							
 						</tr>
 					</thead>
@@ -175,7 +175,7 @@
 						<tr>
 							<th>#</th>
 							<th>Nama Obat</th>
-							<th>Total</th>
+							<th>Total Pembelian</th>
 							
 						</tr>
 					</thead>

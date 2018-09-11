@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Tagihan Obat</h2>
+        <h2>Pembelian Obat</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -50,7 +50,7 @@
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-              <b>Invoice #<?php echo $i->ref ?></b>
+              <b>No Referensi: #<?php echo $i->ref ?></b>
               <br>
               <b>Total Pembelian: <?php echo $i->banyak ?></b> 
               <br>

@@ -32,7 +32,7 @@
 
 				<a href="<?php echo base_url('example/form_purchase') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Pembelian </button></a>
 				
-				<table id="datatable-buttons" class="table table-striped table-bordered">
+				<table id="datatable" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>Tanggal Beli</th>
