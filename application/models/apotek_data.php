@@ -264,69 +264,87 @@ class Apotek_data extends CI_Model
 
 
 
-    public function topPurchase(){
+    public function topPurchase($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat  GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
+                AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
+                GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totSold" => $data['totSold'],
+                    
+                );
+            }
+            return $hasil;
     }
 
 
-    public function leastPurchase(){
+    public function leastPurchase($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat GROUP BY table_purchase.nama_obat ORDER BY totSold ASC LIMIT 5";
-
-        $run_q = $this->db->query($q);
-
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
-    }
-
-    public function highestPurchase(){
-        $q = "SELECT table_med.nama_obat, SUM(table_purchase.subtotal) as 'totEarned' FROM table_med 
                 INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat 
+                 AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
+                GROUP BY table_purchase.nama_obat ORDER BY totSold ASC LIMIT 5";
+
+        $run_q = $this->db->query($q);
+
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totSold" => $data['totSold'],
+                    
+                );
+            }
+            return $hasil;
+    }
+
+    public function highestPurchase($tahun_beli){
+        $q = "SELECT table_med.nama_obat, SUM(table_purchase.subtotal) as 'totEarned' FROM table_med 
+                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
+                 AND YEAR(table_purchase.tgl_beli)= '$tahun_beli' 
                 GROUP BY table_purchase.nama_obat 
                 ORDER BY totEarned DESC LIMIT 5";
 
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totEarned" => $data['totEarned'],
+                    
+                );
+            }
+            return $hasil;
     }
 
-    public function lowestPurchase(){
+    public function lowestPurchase($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.subtotal) as 'totEarned' FROM table_med 
                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
+                AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
                GROUP BY table_purchase.nama_obat 
                ORDER BY totEarned ASC LIMIT 5";
        
         $run_q = $this->db->query($q);
 
-        if($run_q->num_rows() > 0){
-            return $run_q->result();
-        }
-
-        else{
-            return FALSE;
-        }
+        $hasil = array();
+        
+            foreach($run_q->result_array() as $data){
+                $hasil[] = array(
+                    "nama_obat" => $data['nama_obat'],
+                    "totEarned" => $data['totEarned'],
+                    
+                );
+            }
+            return $hasil;
     }
 
 
@@ -388,6 +406,12 @@ class Apotek_data extends CI_Model
       $cp =  $this->db->query('SELECT * FROM table_sup'); 
         $sup = $cp->num_rows();
         return $sup;    
+    }
+
+    function count_unit(){       
+      $cu =  $this->db->query('SELECT * FROM table_cat'); 
+        $cunit = $cu->num_rows();
+        return $cunit;    
     }
 
     function count_inv(){       

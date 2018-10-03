@@ -50,7 +50,7 @@
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-              <b>Invoice #<?php echo $p->ref ?></b>
+              <b>Invoice: #<?php echo $p->ref ?></b>
               <br>
               <b>Total Pembelian: <?php echo $p->banyak ?></b> 
               <br>

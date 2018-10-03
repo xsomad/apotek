@@ -5,7 +5,7 @@
                                   title: 'Peringatan',
                                   text: 'Obat sudah habis...',
                                   type: 'error',
-                                  
+                                 
                                   styling: 'bootstrap3'
                               });">Error</button>
                   
@@ -38,8 +38,8 @@
               <div class="count"><?php echo $sup ?></div>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-edit"></i> Total Transaksi</span>
-              <div class="count"><?php echo $inv + $pur?></div>
+              <span class="count_top"><i class="fa fa-edit"></i> Total Unit</span>
+              <div class="count"><?php echo $unit ?></div>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-edit"></i> Total Penjualan</span>

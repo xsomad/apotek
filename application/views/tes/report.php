@@ -3,7 +3,7 @@
     <div class="dashboard_graph x_panel">
       <div class="row x_title">
         <div class="col-md-6">
-          <h4>Grafik Penjualan</h4>
+          <h4>Grafik Penjualan dan Pembelian</h4>
         </div>
         <div class="col-md-2 pull-right">
           <div class='input-group date ' id='gabung'>
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="x_content">
-        	<canvas id="report" width="900" height="280"></canvas>
+        	<canvas id="report" width="900" height="300"></canvas>
       </div>
     </div>
   </div>
@@ -24,10 +24,10 @@
 
 
 <div class="row">
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Laporan</small></h2>
+				<h2>Laporan Penjualan dan Pembelian</small></h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>

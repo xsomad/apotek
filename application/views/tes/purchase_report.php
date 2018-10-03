@@ -27,7 +27,7 @@
 	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Pembelian terbanyak</small></h2>
+				<h2>Pembelian Terbanyak</small></h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -47,19 +47,10 @@
 							<th>Banyak</th>
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
+					
+					<tbody id="toppurchase">
 						
-						<?php foreach($top_demand as $tp){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $tp->nama_obat ?></td>
-							<td><?php echo $tp->totSold ?></td>
-
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+						
 					</tbody>
 				</table>
 
@@ -92,18 +83,9 @@
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($least_demand as $ld){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $ld->nama_obat ?></td>
-							<td><?php echo $ld->totSold ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					
+					<tbody id="leastpurchase">
+						
 					</tbody>
 				</table>
 
@@ -115,7 +97,7 @@
 <div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Pengeluaran Terbanyak</h2>
+				<h2>Pengeluaran Tertinggi</h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -136,18 +118,9 @@
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($high_earn as $he){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $he->nama_obat ?></td>
-							<td>Rp <?php echo number_format($he->totEarned) ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					
+					<tbody id="highpurchase">
+						
 					</tbody>
 				</table>
 
@@ -158,7 +131,7 @@
 	<div class="col-md-6 col-sm-6 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Pengeluaran Tersedikit</h2>
+				<h2>Pengeluaran Terendah</h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -179,18 +152,9 @@
 							
 						</tr>
 					</thead>
-					<?php $sn = 1 ?>
-					<tbody>
-						<?php foreach($low_earn as $le){ ?>
-						<tr>
-							<th scope="row"><?= $sn ?></th>
-							<td><?php echo $le->nama_obat ?></td>
-							<td>Rp <?php echo number_format ($le->totEarned) ?></td>
-							
-						</tr>
-						<?php $sn++; ?>
-
-						<?php } ?>
+					
+					<tbody id="lowpurchase">
+						
 					</tbody>
 				</table>
 

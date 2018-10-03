@@ -22,7 +22,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Nama Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control nama_pemasok" tabindex="-1">
+              <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control nama_pemasok" tabindex="-1" required="required">
                 <option selected="true" value="" disabled ></option>
                   <?php foreach($get_sup as $gs){ ?>
                     <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>

@@ -26,6 +26,7 @@ class Example extends CI_Controller
 		$data['stockobat'] = $this->apotek_data->count_med();
 		$data['stockkat'] = $this->apotek_data->count_cat();
 		$data['sup'] = $this->apotek_data->count_sup();
+		$data['unit'] = $this->apotek_data->count_unit();
 		$data['inv'] = $this->apotek_data->count_inv();
 		$data['pur'] = $this->apotek_data->count_pur();
 		$data['totpur'] = $this->apotek_data->count_totpur();
@@ -131,15 +132,10 @@ class Example extends CI_Controller
 	}
 
 	function purchase_report() {
-		$data['top_demand'] = $this->apotek_data->topPurchase();
-		$data['least_demand'] = $this->apotek_data->leastPurchase();
-		$data['high_earn'] = $this->apotek_data->highestPurchase();
-		$data['low_earn'] = $this->apotek_data->lowestPurchase();
-		
-		
+
 		$this->template->write('title', 'Grafik Pembelian', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
-		$this->template->write_view('content', 'tes/purchase_report', $data, true);
+		$this->template->write_view('content', 'tes/purchase_report', true);
 
 		$this->template->render();
 		
@@ -149,7 +145,7 @@ class Example extends CI_Controller
 		$data['totpur'] = $this->apotek_data->count_totpur();
 		$data['totinv'] = $this->apotek_data->count_totinv();
 		$data['report'] = $this->apotek_data->get_report();
-		$this->template->write('title', 'Grafik Total', TRUE);
+		$this->template->write('title', 'Laporan', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/report', $data, true);
 
@@ -180,7 +176,7 @@ class Example extends CI_Controller
 	
 
 	function form_sup() {
-		$this->template->write('title', 'Tambah Supplier', TRUE);
+		$this->template->write('title', 'Tambah Pemasok', TRUE);
 		$this->template->write('header', 'Sistem Informasi Manajemen Apotek');
 		$this->template->write_view('content', 'tes/form_sup', '', true);
 
@@ -608,6 +604,7 @@ class Example extends CI_Controller
 
 	function remove_unit($id_unit){
 		$where = array('id_unit' => $id_unit);
+		
 		$this->apotek_data->delete_data($where,'table_unit');
 		redirect('example/table_unit');
 	}
@@ -616,6 +613,8 @@ class Example extends CI_Controller
 	function remove_inv($ref){
 		$where = array('ref' => $ref);
 		$this->apotek_data->delete_data($where,'table_invoice');
+
+
 		redirect('example/table_invoice');
 	}
 
@@ -697,6 +696,36 @@ class Example extends CI_Controller
        	$data = $this->apotek_data->lowestEarners($tahun_beli);
 		echo json_encode($data);
 	}
+
+	function toppurchase()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->topPurchase($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function leastpurchase()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->leastPurchase($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function highpurchase()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->highestPurchase($tahun_beli);
+		echo json_encode($data);
+	}
+
+	function lowpurchase()
+	{
+		$tahun_beli=$this->input->post('tahun_beli');
+       	$data = $this->apotek_data->lowestPurchase($tahun_beli);
+		echo json_encode($data);
+	}
+
+
 
 	function totale()
 	{

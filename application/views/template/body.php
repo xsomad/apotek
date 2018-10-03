@@ -96,7 +96,7 @@
 		
 		<script src="<?php echo base_url('vendors/Chart.js/dist/Chart.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/jquery-sparkline/dist/jquery.sparkline.min.js') ?>"></script>
-		<script src="<?php echo base_url('vendors/raphael/raphael.min.js') ?>"></script>
+		
 		<script src="<?php echo base_url('vendors/morris.js/morris.min.js') ?>"></script>
 		<script src="<?php echo base_url('vendors/raphael/raphael.min.js') ?>"></script>
 
@@ -232,11 +232,21 @@
 
 </script>
 
+<script type="text/javascript">
+	var tablenambah = $('#nambah').DataTable( {
+              
+            });
+</script>
+
+
 
 
 <!-- Add row and calculate -->
 
 <script type="text/javascript">
+
+	
+
 
 	var transaksi = $('#prod').DataTable( {
               "paging":   false,
@@ -249,11 +259,11 @@
 
           $('#addRow').on( 'click', function () {
             transaksi.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+counter+'" name="nama_obat[]" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
+              '<select required="required" style="width:100%;" class="form-control nama_obat" id="nama_obat'+counter+'" name="nama_obat[]" data-stok="#stok'+counter+'" data-unit="#unit'+counter+'" data-harga_jual="#harga_jual'+counter+'"><option selected="true" value="" disabled ></option><?php foreach($get_med as $gm){ ?><option value="<?php echo $gm; ?>"><?php echo $gm; ?></option><?php  }?></select>',
               '<input id="stok'+counter+'" name="stok[]" class="form-control stok" readonly >',
               '<input id="unit'+counter+'" name="unit[]" class="form-control" readonly>',
               '<input id="harga_jual'+counter+'" name="harga_jual[]" class="form-control harga_jual" readonly>',
-              '<input type="number" id="banyak'+counter+'" name="banyak[]" class="form-control banyak">',
+              '<input type="number" id="banyak'+counter+'" name="banyak[]" class="form-control banyak" required="required">',
               '<input id="subtotal'+counter+'" name="subtotal[]" class="form-control subtotal" readonly>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
@@ -617,6 +627,97 @@ function purChart(){
 			}
 		});
 
+
+     $.ajax({
+      url: "<?php echo base_url('example/toppurchase')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totSold+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#toppurchase").html(html); //pass the data to your tbody
+      }
+    })
+
+
+ 	 $.ajax({
+      url: "<?php echo base_url('example/leastpurchase')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totSold+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#leastpurchase").html(html); //pass the data to your tbody
+      }
+    })
+
+
+ 	$.ajax({
+      url: "<?php echo base_url('example/highpurchase')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totEarned+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#highpurchase").html(html); //pass the data to your tbody
+      }
+    })
+
+    $.ajax({
+      url: "<?php echo base_url('example/lowpurchase')?>",
+      async: false,
+      type: "POST",
+      data: { "tahun_beli": tahun_beli },
+      dataType: "JSON",
+      success: function(data) {
+
+      	var html = '';
+
+            for(i=0; i<data.length; i++){
+                html += '<tr >'+
+                			'<td>'+(i+1)+'</td>'+
+                            '<td>'+data[i].nama_obat+'</td>'+
+                            '<td>'+data[i].totEarned+'</td>'+
+                            
+                        '</tr>';
+            }
+            $("#lowpurchase").html(html); //pass the data to your tbody
+      }
+    })
+
     
 
 }
@@ -663,11 +764,11 @@ function purChart(){
           $('#addpurchase').on( 'click', function () {
 
             purchase.row.add( [
-              '<select style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Pilih pemasok</option></select>',
+              '<select required="required" style="width:100%;" class="form-control nama_obat" id="nama_obat'+count+'" name="nama_obat[]" data-stok="#stok'+count+'" data-unit="#unit'+count+'" data-harga_beli="#harga_beli'+count+'"><option selected="true" value="" disabled >Pilih pemasok</option></select>',
               '<input id="stok'+count+'" name="stok[]" class="form-control stok" readonly >',
               '<input id="unit'+count+'" name="unit[]" class="form-control unit" readonly>',
               '<input id="harga_beli'+count+'" name="harga_beli[]" class="form-control harga_beli" readonly>',
-              '<input type="number" id="banyak'+count+'" name="banyak[]" class="form-control banyak">',
+              '<input type="number" id="banyak'+count+'" name="banyak[]" class="form-control banyak" required="required">',
               '<input id="subtotal'+count+'" name="subtotal[]" class="form-control subtotal" readonly>',
               '<button id="removeproduk" class="btn btn-danger btn-sm" type="button"><span class="fa fa-trash"></span> Hapus</button>',
             ] ).draw( false );
@@ -832,7 +933,15 @@ function gabungChart(){
 
 			var barGraph = new Chart(ctx, {
 				type: 'line',
-				data: chartdata
+				data: chartdata,
+				options: {
+		            responsive: true,
+		            legend: {
+		               
+
+		            },
+		            
+		        }
 			});
 
 
@@ -851,19 +960,37 @@ function gabungChart(){
 
       	var html = '';
       	var mytotal= '';
+      	var total_inv=0;
+      	var total_pur=0;
 
 
             for(i=0; i<data.length; i++){
                 html += '<tr >'+
                 			'<td>'+(i+1)+'</td>'+
                             '<td>'+data[i].month+'</td>'+
-                            '<td>'+data[i].total_inv+'</td>'+
-                            '<td>'+data[i].total_pur+'</td>'+
+                            '<td>'+(parseInt(data[i].total_inv)||0)+'</td>'+
+                            '<td>'+(parseInt(data[i].total_pur)||0)+'</td>'+
                             '<td>'+(data[i].total_inv-data[i].total_pur)+'</td>'+
                         '</tr>';
             }
             $("#laba").html(html); //pass the data to your tbody
+
+
+            for(i=0; i<data.length; i++){
+            	total_inv += parseInt(data[i].total_inv) || 0;
+            	total_pur += parseInt(data[i].total_pur) || 0;
+                mytotal = '<tr >'+
+                			'<td>#</td>'+
+                            '<td>Total</td>'+
+                            '<td>'+total_inv+'</td>'+
+                            '<td>'+total_pur+'</td>'+
+                            '<td>'+(total_inv-total_pur)+'</td>'+
+                        '</tr>';
+            }
+            $("#labatotal").html(mytotal); //pass the data to your tbody
       }
+
+
     })
 
     

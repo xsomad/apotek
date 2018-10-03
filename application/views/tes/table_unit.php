@@ -20,6 +20,7 @@
                                   title: 'Berhasil',
                                   text: '<?php echo $this->session->flashdata('unit_added'); ?>',
                                   type: 'success',
+                                  hide: false,
                                   styling: 'bootstrap3'
                               });">Success</button>
                  	</div>

@@ -2,7 +2,7 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Pemasok</h2>
+				<h2>Lihat Pemasok</h2>
 				<ul class="nav navbar-right panel_toolbox">
 					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 					</li>
@@ -14,29 +14,36 @@
 			</div>
 			<div class="x_content">
 				<?php if($this->session->flashdata('sup_added')): ?>
-    				<div class="alert alert-info alert-dismissible fade in" role="alert">
-		                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-		                </button>
-	                    <strong><?php echo $this->session->flashdata('sup_added'); ?></strong>
+                  <button id="melinda" style="display: none;" class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Berhasil',
+                                  text: '<?php echo $this->session->flashdata('sup_added'); ?>',
+                                  type: 'success',
+                                  hide: false,
+                                  styling: 'bootstrap3'
+                              });">Success</button>
                  	</div>
+                 	
 				<?php endif; ?>
 
 				<a href="<?php echo base_url('example/form_sup') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Pemasok </button></a>
 				
-				<table id="datatable" class="table table-striped table-bordered">
+				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Nama Supplier</th>
+							<th>No</th>
+							<th>Nama Pemasok</th>
 							<th>Alamat</th>
 							<th>No Telepon</th>
 							<th>Aksi</th>
 							
 						</tr>
 					</thead>
-
+						<?php $sn = 1 ?>
 					<tbody>
+						
 						<?php foreach($table_sup as $s){ ?>
 						<tr>
+							<th scope="row"><?= $sn ?></th>
 							<td><?php echo $s->nama_pemasok ?></td>
 							<td><?php echo $s->alamat ?></td>
 							<td><?php echo $s->telepon ?></td>
@@ -45,6 +52,7 @@
 								<?php echo anchor('example/remove_sup/'.$s->id_pem, '<button class="btn btn-danger btn-xs" type="button"><span class="fa fa-trash"></span></button>');?>
 					         </td>
 						</tr>
+						<?php $sn++; ?>
 
 						<?php } ?>
 

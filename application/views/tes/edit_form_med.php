@@ -72,7 +72,8 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kedaluwarsa">Tanggal Kedaluwarsa</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class='input-group date' id='myDatepicker2'>
-                  <input type="text" name="kedaluwarsa" id="kedaluwarsa" class="form-control" required="required"value="<?php echo $m->kedaluwarsa ?>">
+                  <input type="text" name="kedaluwarsa" id="kedaluwarsa" class="form-control" required="required"value="<?php echo date('d-m-Y',strtotime($m->kedaluwarsa)); ?>">
+                  
                   <span class="input-group-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>

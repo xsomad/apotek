@@ -32,10 +32,10 @@
 
 				<a href="<?php echo base_url('example/form_invoice') ?>"><button type="button" class="btn btn-success" style="margin-bottom: 13px"><span class="fa fa-plus"></span> Tambah Penjualan </button></a>
 				
-				<table id="datatable" class="table table-striped table-bordered">
+				<table id="datatable-buttons" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Tanggal Beli</th>
+							<th>Tanggal Transaksi</th>
 							<th>No Referensi</th>
 							<th>Nama Pembeli</th>
 							

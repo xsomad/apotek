@@ -39,7 +39,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit">Unit</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="unit" id="unit" class="select2_single form-control" tabindex="-1">
+              <select name="unit" id="unit" class="select2_single form-control" tabindex="-1" required="required">
                 <option selected="true" value="" disabled ></option>
                 <?php foreach($get_unit as $gu){ ?>
                   <option value="<?php echo $gu; ?>"><?php echo $gu; ?></option>
@@ -51,7 +51,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_kategori">Kategori</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select  name="nama_kategori" id="nama_kategori" class="select2_single form-control" tabindex="-1">
+              <select  name="nama_kategori" id="nama_kategori" class="select2_single form-control" tabindex="-1" required="required">
                 <option selected="true" value="" disabled ></option>
                 <?php foreach($get_cat as $gc){ ?>
                   <option value="<?php echo $gc; ?>"><?php echo $gc; ?></option>
@@ -64,7 +64,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kedaluwarsa">Tanggal Kedaluwarsa</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class='input-group date' id='myDatepicker2'>
-                  <input type="text" name="kedaluwarsa" id="kedaluwarsa" class="form-control" required="required">
+                  <input type="text" name="kedaluwarsa" id="kedaluwarsa" class="form-control" required>
                   <span class="input-group-addon">
                      <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -95,7 +95,7 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama_pemasok">Nama Pemasok</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1">
+              <select name="nama_pemasok" id="nama_pemasok" class="select2_single form-control" tabindex="-1" required="required">
                 <option selected="true" value="" disabled ></option>
                   <?php foreach($get_sup as $gs){ ?>
                     <option value="<?php echo $gs; ?>"><?php echo $gs; ?></option>
