@@ -1,5 +1,0 @@
-Cara menginstal:
-
-1. Copy folder apotek ke folder "www" pada wampserver (pada xampp ke folder "htdocs")
-2. Masuk ke phpmyadmin dan buat database baru dengan nama "apotek"
-3. Import apotek.sql pada database tersebut

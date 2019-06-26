@@ -183,7 +183,7 @@ class Apotek_data extends CI_Model
 
     function topDemanded($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold DESC LIMIT 5";
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold DESC ";
 
         $run_q = $this->db->query($q);
 
@@ -202,7 +202,7 @@ class Apotek_data extends CI_Model
 
     public function leastDemanded($tahun_beli){
         $q = "SELECT table_med.nama_obat, SUM(table_invoice.banyak) as 'totSold' FROM table_med 
-                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold ASC LIMIT 5";
+                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' GROUP BY table_invoice.nama_obat ORDER BY totSold ASC ";
 
         $run_q = $this->db->query($q);
 
@@ -224,7 +224,7 @@ class Apotek_data extends CI_Model
                 INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
                 AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' 
                 GROUP BY table_invoice.nama_obat 
-                ORDER BY totEarned DESC LIMIT 5";
+                ORDER BY totEarned DESC ";
 
         $run_q = $this->db->query($q);
 
@@ -245,7 +245,7 @@ class Apotek_data extends CI_Model
                INNER JOIN table_invoice ON table_med.nama_obat=table_invoice.nama_obat
                AND YEAR(table_invoice.tgl_beli)= '$tahun_beli' 
                GROUP BY table_invoice.nama_obat 
-               ORDER BY totEarned ASC LIMIT 5";
+               ORDER BY totEarned ASC ";
        
         $run_q = $this->db->query($q);
 
@@ -268,7 +268,7 @@ class Apotek_data extends CI_Model
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
                 INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
                 AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
-                GROUP BY table_purchase.nama_obat ORDER BY totSold DESC LIMIT 5";
+                GROUP BY table_purchase.nama_obat ORDER BY totSold DESC ";
 
         $run_q = $this->db->query($q);
 
@@ -289,7 +289,7 @@ class Apotek_data extends CI_Model
         $q = "SELECT table_med.nama_obat, SUM(table_purchase.banyak) as 'totSold' FROM table_med 
                 INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat 
                  AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
-                GROUP BY table_purchase.nama_obat ORDER BY totSold ASC LIMIT 5";
+                GROUP BY table_purchase.nama_obat ORDER BY totSold ASC ";
 
         $run_q = $this->db->query($q);
 
@@ -310,7 +310,7 @@ class Apotek_data extends CI_Model
                 INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
                  AND YEAR(table_purchase.tgl_beli)= '$tahun_beli' 
                 GROUP BY table_purchase.nama_obat 
-                ORDER BY totEarned DESC LIMIT 5";
+                ORDER BY totEarned DESC ";
 
         $run_q = $this->db->query($q);
 
@@ -331,7 +331,7 @@ class Apotek_data extends CI_Model
                INNER JOIN table_purchase ON table_med.nama_obat=table_purchase.nama_obat
                 AND YEAR(table_purchase.tgl_beli)= '$tahun_beli'
                GROUP BY table_purchase.nama_obat 
-               ORDER BY totEarned ASC LIMIT 5";
+               ORDER BY totEarned ASC ";
        
         $run_q = $this->db->query($q);
 
